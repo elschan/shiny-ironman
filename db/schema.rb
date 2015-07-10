@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 20150710024202) do
   create_table "comments", force: :cascade do |t|
     t.integer  "parent_comment_id"
     t.integer  "post_id"
-    t.string   "text",              limit: 255
+    t.string   "text"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -30,20 +30,20 @@ ActiveRecord::Schema.define(version: 20150710024202) do
   end
 
   create_table "members", force: :cascade do |t|
-    t.string   "username",        limit: 255
-    t.string   "password_digest", limit: 255
-    t.string   "email",           limit: 255
+    t.string   "username"
+    t.string   "password_digest"
+    t.string   "email"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "posts", force: :cascade do |t|
     t.integer  "member_id"
-    t.string   "title",        limit: 255
-    t.string   "url",          limit: 255
-    t.string   "text",         limit: 255
-    t.integer  "upvote_count",             default: 1
-    t.string   "comments",     limit: 255
+    t.string   "title"
+    t.string   "url"
+    t.string   "text"
+    t.integer  "upvote_count", default: 1
+    t.string   "comments"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -59,7 +59,7 @@ ActiveRecord::Schema.define(version: 20150710024202) do
   create_table "upvotes", force: :cascade do |t|
     t.integer  "member_id"
     t.integer  "parent_id"
-    t.string   "type",       limit: 255
+    t.string   "type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
