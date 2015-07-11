@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150711203742) do
+ActiveRecord::Schema.define(version: 20150711213546) do
 
   create_table "comments", force: true do |t|
     t.integer  "parent_comment_id"
@@ -32,13 +32,30 @@ ActiveRecord::Schema.define(version: 20150711203742) do
 
   create_table "members", force: true do |t|
     t.string   "username"
-    t.string   "password_digest"
-    t.string   "email"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "invite_count"
     t.integer  "reputation"
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.string   "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string   "unconfirmed_email"
+    t.integer  "failed_attempts",        default: 0,  null: false
+    t.string   "unlock_token"
   end
+
+  add_index "members", ["email"], name: "index_members_on_email", unique: true
+  add_index "members", ["reset_password_token"], name: "index_members_on_reset_password_token", unique: true
 
   create_table "posts", force: true do |t|
     t.integer  "member_id"

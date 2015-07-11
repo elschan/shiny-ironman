@@ -19,7 +19,7 @@ class MembersController < ApplicationController
 
   def create
     # makes a new user with the data from the form on the "new" thing
-    @member = Member.create(params)
+    @member = Member.create
   end
 
   # change member details
