@@ -3,8 +3,10 @@ ShinyIronman::Application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   get 'posts', to: 'posts#index'
+
+  resources :members, only: [:index, :new, :create, :update, :edit, :destroy] # QUESTION
   # You can have the root of your site routed with "root"
-  # root 'welcome#index'
+  root 'members#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
