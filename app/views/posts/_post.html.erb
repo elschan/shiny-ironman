@@ -1,5 +1,11 @@
 <div class="post">
-  <h3><%= post.title %></h3>
+  <% if post.url %>
+    <%= link_to post.title, post.url %>
+  <% else %>
+    <% post.title %>
+  <% end %>
+
   <h4><%= post.url %></h4>
   <h4><%= post.text %> </h4>
+  <p> Upvotes: <%= post.upvote_count %>. Created: <%= post_time_ago(post) %> </p>
 </div>

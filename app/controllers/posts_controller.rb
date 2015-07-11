@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   def index
-    # sort chronologically or by upvotes/time
+    # TODO sort chronologically or by upvotes/time
     @posts = Post.all
   end
 
@@ -12,7 +12,7 @@ class PostsController < ApplicationController
     @post = Post.new(post_params)
 
     if @post.save
-      redirect_to posts_path, notice: "#{@post.title} was submitted successfully."
+      redirect_to posts_path
     else
       render :new
     end
@@ -20,16 +20,21 @@ class PostsController < ApplicationController
 
   def edit
     @post = Post.find(params[:id])
-    # serve /posts/ID/edit and put a form on the page
   end
 
   def update
-
-    # save post params
+    @post = Post.find(params[:id])
+    if @post.update_attributes(post_params)
+      redirect_to posts_path
+    else
+      render :edit
+    end
   end
 
   def destroy
-    Post.find(params[:id]).destroy
+    @post = Post.find(params[:id])
+    @post.destroy
+    redirect_to posts_path
   end
 
   protected
