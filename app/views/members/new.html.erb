@@ -1,0 +1,30 @@
+
+<%= form_for @member do |f| %>
+  <% if @member.errors.any? %>
+  <div>
+    <%= pluralize(@member.errors.count, "error") %>
+    <ul>
+      <% @member.errors.full_messages.each do |message| %>
+      <li><%= message %> </li>
+      <%end%>
+    </ul>
+  </div>
+  <%end%>
+  <div>
+    <%= f.label "email" %><br>
+    <%= f.text_field "email" %>
+  </div>
+  <div>
+    <%= f.label "username" %><br>
+    <%= f.text_field "username" %>
+  </div>
+  <div>
+    <%= f.label "password" %><br>
+    <%= f.password_field "password" %>
+  </div>
+  <div>
+    <%= f.label "password_confirmation" %><br>
+    <%= f.password_field "password_confirmation" %>
+  </div>
+  <div><%= f.submit "Submit" %></div>
+<% end %>

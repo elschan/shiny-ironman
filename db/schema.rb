@@ -11,9 +11,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150710024202) do
+ActiveRecord::Schema.define(version: 20150710192539) do
 
-  create_table "comments", force: :cascade do |t|
+  create_table "comments", force: true do |t|
     t.integer  "parent_comment_id"
     t.integer  "post_id"
     t.string   "text"
@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 20150710024202) do
     t.datetime "updated_at"
   end
 
-  create_table "invites", force: :cascade do |t|
+  create_table "invites", force: true do |t|
     t.integer  "member_id"
     t.integer  "member_received_id"
     t.string   "code"
@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(version: 20150710024202) do
     t.datetime "updated_at",         null: false
   end
 
-  create_table "members", force: :cascade do |t|
+  create_table "members", force: true do |t|
     t.string   "username"
     t.string   "password_digest"
     t.string   "email"
@@ -37,8 +37,8 @@ ActiveRecord::Schema.define(version: 20150710024202) do
     t.datetime "updated_at"
   end
 
-  create_table "posts", force: :cascade do |t|
-    t.integer  "member_id"
+  create_table "posts", force: true do |t|
+    t.integer  "profile_id"
     t.string   "title"
     t.string   "url"
     t.string   "text"
@@ -48,7 +48,7 @@ ActiveRecord::Schema.define(version: 20150710024202) do
     t.datetime "updated_at"
   end
 
-  create_table "profiles", force: :cascade do |t|
+  create_table "profiles", force: true do |t|
     t.integer  "member_id"
     t.integer  "reputation"
     t.datetime "created_at"
@@ -56,7 +56,7 @@ ActiveRecord::Schema.define(version: 20150710024202) do
     t.integer  "invite_count"
   end
 
-  create_table "upvotes", force: :cascade do |t|
+  create_table "upvotes", force: true do |t|
     t.integer  "member_id"
     t.integer  "parent_id"
     t.string   "type"
