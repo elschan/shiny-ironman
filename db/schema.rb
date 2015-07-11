@@ -25,9 +25,9 @@ ActiveRecord::Schema.define(version: 20150711203742) do
   create_table "invites", force: true do |t|
     t.integer  "member_id"
     t.integer  "member_received_id"
-    t.string   "code",               limit: nil
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
+    t.string   "code"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
   end
 
   create_table "members", force: true do |t|
