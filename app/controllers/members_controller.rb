@@ -16,12 +16,17 @@ class MembersController < ApplicationController
 
   def create
     # makes a new user with the data from the form on the "new" thing
-    @member = Member.create(params)
+    @member = Member.new(user_params)
+    if @member.save
+      session[:member_id] = @member.id
+      redirect_to posts_path, notice: "Welcome #{@member.username}!"
+    else
+      render :new
+    end
   end
 
   # change member details
   def edit
-
   end
 
   def update
@@ -31,6 +36,11 @@ class MembersController < ApplicationController
 
   # quit your account
   def destroy
-
   end
+
+protected
+
+  def user_params
+    params.require(:member).permit(:username, :password, :password_confirmation, :email)
+  end  
 end

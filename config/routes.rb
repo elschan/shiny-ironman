@@ -4,9 +4,11 @@ ShinyIronman::Application.routes.draw do
 
   get 'posts', to: 'posts#index'
 
-  resources :members, only: [:index, :new, :create, :update, :edit, :destroy] # QUESTION
+  resources :members, only: [:index, :new, :create, :update, :edit, :destroy]
+  resource :session, only: [:new, :create, :destroy]
+   # QUESTION
   # You can have the root of your site routed with "root"
-  root 'members#index'
+  root 'posts#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
