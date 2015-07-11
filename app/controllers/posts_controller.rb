@@ -11,7 +11,14 @@ class PostsController < ApplicationController
   end
 
   def create
-    # catches the post request to posts/new
+    @post = Post.new(post_params)
+
+    if @post.save
+      redirect_to posts_path, notice: "#{@post.title} was submitted successfully."
+    else
+      render :new
+    end
+    # catches the post request from posts/new
     # save a new post using params hash
     # redirect to posts index
   end
@@ -33,6 +40,6 @@ class PostsController < ApplicationController
   protected
 
   def post_params
-    params.require(:title).permit()
-
+    params.require(:post).permit(:title, :url, :text)
+  end
 end
