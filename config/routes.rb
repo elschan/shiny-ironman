@@ -2,9 +2,9 @@ ShinyIronman::Application.routes.draw do
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
-  get 'posts', to: 'posts#index'
+  resources :posts
 
-  resources :members, only: [:index, :new, :create, :update, :edit, :destroy] # QUESTION
+  resources :members, only: [:index, :new, :create, :update, :edit, :destroy]
   # You can have the root of your site routed with "root"
   root 'members#index'
 
