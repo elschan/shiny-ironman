@@ -1,13 +1,11 @@
 class PostsController < ApplicationController
   def index
+    # sort chronologically or by upvotes/time
     @posts = Post.all
-    # automatically serves /posts and @posts is available to that page
   end
 
   def new
     @post = Post.new
-    # automatically serves /posts/new and @post is available to that page
-    # /posts/new is a form
   end
 
   def create
@@ -18,9 +16,6 @@ class PostsController < ApplicationController
     else
       render :new
     end
-    # catches the post request from posts/new
-    # save a new post using params hash
-    # redirect to posts index
   end
 
   def edit
