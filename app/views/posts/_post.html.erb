@@ -5,7 +5,7 @@
     <% post.title %>
   <% end %>
 
-  <h4><%= post.url %></h4>
   <h4><%= post.text %> </h4>
   <p> Upvotes: <%= post.upvote_count %>. Created: <%= post_time_ago(post) %> </p>
+  <p> Username: <%= post.member.username %> </p>
 </div>

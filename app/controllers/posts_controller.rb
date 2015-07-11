@@ -9,6 +9,7 @@ class PostsController < ApplicationController
   end
 
   def create
+    # @post = current_member.post.build(post_params)
     @post = Post.new(post_params)
 
     if @post.save
@@ -34,7 +35,7 @@ class PostsController < ApplicationController
   def destroy
     @post = Post.find(params[:id])
     @post.destroy
-    redirect_to posts_path
+    redirect_to posts_p
   end
 
   protected
