@@ -5,7 +5,7 @@ ShinyIronman::Application.routes.draw do
 
   resources :posts
 
-  resources :members, only: [:index, :new, :create, :update, :edit, :destroy]
+  resources :members, only: [:index, :new, :create, :update, :edit, :destroy, :show]
   # You can have the root of your site routed with "root"
   root 'members#index'
 

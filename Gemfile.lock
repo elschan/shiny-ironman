@@ -43,6 +43,9 @@ GEM
       responders
       thread_safe (~> 0.1)
       warden (~> 1.2.3)
+    devise_invitable (1.5.1)
+      actionmailer (>= 3.2.6, < 5)
+      devise (>= 3.2.0)
     erubis (2.7.0)
     execjs (2.5.2)
     hike (1.2.3)
@@ -129,6 +132,7 @@ PLATFORMS
 DEPENDENCIES
   coffee-rails (~> 4.0.0)
   devise
+  devise_invitable
   jbuilder (~> 1.2)
   jquery-rails
   pry

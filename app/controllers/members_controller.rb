@@ -5,6 +5,7 @@ class MembersController < ApplicationController
   # registering for the first time
 
   def show
+    
   end
 
   def index
