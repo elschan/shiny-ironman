@@ -24,6 +24,11 @@ class PostsController < ApplicationController
 
   def edit
     @post = Post.find(params[:id])
+    if @post.member_id == current_member.id
+      render :edit
+    else
+      redirect_to posts_path
+    end
   end
 
   def update
