@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150712214508) do
+ActiveRecord::Schema.define(version: 20150712223747) do
 
   create_table "comments", force: true do |t|
     t.integer  "parent_comment_id"
@@ -63,16 +63,7 @@ ActiveRecord::Schema.define(version: 20150712214508) do
     t.string   "title"
     t.string   "url"
     t.string   "text"
-    t.integer  "upvote_count", default: 1
     t.string   "comments"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "upvotes", force: true do |t|
-    t.integer  "member_id"
-    t.integer  "parent_id"
-    t.string   "type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
