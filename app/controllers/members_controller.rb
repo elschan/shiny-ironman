@@ -4,8 +4,9 @@ class MembersController < ApplicationController
   # responding to requests which are routes or pages
   # registering for the first time
 
+
   def show
-    
+      @member = Member.find(params[:id])
   end
 
   def index
