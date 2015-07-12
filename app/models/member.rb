@@ -3,7 +3,6 @@ class Member < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :invitable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
-  validates :email, presence: true, uniqueness: true
   validates_uniqueness_of :username
 
   # validates :password_digest, presence: true
