@@ -22,6 +22,7 @@ class Member < ActiveRecord::Base
       conditions = warden_conditions.dup
       if login = conditions.delete(:login)
         conditions[:email].downcase! if conditions[:email]
+        conditions[:username].downcase! if conditions[:username]
         where(conditions.to_h).where(["lower(username) = :value OR lower(email) = :value", { :value => login.downcase }]).first
       else
         where(conditions.to_h).first
