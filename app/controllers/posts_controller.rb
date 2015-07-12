@@ -16,6 +16,7 @@ class PostsController < ApplicationController
     @post.member_id = current_member.id
 
     if @post.save
+      @post.upvote_by current_member
       redirect_to posts_path
     else
       render :new
