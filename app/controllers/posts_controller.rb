@@ -1,4 +1,7 @@
 class PostsController < ApplicationController
+
+  before_action :authenticate_member!
+
   def index
     # TODO sort chronologically or by upvotes/time
     @posts = Post.all
@@ -9,8 +12,8 @@ class PostsController < ApplicationController
   end
 
   def create
-    # @post = current_member.post.build(post_params)
     @post = Post.new(post_params)
+    @post.member_id = current_member.id
 
     if @post.save
       redirect_to posts_path
