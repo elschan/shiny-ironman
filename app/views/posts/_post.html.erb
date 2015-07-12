@@ -15,6 +15,6 @@
   <% end %>
 
   <% if member_signed_in? %>
-    <%= link_to "Upvote", upvote_post_path(post), :method => "put" %>
+    <%= link_to "Upvote", vote_post_path(post), :method => "put" %>
   <% end %>
 </div>

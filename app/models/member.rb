@@ -5,6 +5,8 @@ class Member < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
   validates_uniqueness_of :username
 
+  acts_as_voter
+  
   # validates :password_digest, presence: true
   has_many :posts
   has_many :comments

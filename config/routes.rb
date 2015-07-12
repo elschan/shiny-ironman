@@ -5,11 +5,9 @@ ShinyIronman::Application.routes.draw do
 
   resources :posts do
     member do
-      put "upvote", to: "posts#upvote"
+      put "vote", to: "posts#vote"
     end
   end
-
-  resources :post_upvotes, only: [:create, :destroy]
 
   resources :members, only: [:index, :new, :create, :update, :edit, :destroy]
   # You can have the root of your site routed with "root"

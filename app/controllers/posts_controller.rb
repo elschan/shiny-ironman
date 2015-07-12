@@ -50,9 +50,13 @@ class PostsController < ApplicationController
     redirect_to posts_path
   end
 
-  def upvote
+  def vote
     @post = Post.find(params[:id])
-    @post.upvote_by current_member
+    if current_member.voted_for? @post
+      @post.unvote_by current_member
+    else
+      @post.upvote_by current_member
+    end
     redirect_to :back
   end
 
