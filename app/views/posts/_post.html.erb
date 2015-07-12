@@ -8,4 +8,10 @@
   <p><%= post.text %> </p>
   <p> Upvotes: <%= post.upvote_count %>. Created: <%= post_time_ago(post) %> </p>
   <p> Username: <%= post.member.email %> </p>
+
+  <% if post.member_id == current_member.id %>
+    <%= link_to "Edit", edit_post_path(post.id) %>
+    <%= link_to "Delete", post_path(post.id), method: :delete %>
+
+  <% end %>
 </div>

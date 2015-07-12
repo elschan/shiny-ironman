@@ -24,6 +24,13 @@ class PostsController < ApplicationController
 
   def edit
     @post = Post.find(params[:id])
+
+    # Can't edit the post unless it's yours.
+    if @post.member_id == current_member.id
+      render :edit
+    else
+      redirect_to posts_path
+    end
   end
 
   def update
@@ -38,7 +45,8 @@ class PostsController < ApplicationController
   def destroy
     @post = Post.find(params[:id])
     @post.destroy
-    redirect_to posts_p
+    flash[:alert] = "Post '#{@post.title}' successfully deleted."
+    redirect_to posts_path
   end
 
   protected
