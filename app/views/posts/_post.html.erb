@@ -6,7 +6,7 @@
   <% end %>
 
   <p><%= post.text %> </p>
-  <p> Upvotes: <%= post.upvote_count %>. Created: <%= post_time_ago(post) %> </p>
+  <p> Upvotes: <%= post.get_upvotes.size %>. Created: <%= time_ago_in_words(post.created_at) %> </p>
   <p> Username: <%= post.member.email %> </p>
 
   <% if post.member_id == current_member.id %>
@@ -15,6 +15,6 @@
   <% end %>
 
   <% if member_signed_in? %>
-    <%= link_to "Upvote", post_upvotes_path(post), :remote => true, :method => "post" %>
+    <%= link_to "Upvote", upvote_post_path(post), :method => "put" %>
   <% end %>
 </div>

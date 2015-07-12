@@ -1,6 +1,9 @@
 class Post < ActiveRecord::Base
   belongs_to :member
   has_many :comments
+
+  acts_as_votable
+
   has_many :post_upvotes, foreign_key: 'parent_id'
 
   validates :title, presence: true, length: { in: 4..140 }
