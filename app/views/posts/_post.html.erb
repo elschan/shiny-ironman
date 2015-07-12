@@ -12,6 +12,8 @@
   <% if post.member_id == current_member.id %>
     <%= link_to "Edit", edit_post_path(post.id) %>
     <%= link_to "Delete", post_path(post.id), method: :delete %>
-
   <% end %>
+  <!-- <% if !session[:user_id].nil? %>
+      <a class="btn btn-default" href="/upvote?track_id=<%= track.id %>" role="button">Upvote</a>
+  <% end %> -->
 </div>
