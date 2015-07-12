@@ -4,7 +4,8 @@ class Member < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   validates :email, presence: true, uniqueness: true
-  # validates :username, presence: true, uniqueness: true, length: { in: 4..15 }
+  validates_uniqueness_of :username
+
   # validates :password_digest, presence: true
   has_many :posts
   has_many :comments
