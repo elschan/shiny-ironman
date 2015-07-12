@@ -36,8 +36,8 @@ ShinyIronman::Application.configure do
   domain: "gmail.com",
   authentication: "plain",
   enable_starttls_auto: true,
-  user_name: "",
-  password: "",
+  user_name: "mamahouhouapp@gmail.com",
+  password: ":fu:&shine",
   :enable_starttls_auto => true
 
   }
