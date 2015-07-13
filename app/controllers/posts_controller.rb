@@ -60,12 +60,15 @@ class PostsController < ApplicationController
     #render :json => { :post_upvotes => @post.get_upvotes.size }
 
     # respond_to do |format|
-    #   format.html
+    #   format.html--
     #   format.json { render json: rez }  # respond with the created JSON object
     # end
     respond_to do |format|
-      format.html
-      format.json { render :json => "we got here" }
+      # TODO format.html 
+      format.json do
+        response = { vote_count: @post.get_upvotes.size, voted_for: current_member.voted_for?(@post) }
+        render json: response
+      end
     end
   end
 

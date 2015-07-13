@@ -6,7 +6,7 @@
   <% end %>
 
   <p><%= post.text %> </p>
-  <p> Upvotes: <span id="upvote-post"> <%= post.get_upvotes.size %> </span></p>
+  <p> Upvotes: <span class="upvote-post"> <%= post.get_upvotes.size %> </span></p>
   <p> Created: <%= time_ago_in_words(post.created_at) %> </p>
   <p> Username: <%= post.member.email %> </p>
 
@@ -16,7 +16,7 @@
   <% end %>
 
   <% if member_signed_in? %>
-    <%= link_to "Upvote", vote_post_path(post), :class => "upvote", :method => "put", :remote => true %>
+    <%= link_to (current_member.voted_for?(post) ? "Unvote" : "Upvote"), vote_post_path(post), :class => "upvote", :method => "put", :remote => true %>
   <% end %>
 </div>
 
@@ -24,9 +24,10 @@
 $('.upvote')
  .on('ajax:error', function () {
    $(this).after('<div>There was an issue.</div>');
- }).on('ajax:success', function (data) {
-   result = $.parseJSON(data);
-   alert("returned ", result )
-   console.log(data)
+ }).on('ajax:success', function (res, data) {
+   var $this = $(this)
+   $this.closest('.post').find('.upvote-post').text(data.vote_count)
+   var current_text = $this.text()
+   $this.text(data.voted_for ? "Unvote" : "Upvote")
  });
 </script>
