@@ -136,11 +136,8 @@ DEPENDENCIES
   acts_as_votable (~> 0.10.0)
   coffee-rails (~> 4.0.0)
   devise
-<<<<<<< HEAD
   devise_invitable
-=======
   figaro
->>>>>>> development
   jbuilder (~> 1.2)
   jquery-rails
   pry
