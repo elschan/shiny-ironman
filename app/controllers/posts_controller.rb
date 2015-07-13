@@ -16,6 +16,7 @@ class PostsController < ApplicationController
     @post.member_id = current_member.id
 
     if @post.save
+      @post.upvote_by current_member
       redirect_to posts_path
     else
       render :new
@@ -47,6 +48,16 @@ class PostsController < ApplicationController
     @post.destroy
     flash[:alert] = "Post '#{@post.title}' successfully deleted."
     redirect_to posts_path
+  end
+
+  def vote
+    @post = Post.find(params[:id])
+    if current_member.voted_for? @post
+      @post.unvote_by current_member
+    else
+      @post.upvote_by current_member
+    end
+    redirect_to :back
   end
 
   protected
