@@ -3,8 +3,14 @@ class MembersController < ApplicationController
   # list show new edit create save update delete
   # responding to requests which are routes or pages
   # registering for the first time
+  # before_filter :restrict_only_invited_members 
+
+  def restrict_only_invited_members
+    redirect_to :root if current_member.invitation_accepted_at.blank?
+  end
 
   def show
+      @member = Member.find(params[:id])
   end
 
   def index
@@ -14,6 +20,7 @@ class MembersController < ApplicationController
   def new
       # render form
       # should also create a new profile.. for this user QUESTION ?
+      
     @member = Member.new
   end
 
