@@ -16,4 +16,5 @@ def create
       respond_with resource, :location => member_path(resource)
     end
 end
+
 end
