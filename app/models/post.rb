@@ -12,7 +12,8 @@ class Post < ActiveRecord::Base
   private
 
   def text_or_url
-    unless self.text || self.url
+    if self.text.empty? && self.url.empty?
+      errors[:base] << "Post must have either text or a url"
       return false
     end
   end

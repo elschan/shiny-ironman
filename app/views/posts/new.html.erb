@@ -1,2 +1,12 @@
 <h1> Create a new post </h1>
+<% if @post.errors.any? %>
+  <div>
+    <strong>Oops! Some issues with your post:</strong>
+    <ul>
+      <% @post.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+  <% end %>
 <%= render "form" %>
