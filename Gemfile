@@ -23,6 +23,7 @@ gem 'jquery-rails'
 
 gem 'devise'
 gem 'acts_as_votable', '~> 0.10.0'
+gem 'figaro'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 
