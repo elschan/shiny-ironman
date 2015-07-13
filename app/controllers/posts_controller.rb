@@ -57,7 +57,16 @@ class PostsController < ApplicationController
     else
       @post.upvote_by current_member
     end
-    redirect_to :back
+    #render :json => { :post_upvotes => @post.get_upvotes.size }
+
+    # respond_to do |format|
+    #   format.html
+    #   format.json { render json: rez }  # respond with the created JSON object
+    # end
+    respond_to do |format|
+      format.html
+      format.json { render :json => "we got here" }
+    end
   end
 
   protected

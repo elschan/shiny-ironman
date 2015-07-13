@@ -6,7 +6,8 @@
   <% end %>
 
   <p><%= post.text %> </p>
-  <p> Upvotes: <%= post.get_upvotes.size %>. Created: <%= time_ago_in_words(post.created_at) %> </p>
+  <p> Upvotes: <span id="upvote-post"> <%= post.get_upvotes.size %> </span></p>
+  <p> Created: <%= time_ago_in_words(post.created_at) %> </p>
   <p> Username: <%= post.member.email %> </p>
 
   <% if post.member_id == current_member.id %>
@@ -15,6 +16,17 @@
   <% end %>
 
   <% if member_signed_in? %>
-    <%= link_to "Upvote", vote_post_path(post), :method => "put" %>
+    <%= link_to "Upvote", vote_post_path(post), :class => "upvote", :method => "put", :remote => true %>
   <% end %>
 </div>
+
+<script>
+$('.upvote')
+ .on('ajax:error', function () {
+   $(this).after('<div>There was an issue.</div>');
+ }).on('ajax:success', function (data) {
+   result = $.parseJSON(data);
+   alert("returned ", result )
+   console.log(data)
+ });
+</script>
