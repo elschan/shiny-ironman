@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
 
-  before_action :authenticate_member!
+  before_action :authenticate_member!, :except =>[:index]
 
   def index
     # TODO sort chronologically or by upvotes/time
@@ -27,6 +27,7 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
 
     # Can't edit the post unless it's yours.
+    
     if @post.member_id == current_member.id
       render :edit
     else

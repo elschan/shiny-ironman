@@ -8,10 +8,11 @@
   <p><%= post.text %> </p>
   <p> Upvotes: <%= post.get_upvotes.size %>. Created: <%= time_ago_in_words(post.created_at) %> </p>
   <p> Username: <%= post.member.email %> </p>
-
-  <% if post.member_id == current_member.id %>
-    <%= link_to "Edit", edit_post_path(post.id) %>
-    <%= link_to "Delete", post_path(post.id), method: :delete %>
+  <% if current_member %>
+    <% if post.member_id == current_member.id %>
+      <%= link_to "Edit", edit_post_path(post.id) %>
+      <%= link_to "Delete", post_path(post.id), method: :delete %>
+    <% end %>
   <% end %>
 
   <% if member_signed_in? %>
