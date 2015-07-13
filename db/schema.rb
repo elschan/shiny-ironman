@@ -11,7 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20150713085917) do
+=======
+ActiveRecord::Schema.define(version: 20150713082345) do
+>>>>>>> development
 
   create_table "comments", force: true do |t|
     t.integer  "parent_comment_id"
