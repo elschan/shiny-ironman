@@ -20,7 +20,6 @@ class MembersController < ApplicationController
   def new
       # render form
       # should also create a new profile.. for this user QUESTION ?
-      
     @member = Member.new
   end
 
@@ -31,7 +30,6 @@ class MembersController < ApplicationController
 
   # change member details
   def edit
-
   end
 
   def update
@@ -41,5 +39,10 @@ class MembersController < ApplicationController
 
   # quit your account
   def destroy
+    @member = Member.find(params[:id])
+    @member.destroy
+    flash[:alert] = " #{@member.username}' successfully deleted."
+    redirect_to members_path
   end
+
 end

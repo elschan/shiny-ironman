@@ -11,7 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
+ActiveRecord::Schema.define(version: 20150713085917) do
+=======
 ActiveRecord::Schema.define(version: 20150713082345) do
+>>>>>>> development
 
   create_table "comments", force: true do |t|
     t.integer  "parent_comment_id"
@@ -28,12 +32,12 @@ ActiveRecord::Schema.define(version: 20150713082345) do
     t.integer  "reputation"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "email",                  default: "", null: false
+    t.string   "email",                  default: "",    null: false
     t.string   "encrypted_password",     default: ""
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",          default: 0,     null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -42,7 +46,7 @@ ActiveRecord::Schema.define(version: 20150713082345) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email"
-    t.integer  "failed_attempts",        default: 0,  null: false
+    t.integer  "failed_attempts",        default: 0,     null: false
     t.string   "unlock_token"
     t.datetime "locked_at"
     t.string   "invitation_token"
@@ -53,6 +57,7 @@ ActiveRecord::Schema.define(version: 20150713082345) do
     t.integer  "invited_by_id"
     t.string   "invited_by_type"
     t.integer  "invitations_count",      default: 0
+    t.boolean  "admin",                  default: false
   end
 
   add_index "members", ["email"], name: "index_members_on_email", unique: true
