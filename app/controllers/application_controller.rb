@@ -14,8 +14,13 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.for(:accept_invitation).concat([:username])
   end
 
+  # def after_sign_in_path_for(resource)
+  #   @member = current_member
+  #   current_member_path
+  # end
+
   def after_invite_path_for(resource)
-    members_path
+    posts_path
   end
 
 end
