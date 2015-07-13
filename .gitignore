@@ -20,5 +20,3 @@
 
 # Ignore application configuration
 /config/application.yml
-shine_email: "mamahouhouapp@gmail.com"
-shine_pass: ":fu:&shine"
