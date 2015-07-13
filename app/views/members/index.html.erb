@@ -3,3 +3,12 @@
 <% else %>
   You are not logged in.
 <% end %>
+<br><br><br>
+
+<% if current_member.try(:admin) %>
+  <%@members.each do |member| %>
+  <%=member.username%> || <%=member.email%> || Confirmed: <%=member.confirmed_at%> || invitations:<%=member.invitation_limit %>     <%= link_to "Delete", member_path(member.id), method: :delete %>
+ <br><br>
+  <% end %>
+<% end %>
+
