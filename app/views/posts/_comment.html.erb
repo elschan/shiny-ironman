@@ -9,6 +9,7 @@
   When you submit the form, it should post to... comment.create?
   But it should know to populate the parent_comment_id (hidden form tag?)
   -->
+  <button class="reply-button"> Reply </button>
 
   <%= form_tag( {controller: "comments", action: "create"}, method: "post", class: "reply-form") do %>
     <%= hidden_field_tag(:parent_id, comment.id) %>
@@ -18,3 +19,9 @@
 
   <%= render partial: "comment", collection: comment.replies %>
 </div>
+
+<script>
+  $('.reply-button').on('click', function(){
+    $(this).closest('.comment').find('.reply-form').show()
+  })
+</script>
