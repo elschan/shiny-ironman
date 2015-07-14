@@ -9,3 +9,6 @@ you have <%=current_member.invitation_limit %> invitations left.
     <%= f.button :submit %>
   <% end %>
 <% end %>
+<%= link_to "Create a post", new_post_path %>
+
+<%= render partial: "posts/post", collection: @posts %>

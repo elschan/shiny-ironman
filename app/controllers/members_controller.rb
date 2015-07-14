@@ -11,6 +11,7 @@ class MembersController < ApplicationController
 
   def show
     @member = Member.find(params[:id])
+    @posts = Post.where("member_id = #{@member.id}")
   end
 
   def index
