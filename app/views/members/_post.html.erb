@@ -4,7 +4,9 @@
   <% else %>
     <h2><%= post.title %></h2>
   <% end %>
-
+  <% post.tags.each do |tag| %>
+  <li> <%=tag %> <li>
+  <% end %>
   <p><%= post.text %> </p>
   <p> Upvotes: <span class="upvote-post"> <%= post.get_upvotes.size %> </span></p>
   <p> Created: <%= time_ago_in_words(post.created_at) %> </p>

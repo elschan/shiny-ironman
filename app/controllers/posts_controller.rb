@@ -54,9 +54,6 @@ class PostsController < ApplicationController
     redirect_to posts_path
   end
 
-  def tag_list
-    self.tags.map {|t| t.name }.join(", ")
-  end
 
   def vote
     @post = Post.find(params[:id])
@@ -89,6 +86,6 @@ class PostsController < ApplicationController
   protected
 
   def post_params
-    params.require(:post).permit(:title, :url, :text)
+    params.require(:post).permit(:title, :url, :text, :tag_list)
   end
 end

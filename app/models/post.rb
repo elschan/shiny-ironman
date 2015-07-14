@@ -10,8 +10,19 @@ class Post < ActiveRecord::Base
   validate :text_or_url
 
   def tag_list
-    self.tags.map {|t| t.name }.join(" ")
+    self.tags.map {|t| t.name }.join(",")
   end
+
+  def tag_list=(tag_list)
+    tags = tag_list.split(",").collect{|tag| tag.strip.downcase}
+    tags.each do |tag_value|
+      tag = Tag.find_or_create_by_name!(tag_value)
+      tag.name = tag_value
+      self.tags << tag
+    end
+  end
+
+
 
   private
 
