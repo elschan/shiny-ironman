@@ -1,0 +1,11 @@
+<h3><%= @post.title %></h3>
+<p> by <%= @post.member.username %> </p>
+
+<%= form_for [@post, @comment] do |f| %>
+  <%= f.text_area :text %>
+  <%= f.submit %>
+<% end %>
+
+<div id="comments">
+  <%= render partial: "comment", collection: @comments %>
+</div>

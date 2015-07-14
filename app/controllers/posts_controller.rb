@@ -25,17 +25,21 @@ class PostsController < ApplicationController
     end
   end
 
+  def show
+    @post = Post.find(params[:id])
+    @comments = Comment.where("post_id == ?", params[:id])
+    @comment = Comment.new()
+  end
+
   def edit
     @post = Post.find(params[:id])
-
-    # Can't edit the post unless it's yours.
-    
     if @post.member_id == current_member.id
       render :edit
     else
       redirect_to posts_path
     end
   end
+
 
   def update
     @post = Post.find(params[:id])
@@ -64,14 +68,9 @@ class PostsController < ApplicationController
       @post.upvote_by current_member
       @member.increment!(:reputation, 2)
     end
-    #render :json => { :post_upvotes => @post.get_upvotes.size }
 
-    # respond_to do |format|
-    #   format.html--
-    #   format.json { render json: rez }  # respond with the created JSON object
-    # end
     respond_to do |format|
-      # TODO format.html 
+      # TODO format.html
       format.json do
         response = { vote_count: @post.get_upvotes.size, voted_for: current_member.voted_for?(@post) }
         render json: response
