@@ -9,7 +9,9 @@ class Post < ActiveRecord::Base
   validates :title, presence: true, length: { in: 4..140 }
   validate :text_or_url
 
- 
+  def tag_list
+    self.tags.map {|t| t.name }.join(" ")
+  end
 
   private
 

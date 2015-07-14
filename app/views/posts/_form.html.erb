@@ -2,11 +2,7 @@
   <%= f.text_field :title %><br>
   <%= f.text_field :url %><br>
   <%= f.text_area :text %><br>
-  <%= check_box_tag(:Business) %><%= label_tag(:Business, "Business") %>  
-  <%= check_box_tag(:Tech) %><%= label_tag(:Tech, "Tech") %>
-  <%= check_box_tag(:Career) %><%= label_tag(:Career, "Career") %>
-  <%= check_box_tag(:RealTalk) %> <%= label_tag(:RealTalk, "RealTalk") %>
-  <%= check_box_tag(:News) %> <%= label_tag(:News, "News") %>
+  <%= f.label :tag_list, "tag this post" %> <%= f.text_field :tag_list %>  
  <br>
   <%= f.submit %>
 <% end %>

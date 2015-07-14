@@ -54,6 +54,10 @@ class PostsController < ApplicationController
     redirect_to posts_path
   end
 
+  def tag_list
+    self.tags.map {|t| t.name }.join(", ")
+  end
+
   def vote
     @post = Post.find(params[:id])
     @member = Member.find_by(@post.member_id)
