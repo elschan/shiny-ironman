@@ -3,7 +3,7 @@ ShinyIronman::Application.routes.draw do
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
-  resources :comments, only: [:show, :destroy]
+  resources :comments, only: [:show, :destroy, :create]
 
   resources :posts do
     member do
