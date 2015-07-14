@@ -10,7 +10,7 @@
   <p> Created: <%= time_ago_in_words(post.created_at) %> </p>
   <p> Username: <%= post.member.email if post.member %> </p>
   <% if current_member %>
-    <% if post.member_id == current_member.id %>
+    <% if current_member.admin? || (post.member_id == current_member.id) %>
       <%= link_to "Edit", edit_post_path(post.id) %>
       <%= link_to "Delete", post_path(post.id), method: :delete %>
     <% end %>
