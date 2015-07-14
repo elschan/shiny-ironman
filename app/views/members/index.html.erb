@@ -5,9 +5,9 @@
 <% end %>
 <br><br><br>
 
-<% if current_member %>
+<% if current_member.admin %>
   <%@members.each do |member| %>
-  <%=member.username%> || <%=member.email%> || Confirmed: <%=member.confirmed_at%> || invitations:<%=member.invitation_limit %> || Reputation: <%=member.reputation %>    <%= link_to "Delete", member_path(member.id), method: :delete %>
+  <%=member.username%> || <%=member.email%> || Confirmed: <%=member.confirmed_at%> || invitations:<%=member.invitation_limit %> || Reputation: <%=member.reputation %>  ||admin: <%=member.admin %>   <%= link_to "Delete", member_path(member.id), method: :delete %>
  <br><br>
   <% end %>
 <% end %>
