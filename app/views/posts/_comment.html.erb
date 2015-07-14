@@ -1,0 +1,35 @@
+<div class="comment">
+  <p><%= comment.text %></p>
+
+  <!--
+  Comment should have a link to reply.
+  Clicking the link should make a get request to the (WHICH) controller for a new reply?
+  ... Is a new reply necessary? form_for...
+  A box should appear for you to type in (**?!?!**)
+  When you submit the form, it should post to... comment.create?
+  But it should know to populate the parent_comment_id (hidden form tag?)
+  -->
+  <button class="reply-button"> Reply </button>
+  <% if comment.errors.any? %>
+    <ul>
+      <% comment.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+      <% end %>
+    </ul>
+  <% end %>
+
+  <%= form_tag( {controller: "comments", action: "create"}, method: "post", class: "reply-form") do %>
+    <%= hidden_field_tag(:post_id, comment.post_id) %>
+    <%= hidden_field_tag(:parent_id, comment.id) %>
+    <%= text_area_tag :text %>
+    <%= submit_tag "Go ahead. Reply. I dare you." %>
+  <% end %>
+
+  <%= render partial: "comment", collection: comment.replies %>
+</div>
+
+<script>
+  $('.reply-button').on('click', function(){
+    $(this).closest('.comment').find('.reply-form:first').show()
+  })
+</script>
