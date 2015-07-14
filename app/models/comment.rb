@@ -3,5 +3,13 @@ class Comment < ActiveRecord::Base
   belongs_to :parent_comment, class_name: "Comment"
   belongs_to :post
 
-  validates :text, length: { minimum: 10 }
+  validates :text, length: { minimum: 1 }
+
+  def get_post_id
+    if post_id
+      post_id
+    else
+      Comment.find(parent_comment_id).get_post_id
+    end
+  end
 end

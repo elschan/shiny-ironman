@@ -10,6 +10,13 @@
   But it should know to populate the parent_comment_id (hidden form tag?)
   -->
   <button class="reply-button"> Reply </button>
+  <% if comment.errors.any? %>
+    <ul>
+      <% comment.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+      <% end %>
+    </ul>
+  <% end %>
 
   <%= form_tag( {controller: "comments", action: "create"}, method: "post", class: "reply-form") do %>
     <%= hidden_field_tag(:post_id, comment.post_id) %>
