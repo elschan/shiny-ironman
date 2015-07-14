@@ -38,6 +38,12 @@ class MembersController < ApplicationController
     @member.update_attributes(params)
   end
 
+  def ban
+    @member = Member.find(params[:id])
+    @member.toggle!(:banned)
+    @member.save
+    redirect_to members_path
+  end
   # quit your account
   def destroy
     @member = Member.find(params[:id])

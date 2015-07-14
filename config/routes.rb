@@ -9,9 +9,15 @@ ShinyIronman::Application.routes.draw do
     end
   end
 
-  resources :members, only: [:index, :new, :create, :update, :edit, :destroy, :show]
+resources :members do
+  member do
+    post 'ban'
+  end
+end
+
+
   # You can have the root of your site routed with "root"
-  root 'members#index'
+  root 'posts#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

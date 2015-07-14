@@ -6,7 +6,7 @@ class Member < ActiveRecord::Base
   # validates_presence_of :username
 
   acts_as_voter
-  
+
   # validates :password_digest, presence: true
   has_many :posts
   has_many :comments
