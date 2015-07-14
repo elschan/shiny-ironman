@@ -11,6 +11,7 @@ class Member < ActiveRecord::Base
   has_many :posts
   has_many :comments
 
+
   def login=(login)
     @login = login
   end

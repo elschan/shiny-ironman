@@ -9,6 +9,8 @@ class Post < ActiveRecord::Base
   validates :title, presence: true, length: { in: 4..140 }
   validate :text_or_url
 
+ 
+
   private
 
   def text_or_url
