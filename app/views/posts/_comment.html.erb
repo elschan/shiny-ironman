@@ -2,7 +2,11 @@
   <p><%= comment.text %></p>
   <p><%= link_to comment.get_commenter_name, member_path(comment.member_id)%>
   <p><%= time_ago_in_words(comment.created_at) %> </p>
+  <p><%= comment.get_upvotes.size %></p>
 
+  <% if member_signed_in? %>
+    <%= link_to (current_member.voted_for?(comment) ? "Unvote" : "Upvote"), vote_comment_path(comment), :class => "upvote", :method => "put", :remote => true %>
+  <% end %>
   <!--
   Comment should have a link to reply.
   Clicking the link should make a get request to the (WHICH) controller for a new reply?

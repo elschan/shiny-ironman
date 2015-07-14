@@ -3,6 +3,8 @@ class Comment < ActiveRecord::Base
   belongs_to :parent_comment, class_name: "Comment"
   belongs_to :post
 
+  acts_as_votable
+
   validates :text, length: { minimum: 1 }
 
   def get_commenter_name
