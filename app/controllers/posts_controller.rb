@@ -3,9 +3,26 @@ class PostsController < ApplicationController
   before_action :authenticate_member!, :except =>[:index]
 
   def index
+
     # TODO sort chronologically or by upvotes/time
+    if params[:search]
+      @tags = []
+      @posts = []
+      tags = params[:search].split(' ')
+      tags.each do |tag|
+        tag.downcase!
+        @tags << Tag.find_by(name: tag)
+      end
+      @tags.each do |tag|
+        @posts << tag.posts
+      end
+      @posts.flatten!
+      @posts.uniq!
+    else
+
     @posts = Post.all
   end
+end
 
   def new
     @post = Post.new
