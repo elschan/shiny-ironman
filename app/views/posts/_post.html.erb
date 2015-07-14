@@ -15,7 +15,7 @@
       <%= link_to "Delete", post_path(post.id), method: :delete %>
     <% end %>
   <% end %>
-
+  <%= link_to "Comments", post_path(post.id) %>
   <% if member_signed_in? %>
     <%= link_to (current_member.voted_for?(post) ? "Unvote" : "Upvote"), vote_post_path(post), :class => "upvote", :method => "put", :remote => true %>
   <% end %>
@@ -24,7 +24,7 @@
 <script>
 $('.upvote')
  .on('ajax:error', function () {
-   $(this).after('<div>There was an issue.</div>');
+   $(this).after('<div>There was an upvote issue.</div>');
  }).on('ajax:success', function (res, data) {
    var $this = $(this)
    $this.closest('.post').find('.upvote-post').text(data.vote_count)
