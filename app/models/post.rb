@@ -3,7 +3,7 @@ class Post < ActiveRecord::Base
   has_many :comments
 
   acts_as_votable
-
+  has_and_belongs_to_many :tags
   has_many :post_upvotes, foreign_key: 'parent_id'
 
   validates :title, presence: true, length: { in: 4..140 }
