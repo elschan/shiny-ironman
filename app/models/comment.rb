@@ -5,6 +5,11 @@ class Comment < ActiveRecord::Base
 
   validates :text, length: { minimum: 1 }
 
+  def get_commenter_name
+  #  binding.pry
+    Member.find(member_id).username
+  end
+
   def get_post_id
     if post_id
       post_id

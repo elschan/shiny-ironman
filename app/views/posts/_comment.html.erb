@@ -1,5 +1,7 @@
 <div class="comment">
   <p><%= comment.text %></p>
+  <p><%= link_to comment.get_commenter_name, member_path(comment.member_id)%>
+  <p><%= time_ago_in_words(comment.created_at) %> </p>
 
   <!--
   Comment should have a link to reply.
@@ -10,13 +12,7 @@
   But it should know to populate the parent_comment_id (hidden form tag?)
   -->
   <button class="reply-button"> Reply </button>
-  <% if comment.errors.any? %>
-    <ul>
-      <% comment.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
-      <% end %>
-    </ul>
-  <% end %>
+
 
   <%= form_tag( {controller: "comments", action: "create"}, method: "post", class: "reply-form") do %>
     <%= hidden_field_tag(:post_id, comment.post_id) %>
