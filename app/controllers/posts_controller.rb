@@ -17,6 +17,8 @@ class PostsController < ApplicationController
 
     if @post.save
       @post.upvote_by current_member
+      current_member.increment!(:reputation)
+
       redirect_to posts_path
     else
       render :new
@@ -47,16 +49,20 @@ class PostsController < ApplicationController
   def destroy
     @post = Post.find(params[:id])
     @post.destroy
+    current_member.decrement!(:reputation)
     flash[:alert] = "Post '#{@post.title}' successfully deleted."
     redirect_to posts_path
   end
 
   def vote
     @post = Post.find(params[:id])
+    @member = Member.find_by(@post.member_id)
     if current_member.voted_for? @post
       @post.unvote_by current_member
+      @member.decrement!(:reputation, 2)
     else
       @post.upvote_by current_member
+      @member.increment!(:reputation, 2)
     end
     #render :json => { :post_upvotes => @post.get_upvotes.size }
 
@@ -72,6 +78,9 @@ class PostsController < ApplicationController
       end
     end
   end
+
+
+  
 
   protected
 

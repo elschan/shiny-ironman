@@ -1,4 +1,5 @@
 class MembersController < ApplicationController
+  helper total_posts_posted
   # CRUD
   # list show new edit create save update delete
   # responding to requests which are routes or pages

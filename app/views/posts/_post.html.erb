@@ -8,7 +8,7 @@
   <p><%= post.text %> </p>
   <p> Upvotes: <span class="upvote-post"> <%= post.get_upvotes.size %> </span></p>
   <p> Created: <%= time_ago_in_words(post.created_at) %> </p>
-  <p> Username: <%= post.member.email %> </p>
+  <p> Username: <%= post.member.email if post.member %> </p>
   <% if current_member %>
     <% if post.member_id == current_member.id %>
       <%= link_to "Edit", edit_post_path(post.id) %>
