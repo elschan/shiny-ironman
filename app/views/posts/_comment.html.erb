@@ -38,7 +38,7 @@
      $(this).after('<div>There was an upvote issue.</div>');
    }).on('ajax:success', function (res, data) {
      var $this = $(this)
-     $this.closest('.comment').find('.comment-upvote-count').text(data.vote_count)
+     $this.closest('.comment').find('.comment-upvote-count:first').text(data.vote_count)
      var current_text = $this.text()
      $this.text(data.voted_for ? "Unvote" : "Upvote")
    });
