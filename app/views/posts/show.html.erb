@@ -1,11 +1,70 @@
-<h3><%= @post.title %></h3>
-<p> by <%= @post.member.username %> </p>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 col-md-8">
 
-<%= form_for [@post, @comment] do |f| %>
-  <%= f.text_area :text %>
-  <%= f.submit %>
-<% end %>
+          <!-- POST -->
+          <div class="post beforepagination">
+              <div class="topwrap">
 
-<div id="comments">
-  <%= render partial: "comment", collection: @comments %>
-</div>
+                  <div class="posttext pull-left">
+                    <!-- OUR POST STUFF -->
+                      <h2><%= @post.title %></h2>
+                      <p><%= @post.text %></p>
+
+                      <!-- I TANGLED THE COMMENT FORM UP IN HERE -->
+                      <div class="posttext pull-left">
+                          <div class="textwraper">
+                              <div class="postreply">Comment</div>
+                              <%= form_for [@post, @comment] do |f| %>
+
+                              <%= f.text_area :text, id: "reply", placeholder: "Type your comment here" %>
+                          </div>
+                          <div class="pull-right postreply">
+                              <div class="pull-left smile"><a href="#"><i class="fa fa-smile-o"></i></a></div>
+                              <div class="pull-left"><%= f.submit class: 'btn btn-primary' %></div>
+                              <div class="clearfix"></div>
+                          </div>
+                          <% end %>
+                              <!-- <textarea name="reply" id="reply" placeholder="Type your message here"></textarea> -->
+                          <!-- </div> -->
+                      </div>
+                      <!--/// I TANGLED THE COMMENT FORM UP IN HERE -->
+
+                    <!--/// OUR POST STUFF -->
+
+                  </div>
+                  <div class="clearfix"></div>
+              </div>
+              <!-- META STUFF -->
+              <div class="postinfobot">
+
+                <div class="likeblock pull-left">
+                    <a href="#" class="up"><i class="fa fa-thumbs-o-up"></i>25</a>
+                    <a href="#" class="down"><i class="fa fa-thumbs-o-down"></i>3</a>
+                </div>
+
+                <div class="prev pull-left">
+                    <a href="#"><i class="fa fa-reply"></i></a>
+                </div>
+
+                <div class="posted pull-left"><i class="fa fa-clock-o"></i>
+                  Posted by <%= link_to @post.member.username, member_path(@post.member_id) %>
+                  <%= time_ago_in_words(@post.created_at)%> ago
+                </div>
+<!--
+                <div class="next pull-right">
+                    <a href="#"><i class="fa fa-share"></i></a>
+
+                    <a href="#"><i class="fa fa-flag"></i></a>
+                </div> -->
+
+                <div class="clearfix"></div>
+              </div>
+          </div><!-- POST -->
+
+          <div id="comments">
+            <%= render partial: "comment", collection: @comments %>
+          </div>
+        </div>
+    </div>
+  </div>
