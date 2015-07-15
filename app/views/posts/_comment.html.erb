@@ -1,13 +1,77 @@
+<div class="post">
+    <div class="topwrap">
+
+      <div class="userinfo pull-left">
+        Upvotes: <span class="upvote-comment"> <%= comment.get_upvotes.size %> </span></p>
+      </div>
+        <div class="posttext pull-left">
+          <p><%= comment.text %></p>
+        </div>
+        <div class="clearfix"></div>
+
+
+
+        <!-- THEME code -->
+        <!-- <div class="posttext pull-left">
+            <div class="textwraper">
+                <div class="postreply">Comment</div>
+                <%= form_for [@post, @comment] do |f| %>
+                <%= f.text_area :text, id: "reply", placeholder: "Type your comment here" %>
+            </div>
+            <div class="pull-right postreply">
+                <div class="pull-left smile"><a href="#"><i class="fa fa-smile-o"></i></a></div>
+                <div class="pull-left"><%= f.submit class: 'btn btn-primary' %></div>
+                <div class="clearfix"></div>
+            </div>
+            <% end %>
+        </div> -->
+
+
+        <!-- THEME CODE -->
+      <button class="btn btn-primary reply-button pull-right"> Reply </button>
+
+        <%= form_tag( {controller: "comments", action: "create"}, method: "post", class: "reply-form") do %>
+          <%= hidden_field_tag(:post_id, comment.post_id) %>
+          <%= hidden_field_tag(:parent_id, comment.id) %>
+          <%= text_area_tag :text %>
+          <%= submit_tag "Reply", class: 'btn btn-primary' %>
+        <% end %>
+
+
+    <div class="postinfobot">
+
+        <div class="likeblock pull-left">
+            <a href="#" class="up"><i class="fa fa-thumbs-o-up"></i>55</a>
+            <a href="#" class="down"><i class="fa fa-thumbs-o-down"></i>12</a>
+        </div>
+
+        <div class="prev pull-left">
+            <a href="#"><i class="fa fa-reply"></i></a>
+        </div>
+
+        <div class="posted pull-left"><i class="fa fa-clock-o"></i>
+          Posted by <%= link_to comment.get_commenter_name, member_path(comment.member_id)%>
+          <%= time_ago_in_words(comment.created_at) %> ago
+        </div>
+
+        <div class="next pull-right">
+            <a href="#"><i class="fa fa-share"></i></a>
+
+            <a href="#"><i class="fa fa-flag"></i></a>
+        </div>
+
+        <div class="clearfix"></div>
+    </div>
+  </div>
+</div>
+<!--
 <div class="comment">
-  <p><%= comment.text %></p>
-  <p><%= link_to comment.get_commenter_name, member_path(comment.member_id)%>
-  <p><%= time_ago_in_words(comment.created_at) %> </p>
+
   <p class="comment-upvote-count"><%= comment.get_upvotes.size %></p>
 
   <% if member_signed_in? %>
     <%= link_to (current_member.voted_for?(comment) ? "Unvote" : "Upvote"), vote_comment_path(comment), :class => "comment-upvote", :method => "put", :remote => true %>
   <% end %>
-  <!--
   Comment should have a link to reply.
   Clicking the link should make a get request to the (WHICH) controller for a new reply?
   ... Is a new reply necessary? form_for...
@@ -15,7 +79,7 @@
   When you submit the form, it should post to... comment.create?
   But it should know to populate the parent_comment_id (hidden form tag?)
   -->
-  <button class="reply-button"> Reply </button>
+  <!-- <button class="reply-button"> Reply </button>
 
 
   <%= form_tag( {controller: "comments", action: "create"}, method: "post", class: "reply-form") do %>
@@ -26,11 +90,53 @@
   <% end %>
 
   <%= render partial: "comment", collection: comment.replies %>
-</div>
+</div> -->
+
+<!-- NEW STUFF -->
+
+
+<!-- POST -->
+   <!-- <div class="post">
+       <div class="topwrap">
+           <div class="posttext pull-left">
+              <p>Toronto Mayor Rob Ford does not have a bigger fan than "Anchorman's" Ron Burgundy. In fact, Burgundy wants Ford to be re-elected so much, that he agreed to sing the campaign song Brien. The tune in question ...</p>
+           </div>
+           <div class="clearfix"></div>
+       </div>
+       <div class="postinfobot">
+
+           <div class="likeblock pull-left">
+               <a href="#" class="up"><i class="fa fa-thumbs-o-up"></i>55</a>
+               <a href="#" class="down"><i class="fa fa-thumbs-o-down"></i>12</a>
+           </div>
+
+           <div class="prev pull-left">
+               <a href="#"><i class="fa fa-reply"></i></a>
+           </div>
+
+           <div class="posted pull-left"><i class="fa fa-clock-o"></i> Posted on : 20 Nov @ 9:50am</div>
+
+           <div class="next pull-right">
+               <a href="#"><i class="fa fa-share"></i></a>
+
+               <a href="#"><i class="fa fa-flag"></i></a>
+           </div>
+
+           <div class="clearfix"></div>
+       </div>
+   </div> -->
+
+<!-- POST -->
+
+<!--/// NEW STUFF -->
+
+
 
 <script>
   $('.reply-button').on('click', function(){
-    $(this).closest('.comment').find('.reply-form:first').show()
+    $(this).closest('.post').find('.reply-form:first').show()
+    // TODO toggle?
+    $(this).hide()
   })
 
   $('.comment-upvote')
