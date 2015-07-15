@@ -2,7 +2,13 @@
   <% if !post.url.empty? %>
     <h2><%= link_to post.title, post.url %></h2>
   <% else %>
-    <h2><%= post.title %></h2>
+    <h2><%= link_to post.title, post_path(post.id) %></h2>
+  <% end %>
+  <% if !post.tags.empty? %>
+  Tagged:
+    <% post.tags.each do |tag| %>
+    <%= tag.name %>
+    <% end %>
   <% end %>
 
   <p><%= post.text %> </p>

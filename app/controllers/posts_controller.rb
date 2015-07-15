@@ -3,9 +3,27 @@ class PostsController < ApplicationController
   before_action :authenticate_member!, :except =>[:index]
 
   def index
+
     # TODO sort chronologically or by upvotes/time
+    if params[:search]
+      @tags = []
+      @posts = []
+      tags = params[:search].downcase.gsub(/[^a-z0-9\s]/i, '').split(' ')
+      tags.each do |tag|
+        unless Tag.find_by(name: tag) == nil
+        @tags << Tag.find_by(name: tag) 
+        end 
+      end
+      @tags.each do |tag|
+        @posts << tag.posts
+      end
+      @posts.flatten!
+      @posts.uniq!
+    else
+
     @posts = Post.all
   end
+end
 
   def new
     @post = Post.new
@@ -58,6 +76,7 @@ class PostsController < ApplicationController
     redirect_to posts_path
   end
 
+
   def vote
     @post = Post.find(params[:id])
     @member = Member.find_by(@post.member_id)
@@ -84,6 +103,6 @@ class PostsController < ApplicationController
   protected
 
   def post_params
-    params.require(:post).permit(:title, :url, :text)
+    params.require(:post).permit(:title, :url, :text, :tag_list)
   end
 end
