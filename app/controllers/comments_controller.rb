@@ -34,4 +34,24 @@ class CommentsController < ApplicationController
     end
     # binding.pry
   end
+
+  def vote
+    @comment = Comment.find(params[:id])
+    @member = Member.find_by(@comment.member_id)
+    if current_member.voted_for? @comment
+      @comment.unvote_by current_member
+      @member.decrement!(:reputation, 2)
+    else
+      @comment.upvote_by current_member
+      @member.increment!(:reputation, 2)
+    end
+
+    respond_to do |format|
+      # TODO format.html
+      format.json do
+        response = { vote_count: @comment.get_upvotes.size, voted_for: current_member.voted_for?(@comment) }
+        render json: response
+      end
+    end
+  end
 end

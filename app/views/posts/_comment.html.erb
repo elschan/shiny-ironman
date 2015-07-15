@@ -1,6 +1,12 @@
 <div class="comment">
   <p><%= comment.text %></p>
+  <p><%= link_to comment.get_commenter_name, member_path(comment.member_id)%>
+  <p><%= time_ago_in_words(comment.created_at) %> </p>
+  <p class="comment-upvote-count"><%= comment.get_upvotes.size %></p>
 
+  <% if member_signed_in? %>
+    <%= link_to (current_member.voted_for?(comment) ? "Unvote" : "Upvote"), vote_comment_path(comment), :class => "comment-upvote", :method => "put", :remote => true %>
+  <% end %>
   <!--
   Comment should have a link to reply.
   Clicking the link should make a get request to the (WHICH) controller for a new reply?
@@ -10,13 +16,7 @@
   But it should know to populate the parent_comment_id (hidden form tag?)
   -->
   <button class="reply-button"> Reply </button>
-  <% if comment.errors.any? %>
-    <ul>
-      <% comment.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
-      <% end %>
-    </ul>
-  <% end %>
+
 
   <%= form_tag( {controller: "comments", action: "create"}, method: "post", class: "reply-form") do %>
     <%= hidden_field_tag(:post_id, comment.post_id) %>
@@ -32,4 +32,14 @@
   $('.reply-button').on('click', function(){
     $(this).closest('.comment').find('.reply-form:first').show()
   })
+
+  $('.comment-upvote')
+   .on('ajax:error', function () {
+     $(this).after('<div>There was an upvote issue.</div>');
+   }).on('ajax:success', function (res, data) {
+     var $this = $(this)
+     $this.closest('.comment').find('.comment-upvote-count').text(data.vote_count)
+     var current_text = $this.text()
+     $this.text(data.voted_for ? "Unvote" : "Upvote")
+   });
 </script>
