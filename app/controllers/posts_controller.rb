@@ -8,10 +8,11 @@ class PostsController < ApplicationController
     if params[:search]
       @tags = []
       @posts = []
-      tags = params[:search].split(' ')
+      tags = params[:search].downcase.gsub(/[^a-z0-9\s]/i, '').split(' ')
       tags.each do |tag|
-        tag.downcase!
-        @tags << Tag.find_by(name: tag)
+        unless Tag.find_by(name: tag) == nil
+        @tags << Tag.find_by(name: tag) 
+        end 
       end
       @tags.each do |tag|
         @posts << tag.posts
