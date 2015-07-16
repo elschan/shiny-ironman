@@ -9,6 +9,10 @@ class Post < ActiveRecord::Base
   validates :title, presence: true, length: { in: 4..140 }
   validate :text_or_url
 
+  def self.tagged_with(name)
+    Tag.find_by_name!(name).posts
+  end
+
   def tag_list
     self.tags.map {|t| t.name }.join(" ")
   end

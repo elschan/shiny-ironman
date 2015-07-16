@@ -23,7 +23,7 @@ ShinyIronman::Application.routes.draw do
     end
   end
 
-
+get 'tags/:tag', to: 'posts#index', as: "tag"
   # You can have the root of your site routed with "root"
   root 'posts#index'
 
