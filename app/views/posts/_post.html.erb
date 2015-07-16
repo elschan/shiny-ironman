@@ -6,9 +6,7 @@
   <% end %>
   <% if !post.tags.empty? %>
   Tagged:
-    <% post.tags.each do |tag| %>
-    <%= tag.name %>
-    <% end %>
+    <%=raw tag_links(post.tag_list) %>
   <% end %>
 
   <p><%= post.text %> </p>
