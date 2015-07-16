@@ -1,11 +1,49 @@
-<h3><%= @post.title %></h3>
-<p> by <%= @post.member.username %> </p>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 col-md-8">
+          <!-- POST -->
+            <div class="post">
+                <div class="topwrap">
+                  
+                  <div class="userinfo pull-left">
+                    Upvotes: <span class="upvote-post"> <%= @post.get_upvotes.size %> </span></p>
+                  </div>
+                    <div class="posttext pull-left">
+                      <!-- OUR POST STUFF -->
+                        <h2><%= @post.title %></h2>
+                        <p><%= @post.text %></p>
 
-<%= form_for [@post, @comment] do |f| %>
-  <%= f.text_area :text %>
-  <%= f.submit %>
-<% end %>
+                        <div class="posted pull-right"><i class="fa fa-clock-o"></i>
+                          Posted by <%= link_to @post.member.username, member_path(@post.member_id) %>
+                          <%= time_ago_in_words(@post.created_at)%> ago
+                        </div>
+                        <!-- I TANGLED THE COMMENT FORM UP IN HERE -->
+                        <div class="posttext pull-left">
+                            <div class="textwraper">
+                                <div class="postreply">Comment</div>
+                                <%= form_for [@post, @comment] do |f| %>
+                                <%= f.text_area :text, placeholder: "Type your comment here" %>
+                            </div>
+                            <div class="pull-right postreply">
+                                <div class="pull-left smile"><a href="#"><i class="fa fa-smile-o"></i></a></div>
+                                <div class="pull-left"><%= f.submit class: 'btn btn-primary' %></div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <% end %>
+                        </div>
+                        <!--/// I TANGLED THE COMMENT FORM UP IN HERE -->
 
-<div id="comments">
-  <%= render partial: "comment", collection: @comments %>
-</div>
+                      <!--/// OUR POST STUFF -->
+
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div><!-- POST -->
+
+          <!-- START COMMENTS -->
+          <div id="comments">
+            <%= render partial: "comment", collection: @comments %>
+          </div>
+        </div>
+    </div>
+  </div>

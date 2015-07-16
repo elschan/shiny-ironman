@@ -7,3 +7,26 @@
 .reply-form{
   display: none;
 }
+
+#comment_text {
+  max-width: 100%
+}
+
+.textwraper.reply-form {
+  background-color: #fff;
+  textarea{
+    height: 200px;
+  }
+  input.btn {
+    float:right;
+    margin-bottom: 10px;
+  }
+}
+
+.postinfobot{
+  clear:both;
+}
+
+.voted {
+  color: chartreuse;
+}

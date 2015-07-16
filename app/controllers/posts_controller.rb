@@ -11,8 +11,8 @@ class PostsController < ApplicationController
       tags = params[:search].downcase.gsub(/[^a-z0-9\s]/i, '').split(' ')
       tags.each do |tag|
         unless Tag.find_by(name: tag) == nil
-        @tags << Tag.find_by(name: tag) 
-        end 
+        @tags << Tag.find_by(name: tag)
+        end
       end
       @tags.each do |tag|
         @posts << tag.posts
@@ -45,7 +45,7 @@ end
 
   def show
     @post = Post.find(params[:id])
-    @comments = Comment.where("post_id == ?", params[:id])
+    @comments = @post.comments
     @comment = Comment.new()
   end
 
@@ -98,7 +98,7 @@ end
   end
 
 
-  
+
 
   protected
 
