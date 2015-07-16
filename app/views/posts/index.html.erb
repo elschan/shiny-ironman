@@ -3,5 +3,10 @@
 <%= text_field_tag :search, params[:search], placeholder: "Search by tag", name: "search" %>
 <%= submit_tag "Search" %>
 <% end %>
-
-<%= render partial: "post", collection: @posts %>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 col-md-8">
+      <%= render partial: "post", collection: @posts %>
+    </div>
+  </div>
+</div>
