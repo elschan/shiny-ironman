@@ -3,8 +3,15 @@
       <div class="post">
       <div class="userinfo pull-left">
         <span class="upvote-comment">
-          <i class="fa fa-arrow-up"></i>
-          <%= comment.get_upvotes.size %>
+
+          <!-- TODO is this a bug if no one is signed in? -->
+          <% if current_member.voted_for?(comment) %>
+            <i class="fa fa-arrow-up voted"></i>
+          <% else %>
+            <i class="fa fa-arrow-up"></i>
+          <% end %>
+
+          <span class="upvote-count"><%= comment.get_upvotes.size %></span>
         </span>
       </div>
         <div class="posttext pull-left">
@@ -48,7 +55,7 @@
     $(this).hide()
   })
 
-  $('.comment-upvote')
+  $('.upvote-comment')
    .on('ajax:error', function () {
      $(this).after('<div>There was an upvote issue.</div>');
    }).on('ajax:success', function (res, data) {
