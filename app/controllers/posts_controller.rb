@@ -21,11 +21,7 @@ class PostsController < ApplicationController
       @posts.uniq!
     elsif params[:tag]
       tag = Tag.find_by(name: params[:tag])
-      @posts = tag.posts.uniq!
-      # binding.pry
-      # @posts = Post.tagged_with(params[:tag])
-      # @posts.uniq!
-
+      @posts = tag.posts.uniq
     else
     @posts = Post.all
   end
