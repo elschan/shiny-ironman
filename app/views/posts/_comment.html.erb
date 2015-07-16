@@ -4,9 +4,12 @@
       <div class="userinfo pull-left">
         <span class="upvote-comment">
 
-          <!-- TODO is this a bug if no one is signed in? -->
-          <% if current_member.voted_for?(comment) %>
-            <i class="fa fa-arrow-up voted"></i>
+<!-- If member is signed in, they can upvote and see whether they have upvoted.
+If they are not signed in, they can only see how many upvotes -->
+          <% if member_signed_in? %>
+            <%= link_to (vote_comment_path(comment)), :class => "can_vote", :method => "put", :remote => true do %>
+              <i class="fa fa-arrow-up <% if current_member.voted_for?(comment) %> voted <% end %>"></i>
+            <%end%>
           <% else %>
             <i class="fa fa-arrow-up"></i>
           <% end %>
@@ -55,12 +58,15 @@
     $(this).hide()
   })
 
-  $('.upvote-comment')
+  $('.can_vote')
    .on('ajax:error', function () {
      $(this).after('<div>There was an upvote issue.</div>');
    }).on('ajax:success', function (res, data) {
      var $this = $(this)
-     $this.closest('.comment').find('.comment-upvote-count').text(data.vote_count)
+     $this.find('.fa-arrow-up').toggleClass('voted');
+     $this.closest('.upvote-comment').find('.upvote-count').text(data.vote_count)
+     console.log(data)
+    //  $this.closest('.comment').find('.comment-upvote-count').text(data.vote_count)
      //var current_text = $this.text()
      //$this.text(data.voted_for ? "Unvote" : "Upvote")
    });
