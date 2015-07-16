@@ -46,7 +46,6 @@ end
   def show
     @post = Post.find(params[:id])
     @comments = @post.comments
-    @comments.order(get_upvotes.size)
     @comment = Comment.new()
   end
 
