@@ -26,6 +26,11 @@ class Post < ActiveRecord::Base
     end
   end
 
+  def trending_value
+    age = Time.now - self.created_at
+    self.get_upvotes.size / age
+  end
+
 
 
   private

@@ -3,7 +3,6 @@ class PostsController < ApplicationController
   before_action :authenticate_member!, :except =>[:index]
 
   def index
-
     # TODO sort chronologically or by upvotes/time
     if params[:search]
       @tags = []
@@ -22,8 +21,13 @@ class PostsController < ApplicationController
     elsif params[:tag]
       tag = Tag.find_by(name: params[:tag])
       @posts = tag.posts.uniq
+      # @posts.order(created_at: :desc)
+
+
     else
     @posts = Post.all
+    @posts.sort! { |p1, p2| p2.trending_value <=> p1.trending_value }
+    # NAMESCOPE LATER FOR FASTER SORTING
   end
 end
 
