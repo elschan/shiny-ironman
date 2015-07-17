@@ -47,8 +47,9 @@ class MembersController < ApplicationController
   # quit your account
   def destroy
     @member = Member.find(params[:id])
+     # flash[:alert] = " #{@member.username}' successfully deleted."
     @member.destroy
-    flash[:alert] = " #{@member.username}' successfully deleted."
+   
     redirect_to members_path
   end
 

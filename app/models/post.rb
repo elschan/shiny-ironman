@@ -25,7 +25,14 @@ class Post < ActiveRecord::Base
       self.tags << tag
     end
   end
-  
+
+  def trending_value
+    age = Time.now - self.created_at
+    self.get_upvotes.size / age
+  end
+
+
+
   private
 
   def text_or_url

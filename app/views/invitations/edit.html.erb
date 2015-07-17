@@ -13,5 +13,11 @@
   <p><%= f.label :password_confirmation %><br />
   <%= f.password_field :password_confirmation %></p>
 
+  Yes<%= f.radio_button :open_to_irl, :true %>
+
+      <%= f.text_field :location, autofocus: true , :placeholder => "Put in your city"%> <br>
+      Not yet<%= f.radio_button :open_to_irl, :true %>
+  <%= f.text_field :social_handles %>
+
   <p><%= f.submit t("devise.invitations.edit.submit_button") %></p>
 <% end %>
