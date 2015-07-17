@@ -9,12 +9,22 @@ ShinyIronman::Application.routes.draw do
     end
   end
 
+    get "posts/newest", to: "posts#newest"
+
+# map.resources :posts do |posts|
+#   posts.resources :newest
+# end
+
+
+
   resources :posts do
     member do
       put "vote", to: "posts#vote"
     end
     resources :comments, only: [:create, :new]
   end
+
+
 
 
   resources :members do

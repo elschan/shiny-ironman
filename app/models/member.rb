@@ -9,7 +9,7 @@ class Member < ActiveRecord::Base
 
   # validates :password_digest, presence: true
   has_many :posts
-  has_many :comments, :order => 'created_at'
+  has_many :comments
 
 
   def login=(login)

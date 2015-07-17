@@ -18,10 +18,14 @@ class PostsController < ApplicationController
       end
       @posts.flatten!
       @posts.uniq!
+      @posts.reverse!
     elsif params[:tag]
       tag = Tag.find_by(name: params[:tag])
-      @posts = tag.posts.uniq
+      @posts = tag.posts.uniq.reverse
+      # @posts.order(:title)
+      # POSSIBLE SQL QUERY WHEN TIME?
       # @posts.order(created_at: :desc)
+      # @posts.order(created_at: :asc)
 
 
     else
@@ -30,6 +34,10 @@ class PostsController < ApplicationController
     # NAMESCOPE LATER FOR FASTER SORTING
   end
 end
+
+  def newest
+    @posts = Post.all.reverse
+  end
 
   def new
     @post = Post.new
