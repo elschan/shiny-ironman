@@ -30,3 +30,6 @@
 .voted {
   color: chartreuse;
 }
+a.can_vote:hover, a.can_vote:focus {
+  text-decoration: none;
+}
