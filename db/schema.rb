@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150714150742) do
+ActiveRecord::Schema.define(version: 20150717011950) do
 
   create_table "comments", force: true do |t|
     t.integer  "parent_comment_id"
@@ -55,6 +55,8 @@ ActiveRecord::Schema.define(version: 20150714150742) do
     t.integer  "invitations_count",      default: 0
     t.boolean  "admin",                  default: false
     t.boolean  "banned",                 default: false
+    t.boolean  "open_to_irl",            default: false
+    t.string   "social_handles"
   end
 
   add_index "members", ["email"], name: "index_members_on_email", unique: true

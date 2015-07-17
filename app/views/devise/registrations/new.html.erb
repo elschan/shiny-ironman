@@ -8,6 +8,8 @@
     <%= f.email_field :email, autofocus: true %>
   </div>
 
+  
+
    <div class="field">
     <%= f.label :username %><br />
     <%= f.text_field :username, autofocus: true %>
@@ -24,6 +26,17 @@
   <div class="field">
     <%= f.label :password_confirmation %><br />
     <%= f.password_field :password_confirmation, autocomplete: "off" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :social_handles %><br />
+    <%= f.text_field :social_handles, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :open_to_irl %><br />
+    <%= f.check_box :open_to_irl, autofocus: true %> Yes
+    <%= f.check_box :open_to_irl, autofocus: true %> Not yet
   </div>
 
   <div class="actions">
