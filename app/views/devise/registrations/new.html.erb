@@ -8,6 +8,8 @@
     <%= f.email_field :email, autofocus: true %>
   </div>
 
+  
+
    <div class="field">
     <%= f.label :username %><br />
     <%= f.text_field :username, autofocus: true %>
@@ -24,6 +26,20 @@
   <div class="field">
     <%= f.label :password_confirmation %><br />
     <%= f.password_field :password_confirmation, autocomplete: "off" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :social_handles %><br />
+    <%= f.text_field :social_handles, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <br />
+   
+      Yes<%= f.radio_button :open_to_irl, :true %>
+
+      <%= f.text_field :location, autofocus: true , :placeholder => "Put in your city"%> <br>
+      Not yet<%= f.radio_button :open_to_irl, :true %> 
   </div>
 
   <div class="actions">
