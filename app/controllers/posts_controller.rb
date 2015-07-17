@@ -97,11 +97,9 @@ end
         render json: response
       end
     end
+
   end
-
-
-
-
+  
   protected
 
   def post_params

@@ -25,9 +25,7 @@ class Post < ActiveRecord::Base
       self.tags << tag
     end
   end
-
-
-
+  
   private
 
   def text_or_url

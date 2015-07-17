@@ -1,38 +1,75 @@
 <div class="post">
-  <% if !post.url.empty? %>
-    <h2><%= link_to post.title, post.url %></h2>
-  <% else %>
-    <h2><%= link_to post.title, post_path(post.id) %></h2>
-  <% end %>
-  <% if !post.tags.empty? %>
-  Tagged:
-    <%=raw tag_links(post.tag_list) %>
-  <% end %>
+  <!-- POST -->
+     <div class="post">
+         <div class="wrap-ut pull-left">
+             <div class="userinfo pull-left">
+               <span class="upvote-post">
 
-  <p><%= post.text %> </p>
-  <p> Upvotes: <span class="upvote-post"> <%= post.get_upvotes.size %> </span></p>
-  <p> Created: <%= time_ago_in_words(post.created_at) %> </p>
-  <p> Username: <%= post.member.username if post.member %> </p>
-  <% if current_member %>
-    <% if current_member.admin? || (post.member_id == current_member.id) %>
-      <%= link_to "Edit", edit_post_path(post.id) %>
-      <%= link_to "Delete", post_path(post.id), method: :delete %>
-    <% end %>
-  <% end %>
-  <%= link_to "Comments", post_path(post.id) %>
-  <% if member_signed_in? %>
-    <%= link_to (current_member.voted_for?(post) ? "Unvote" : "Upvote"), vote_post_path(post), :class => "upvote", :method => "put", :remote => true %>
-  <% end %>
+       <!-- If member is signed in, they can upvote and see whether they have upvoted.
+       If they are not signed in, they can only see how many upvotes -->
+                 <% if member_signed_in? %>
+                   <%= link_to (vote_post_path(post)), :class => "can_vote", :method => "put", :remote => true do %>
+                     <i class="fa fa-arrow-up <% if current_member.voted_for?(post) %> voted <% end %>"></i>
+                   <%end%>
+                 <% else %>
+                   <i class="fa fa-arrow-up"></i>
+                 <% end %>
+
+                 <span class="upvote-count"><%= post.get_upvotes.size %></span>
+               </span>
+
+             </div>
+             <div class="posttext pull-left">
+                 <% if !post.url.empty? %>
+                   <h2><%= link_to post.title, post.url %></h2>
+                 <% else %>
+                   <h2><%= link_to post.title, post_path(post.id) %></h2>
+                 <% end %>
+                 <% if !post.tags.empty? %>
+                 Tagged:
+                   <% post.tags.each do |tag| %>
+                   <%= tag.name %>
+                   <% end %>
+                 <% end %>
+
+               <p><%= get_preview(post) %> </p>
+
+               <p> Username: <%= link_to post.member.username, member_path(post.member_id) if post.member %> </p>
+               <% if current_member %>
+                 <% if current_member.admin? || (post.member_id == current_member.id) %>
+                   <%= link_to "Edit", edit_post_path(post.id) %>
+                   <%= link_to "Delete", post_path(post.id), method: :delete %>
+                 <% end %>
+               <% end %>
+             </div>
+             <div class="clearfix"></div>
+         </div>
+         <div class="postinfo pull-left">
+             <div class="comments">
+                 <div class="commentbg">
+                     89
+                     <div class="mark"></div>
+                 </div>
+
+             </div>
+             <div class="views"><%= link_to "Comments", post_path(post.id) %></div>
+             <div class="time"><i class="fa fa-clock-o"></i> <%= time_ago_in_words(post.created_at) %></div>
+         </div>
+         <div class="clearfix"></div>
+     </div><!-- POST -->
 </div>
 
 <script>
-$('.upvote')
- .on('ajax:error', function () {
-   $(this).after('<div>There was an upvote issue.</div>');
- }).on('ajax:success', function (res, data) {
-   var $this = $(this)
-   $this.closest('.post').find('.upvote-post').text(data.vote_count)
-   var current_text = $this.text()
-   $this.text(data.voted_for ? "Unvote" : "Upvote")
- });
+  $('.can_vote')
+   .on('ajax:error', function () {
+     $(this).after('<div>There was an upvote issue.</div>');
+   }).on('ajax:success', function (res, data) {
+     var $this = $(this)
+     $this.find('.fa-arrow-up').toggleClass('voted');
+     $this.closest('.upvote-post').find('.upvote-count').text(data.vote_count)
+     console.log(data)
+    //  $this.closest('.comment').find('.comment-upvote-count').text(data.vote_count)
+     //var current_text = $this.text()
+     //$this.text(data.voted_for ? "Unvote" : "Upvote")
+   });
 </script>
