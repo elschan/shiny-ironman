@@ -1,63 +1,61 @@
-<div class="post">
-  <!-- POST -->
-     <div class="post">
-         <div class="wrap-ut pull-left">
-             <div class="userinfo pull-left">
-               <span class="upvote-post">
+<!-- POST -->
+   <div class="post" data-sr >
+       <div class="wrap-ut pull-left">
+           <div class="userinfo pull-left">
+             <span class="upvote-post">
 
-       <!-- If member is signed in, they can upvote and see whether they have upvoted.
-       If they are not signed in, they can only see how many upvotes -->
-                 <% if member_signed_in? %>
-                   <%= link_to (vote_post_path(post)), :class => "can_vote", :method => "put", :remote => true do %>
-                     <i class="fa fa-arrow-up <% if current_member.voted_for?(post) %> voted <% end %>"></i>
-                   <%end%>
-                 <% else %>
-                   <i class="fa fa-arrow-up"></i>
-                 <% end %>
+     <!-- If member is signed in, they can upvote and see whether they have upvoted.
+     If they are not signed in, they can only see how many upvotes -->
+               <% if member_signed_in? %>
+                 <%= link_to (vote_post_path(post)), :class => "can_vote", :method => "put", :remote => true do %>
+                   <i class="fa fa-arrow-up <% if current_member.voted_for?(post) %> voted <% end %>"></i>
+                 <%end%>
+               <% else %>
+                 <i class="fa fa-arrow-up"></i>
+               <% end %>
 
-                 <span class="upvote-count"><%= post.get_upvotes.size %></span>
-               </span>
+               <span class="upvote-count"><%= post.get_upvotes.size %></span>
+             </span>
 
-             </div>
-             <div class="posttext pull-left">
-                 <% if !post.url.empty? %>
-                   <h2><%= link_to post.title, post.url %></h2>
-                 <% else %>
-                   <h2><%= link_to post.title, post_path(post.id) %></h2>
-                 <% end %>
-                 <% if !post.tags.empty? %>
-                 Tagged:
-                   <% post.tags.each do |tag| %>
-                   <%= tag.name %>
-                   <% end %>
-                 <% end %>
-
-               <p><%= get_preview(post) %> </p>
-
-               <p> Username: <%= link_to post.member.username, member_path(post.member_id) if post.member %> </p>
-               <% if current_member %>
-                 <% if current_member.admin? || (post.member_id == current_member.id) %>
-                   <%= link_to "Edit", edit_post_path(post.id) %>
-                   <%= link_to "Delete", post_path(post.id), method: :delete %>
+           </div>
+           <div class="posttext pull-left">
+               <% if !post.url.empty? %>
+                 <h2><%= link_to post.title, post.url %></h2>
+               <% else %>
+                 <h2><%= link_to post.title, post_path(post.id) %></h2>
+               <% end %>
+               <% if !post.tags.empty? %>
+               Tagged:
+                 <% post.tags.each do |tag| %>
+                 <%= tag.name %>
                  <% end %>
                <% end %>
-             </div>
-             <div class="clearfix"></div>
-         </div>
-         <div class="postinfo pull-left">
-             <div class="comments">
-                 <div class="commentbg">
-                     89
-                     <div class="mark"></div>
-                 </div>
 
-             </div>
-             <div class="views"><%= link_to "Comments", post_path(post.id) %></div>
-             <div class="time"><i class="fa fa-clock-o"></i> <%= time_ago_in_words(post.created_at) %></div>
-         </div>
-         <div class="clearfix"></div>
-     </div><!-- POST -->
-</div>
+             <p><%= get_preview(post) %> </p>
+
+             <p> Username: <%= link_to post.member.username, member_path(post.member_id) if post.member %> </p>
+             <% if current_member %>
+               <% if current_member.admin? || (post.member_id == current_member.id) %>
+                 <%= link_to "Edit", edit_post_path(post.id) %>
+                 <%= link_to "Delete", post_path(post.id), method: :delete %>
+               <% end %>
+             <% end %>
+           </div>
+           <div class="clearfix"></div>
+       </div>
+       <div class="postinfo pull-left">
+           <div class="comments">
+               <div class="commentbg">
+                   89
+                   <div class="mark"></div>
+               </div>
+
+           </div>
+           <div class="views"><%= link_to "Comments", post_path(post.id) %></div>
+           <div class="time"><i class="fa fa-clock-o"></i> <%= time_ago_in_words(post.created_at) %></div>
+       </div>
+       <div class="clearfix"></div>
+   </div><!-- POST -->
 
 <script>
   $('.can_vote')
