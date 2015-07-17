@@ -13,8 +13,9 @@
               <div class="row">
                   <div class="col-lg-4 search hidden-xs hidden-sm col-md-3">
                       <div class="wrap">
-                          <form action="#" method="post" class="form">
-                              <div class="pull-left txt"><input type="text" class="form-control" placeholder="Search Topics"></div>
+                          <form action='/posts' method="get" class="form">
+
+                              <div class="pull-left txt"><input type="text" class="form-control" name="search" placeholder="Search by tag"></div>
                               <div class="pull-right"><button class="btn btn-default" type="button"><i class="fa fa-search"></i></button></div>
                               <div class="clearfix"></div>
                           </form>
@@ -22,53 +23,57 @@
                   </div>
                   <div class="col-lg-4 col-xs-12 col-sm-5 col-md-4 avt">
                       <div class="stnt pull-left">
-                          <form action="03_new_topic.html" method="post" class="form">
-                              <button class="btn btn-primary">Start New Topic</button>
-                          </form>
+                          <!-- <form action="03_new_topic.html" method="post" class="form"> -->
+                            <%= button_to 'New Post', new_post_path, :class=> "btn btn-primary", :method => :get %>
+
+                              <!-- <button class="btn btn-primary">Start New Topic</button>
+                          </form> -->
                       </div>
-                      <div class="env pull-left"><i class="fa fa-envelope"></i></div>
+                      <div class="stnt pull-left">
 
-                      <div class="avatar pull-left dropdown">
-                          <a data-toggle="dropdown" href="#"><i class="fa fa-user fa-3x"></i></a> <b class="caret"></b>
-                          <ul class="dropdown-menu" role="menu">
+                      <%= button_to 'All Posts', '/', :class=> "btn btn-primary", :method => :get %>
+</div>
 
-                              <li role="presentation">
-                          
+                      <% if member_signed_in? %>
+                        <div class="avatar pull-left dropdown">
+                            <a data-toggle="dropdown" href="#"><i class="fa fa-user fa-3x"></i></a> <b class="caret"></b>
+                            <ul class="dropdown-menu" role="menu">
 
-                              </li>
-                              <li role="presentation"><a role="menuitem" tabindex="-2" href="#">Inbox</a></li>
-                              <li role="presentation"><a role="menuitem" tabindex="-3" href="#">Log Out</a></li>
-                              <li role="presentation"><a role="menuitem" tabindex="-4" href="04_new_account.html">Create account</a></li>
-                          </ul>
-                      </div>
+                                <li role="presentation">
+                                  <%= link_to "My Profile", member_path(current_member.id) %>
+                                </li>
+                                <li role="presentation">
+                                  <%= link_to('Logout', destroy_member_session_path, :method => :delete) %>
+                                </li>
+                                <% if current_member.admin %>
+
+                                  <li role="presentation">
+                                    <%= link_to('Admin panel', members_path, :method => :get) %>
+                                  </li>
+                                <% end %>
+                            </ul>
+                        </div>
+                      <% else %>
+
+                      <!-- If not signed in, should not see avatar or drop-down. Instead:
+                        Login
+                        Get Invite? -->
+
+                        <%= link_to('Login', new_member_session_path)  %>
+                      <% end %>
 
                       <div class="clearfix"></div>
                   </div>
               </div>
           </div>
       </div>
-            <div class="content">
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-    <li><%= link_to('Posts', posts_path, :method => :get) %><li>
-    <% if member_signed_in? %>
-      <li>
-        <%= link_to('Logout', destroy_member_session_path, :method => :delete) %>
-      </li>
-      <li>
-
-      </li>
-
-    <% else %>
-      <li>
-        <%= link_to('Login', new_member_session_path)  %>
-      </li>
-    <% end %>
-
-    <%= yield %>
-    <script>
-      window.sr = new scrollReveal();
-    </script>
-</div>
+    <div class="content">
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
+      <%= yield %>
+      <script>
+        window.sr = new scrollReveal();
+      </script>
+    </div>
   </body>
 </html>
