@@ -34,9 +34,12 @@
   </div>
 
   <div class="field">
-    <%= f.label :open_to_irl %><br />
-    <%= f.check_box :open_to_irl, autofocus: true %> Yes
-    <%= f.check_box :open_to_irl, autofocus: true %> Not yet
+    <br />
+   
+      Yes<%= f.radio_button :open_to_irl, :true %>
+
+      <%= f.text_field :location, autofocus: true , :placeholder => "Put in your city"%> <br>
+      Not yet<%= f.radio_button :open_to_irl, :true %> 
   </div>
 
   <div class="actions">
