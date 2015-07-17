@@ -37,7 +37,7 @@
 
                <p><%= get_preview(post) %> </p>
 
-               <p> Username: <%= post.member.username if post.member %> </p>
+               <p> Username: <%= link_to post.member.username, member_path(post.member_id) if post.member %> </p>
                <% if current_member %>
                  <% if current_member.admin? || (post.member_id == current_member.id) %>
                    <%= link_to "Edit", edit_post_path(post.id) %>
