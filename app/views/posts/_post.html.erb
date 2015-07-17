@@ -1,29 +1,5 @@
 <div class="post">
-  <% if !post.url.empty? %>
-    <h2><%= link_to post.title, post.url %></h2>
-  <% else %>
-    <h2><%= link_to post.title, post_path(post.id) %></h2>
-  <% end %>
-  <% if !post.tags.empty? %>
-  Tagged:
-    <%=raw tag_links(post.tag_list) %>
-  <% end %>
-<%= post.trending_value %>
-  <p><%= post.text %> </p>
-  <p> Upvotes: <span class="upvote-post"> <%= post.get_upvotes.size %> </span></p>
-  <p> Created: <%= time_ago_in_words(post.created_at) %> </p>
-  CREATED <%= post.created_at %>
-  <p> Username: <%= post.member.username if post.member %> </p>
-  <% if current_member %>
-    <% if current_member.admin? || (post.member_id == current_member.id) %>
-      <%= link_to "Edit", edit_post_path(post.id) %>
-      <%= link_to "Delete", post_path(post.id), method: :delete %>
-    <% end %>
-  <% end %>
-  <%= link_to "Comments", post_path(post.id) %>
-  <% if member_signed_in? %>
-    <%= link_to (current_member.voted_for?(post) ? "Unvote" : "Upvote"), vote_post_path(post), :class => "upvote", :method => "put", :remote => true %>
-  <% end %>
+
   <!-- POST -->
      <div class="post">
          <div class="wrap-ut pull-left">
@@ -82,7 +58,6 @@
          </div>
          <div class="clearfix"></div>
      </div><!-- POST -->
->>>>>>> 
 </div>
 
 <script>
