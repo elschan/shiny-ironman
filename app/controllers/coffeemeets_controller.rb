@@ -20,14 +20,27 @@ class CoffeemeetsController < ApplicationController
 
   def edit
     @coffee = Coffeemeet.find(params[:id])
-    
   end
+
+  def remove
+    @coffee = Coffeemeet.find(params[:id])
+    if current_member.id == @coffee.inviter_id
+      @coffee.inviter_hide = true
+      @coffee.save
+    else
+      @coffee.invitee_hide = true
+      puts 'oops'
+      @coffee.save
+    end
+    redirect_to member_path(current_member.id)
+  end
+
 
   def update
     @coffee = Coffeemeet.find(params[:id])
     if @coffee.update_attributes(coffeemeet_params)
       if @coffee.accepted
-      redirect_to member_path(params[:id])
+      redirect_to member_path(current_member.id)
       else 
       redirect_to member_path(current_member.id)
       end

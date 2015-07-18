@@ -19,36 +19,43 @@ you have <%=current_member.invitation_limit %> invitations left.
     <em>Coffees I'm invited to:</em> <br>
     <% @coffees_invited_to.each do |coffee| %>
       <div id ="coffee-<%=coffee.id%>">
-      <strong><%= Member.find(coffee.inviter_id).username%></strong>
-      <strong><%= Member.find(coffee.inviter_id).email%></strong>
-      </div>
+      <% unless coffee.confirmed || coffee.invitee_hide %>
+        <strong><%= Member.find(coffee.inviter_id).username%></strong>
+        <strong><%= Member.find(coffee.inviter_id).email%></strong><br>
+        
 
-      <% if coffee.accepted == nil %>
-      <%= coffee.invite_blurb %>
-      <%= link_to "Reply to Invite!", edit_member_coffeemeet_path(coffee.inviter_id, coffee.id) %><br>
-      <% else %>
-       Replied on <%= coffee.updated_at.strftime("%m/%d/%Y") %>
-       <!--<%= link_to "X", "#", :class =>"remove-coffee", :id => "coffee-#{coffee.id}", :remote => true %> -->
-     <% end %>
-    <br>
+        <% if coffee.accepted == nil %>
+        <%= coffee.invite_blurb %>
+        <%= link_to "Reply to Invite!", edit_member_coffeemeet_path(coffee.inviter_id, coffee.id) %><br>
+        <% elsif coffee.accepted == true %>
+         Accepted <%= coffee.updated_at.strftime("%m/%d/%Y") %> <br>
+         <%= link_to "Confirm", edit_member_coffeemeet_path(coffee.inviter_id, coffee.id) %> where you guys met!
+         <% else %>
+         You declined. 
+         <%= link_to "Remove", remove_from_profile_member_coffeemeet_path(coffee.inviter_id, coffee.id), :class =>"remove-coffee", :id => "coffee-#{coffee.id}", :method => "put" %>
+       <% end %>
+    <br><% end %>
+      </div>
     <% end %>
   <% end %>
   <hr>
-   
+
    
    <em>Coffees I'm waiting on:</em><br>
   <% if @coffees_waiting_for %>
     <% @coffees_waiting_for.each do |coffee| %>
       <div>
       
-      <% unless coffee.confirmed %>
+      <% unless coffee.confirmed || coffee.inviter_hide %>
         <strong><%= Member.find(coffee.invitee_id).username%><br></strong>
         <% if coffee.accepted %>
               Accepted! @ <%= coffee.updated_at.strftime("%m/%d/%Y") %><br>
                <%= coffee.invite_accept %>
               <%= link_to "Confirm", edit_member_coffeemeet_path(coffee.inviter_id, coffee.id) %> where you guys met! <br>
         <% elsif coffee.accepted == false %>
-              Declined.  <%= coffee.invite_accept %>
+          Declined.  
+          <%= coffee.invite_accept %>
+          <%= link_to "Remove", remove_from_profile_member_coffeemeet_path(coffee.inviter_id, coffee.id), :class =>"remove-coffee", :id => "coffee-#{coffee.id}", :method => "put" %>
         <% else %>
               Waiting for response <br>
               invited on <%=coffee.created_at.strftime("%m/%d/%Y") %>
@@ -58,11 +65,11 @@ you have <%=current_member.invitation_limit %> invitations left.
     <% end %>
   <% end %>
 
-  <em>Coffees I went to: </em><br> 
+  <em>People I met: </em><br> 
   <% if @coffees %>
     <% @coffees.each do |coffee| %>
       <% if coffee.confirmed %>
-      You had coffee with <%= coffee.had_coffee_with(current_member) %> @ <%=coffee.location %>
+      <%= link_to  "#{coffee.had_coffee_with(current_member).username}", member_path(coffee.had_coffee_with(current_member).id)  %> || <%=coffee.had_coffee_with(current_member).email %> <br> 
       <% end %>
     <% end %>
   <% end %>  

@@ -5,10 +5,13 @@ class Coffeemeet < ActiveRecord::Base
 
   def had_coffee_with(me)
     if self.inviter_id == me.id
-      Member.find(self.invitee_id).username
+      Member.find(self.invitee_id)
     else 
-      Member.find(self.inviter_id).username
+      Member.find(self.inviter_id)
     end
   end
+
+
+
 
 end
