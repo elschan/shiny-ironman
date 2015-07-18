@@ -11,7 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150717032331) do
+ActiveRecord::Schema.define(version: 20150718183818) do
+
+  create_table "coffeemeets", force: true do |t|
+    t.string   "location"
+    t.boolean  "accepted"
+    t.boolean  "confirmed"
+    t.string   "invite_blurb"
+    t.string   "invite_accept"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "inviter_id"
+    t.integer  "invitee_id"
+    t.string   "invite_blurb_contact"
+    t.string   "invite_accept_contact"
+    t.boolean  "inviter_hide",          default: false
+    t.boolean  "invitee_hide",          default: false
+  end
 
   create_table "comments", force: true do |t|
     t.integer  "parent_comment_id"

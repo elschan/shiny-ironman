@@ -9,6 +9,76 @@ you have <%=current_member.invitation_limit %> invitations left.
     <%= f.button :submit %>
   <% end %>
 <% end %>
-<%= link_to "Create a post", new_post_path %>
+ <br>
+<%= link_to "Invite for coffee!", new_member_coffeemeet_path(@member.id) unless current_member == @member %>
+<%= link_to "Create a post", new_post_path %><br>
+
+
+<% if current_member == @member %>
+  <% if @coffees_invited_to %>
+    <em>Coffees I'm invited to:</em> <br>
+    <% @coffees_invited_to.each do |coffee| %>
+      <div id ="coffee-<%=coffee.id%>">
+      <strong><%= Member.find(coffee.inviter_id).username%></strong>
+      <strong><%= Member.find(coffee.inviter_id).email%></strong>
+      </div>
+
+      <% if coffee.accepted == nil %>
+      <%= coffee.invite_blurb %>
+      <%= link_to "Reply to Invite!", edit_member_coffeemeet_path(coffee.inviter_id, coffee.id) %><br>
+      <% else %>
+       Replied on <%= coffee.updated_at.strftime("%m/%d/%Y") %>
+       <!--<%= link_to "X", "#", :class =>"remove-coffee", :id => "coffee-#{coffee.id}", :remote => true %> -->
+     <% end %>
+    <br>
+    <% end %>
+  <% end %>
+  <hr>
+   
+   
+   <em>Coffees I'm waiting on:</em><br>
+  <% if @coffees_waiting_for %>
+    <% @coffees_waiting_for.each do |coffee| %>
+      <div>
+      
+      <% unless coffee.confirmed %>
+        <strong><%= Member.find(coffee.invitee_id).username%><br></strong>
+        <% if coffee.accepted %>
+              Accepted! @ <%= coffee.updated_at.strftime("%m/%d/%Y") %><br>
+               <%= coffee.invite_accept %>
+              <%= link_to "Confirm", edit_member_coffeemeet_path(coffee.inviter_id, coffee.id) %> where you guys met! <br>
+        <% elsif coffee.accepted == false %>
+              Declined.  <%= coffee.invite_accept %>
+        <% else %>
+              Waiting for response <br>
+              invited on <%=coffee.created_at.strftime("%m/%d/%Y") %>
+        <% end %>
+      <% end %>
+      </div><hr>
+    <% end %>
+  <% end %>
+
+  <em>Coffees I went to: </em><br> 
+  <% if @coffees %>
+    <% @coffees.each do |coffee| %>
+      <% if coffee.confirmed %>
+      You had coffee with <%= coffee.had_coffee_with(current_member) %> @ <%=coffee.location %>
+      <% end %>
+    <% end %>
+  <% end %>  
+
+<% end %>
+
 
 <%= render partial: "posts/post", collection: @posts %>
+
+<script>
+  $('.remove-coffee').on('click', function() {
+    $(this).remove();
+    var coffee = this.id
+    $('#'+ coffee).remove();
+  });
+// note to self: why does this show up again after refresh?
+</script>
+
+

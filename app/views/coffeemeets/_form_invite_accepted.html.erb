@@ -1,0 +1,11 @@
+<%= form_for @coffee do |f| %>
+  
+  <%= f.text_field :invite_accept %><br>
+  <%= f.text_field :invite_accept_contact %><br>
+  <br> 
+  Yes let's meet!<br>   <%= f.radio_button(:accepted, "true") %><br>
+  Sorry not now <br>    <%= f.radio_button(:accepted, "false") %>
+
+ <br>
+  <%= f.submit %>
+<% end %>
