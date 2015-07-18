@@ -13,7 +13,7 @@
       <a href="../" class="navbar-brand">The Shine Experiment</a>
     </div>
     <nav id="bs-navbar" class="collapse navbar-collapse">
-      <% if !current_page?(root_path) %>
+      <% if !current_page?(root_path) && !current_page?(posts_path) %>
         <ul class="nav navbar-nav">
           <li>
             <%= link_to 'Browse Posts', root_path %>
