@@ -37,6 +37,7 @@ end
 
   def newest
     @posts = Post.all.reverse
+    render :index
   end
 
   def new
