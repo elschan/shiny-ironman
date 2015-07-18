@@ -50,3 +50,15 @@
   background-color: #bada55;
   height: 100px;
 }
+
+html,
+body {
+  height: 100%;
+  margin: 0
+}
+
+.content {
+  display: flex;
+  flex-flow: column;
+  height: 100%;
+}
