@@ -1,14 +1,43 @@
-<%=@member.username%> 's profile <br><br>
-<% if current_member == @member %>
-Hi <%=current_member.username%>
-<br>
-You have <%=current_member.reputation %> rep points
-you have <%=current_member.invitation_limit %> invitations left.
-  <%= form_for(Member.new, url: member_invitation_path) do |f| %>
-    <%= f.email_field :email, placeholder: 'Email to send invite to', label: false %>
-    <%= f.button :submit %>
-  <% end %>
-<% end %>
-<%= link_to "Create a post", new_post_path %>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 col-md-8">
+      <%= render partial: "posts/post", collection: @posts %>
+    </div>
+    <div class="col-lg-4 col-md-4">
+       <!-- -->
+       <div class="sidebarblock">
+         <% if current_member == @member %>
+           <h3>Hi <%= @member.username %>!</h3>
 
-<%= render partial: "posts/post", collection: @posts %>
+           <div class="divline"></div>
+           <div class="blocktxt">
+               <ul class="cats">
+                   <li> Reputation<span class="badge pull-right"><%=current_member.reputation %></span></a></li>
+                   <li> Social handles here </li>
+                   <li> Brief description + edit option here </li>
+                   <li> Invites remaining <span class="badge pull-right"><%=current_member.invitation_limit %></span></a></li>
+                   <%= form_for(Member.new, url: member_invitation_path) do |f| %>
+                     <%= f.email_field :email, placeholder: 'Email to send invite to', label: false %>
+                     <%= f.button :submit %>
+                   <% end %>
+               </ul>
+           </div>
+           <% else %>
+             <h3> <%=@member.username%> 's profile</h3>
+             <div class="divline"></div>
+             <div class="blocktxt">
+                 <ul class="cats">
+                   <li> Reputation<span class="badge pull-right"><%= @member.reputation %></span></a></li>
+                   <li> Social handles here </li>
+                   <li> Brief description + edit option here </li>
+                   <li> Invite for coffee button </li>
+                 </ul>
+             </div>
+           <% end %>
+       </div>
+     </div>
+
+  </div>
+
+
+</div>

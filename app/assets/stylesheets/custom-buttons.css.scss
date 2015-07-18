@@ -1,0 +1,8 @@
+.btn-tertiary {
+  background-color: rebeccapurple;
+  color: white;
+  font-style: bold;
+  &:hover {
+    background-color: #337ab7;
+  }
+}

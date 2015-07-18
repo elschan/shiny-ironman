@@ -1,13 +1,5 @@
 <%= link_to "Create a post", new_post_path %>
 <%= link_to "Newest", posts_newest_path %>
-<%= form_tag(posts_path, :method => "get") do %>
-<%= text_field_tag :search, params[:search], placeholder: "Search by tag", name: "search" %>
-<%= submit_tag "Search" %>
-<% end %>
-
-<%= render partial: "post", collection: @posts %>
-
-
 
 <div class="container">
   <div class="row">
