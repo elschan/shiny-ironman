@@ -32,7 +32,9 @@
       }
   }
 }
-
+#top{
+  background-color: white;
+}
 .navbar-toggle .icon-bar{
 	background: gray;
 }
@@ -51,14 +53,6 @@
   height: 100px;
 }
 
-html,
 body {
-  height: 100%;
-  margin: 0
-}
-
-.content {
-  display: flex;
-  flex-flow: column;
-  height: 100%;
+  background-color: #ecf0f1;
 }
