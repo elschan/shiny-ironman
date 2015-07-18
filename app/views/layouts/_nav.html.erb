@@ -13,13 +13,21 @@
       <a href="../" class="navbar-brand">The Shine Experiment</a>
     </div>
     <nav id="bs-navbar" class="collapse navbar-collapse">
-      <% if !current_page?(root_path) %>
         <ul class="nav navbar-nav">
           <li>
-            <%= link_to 'Browse Posts', root_path %>
+            <%= link_to 'Trending', root_path %>
+          </li>
+          <li>
+            <%= link_to "Newest", posts_newest_path %>
+          </li>
+          <li>
+            <%= link_to "Jobs", '#' %>
+          </li>
+          <li>
+            <%= link_to "Projects", '#' %>
           </li>
         </ul>
-      <% end %>
+
       <% if member_signed_in? %>
         <ul class="nav navbar-nav navbar-right">
           <li><%= link_to 'My Profile', member_path(current_member.id) %></li>
@@ -34,8 +42,7 @@
     </nav>
   </div>
 </div>
-<% if current_page?(root_path) %>
-  <div class="navbar navbar-static-top bs-docs-nav" id="search-nav" role="banner">
+<!--   <div class="navbar navbar-static-top bs-docs-nav" id="search-nav" role="banner">
     <div class="container">
     <div class="row">
       <div class="col-md-4 col-md-offset-2 search hidden-xs hidden-sm">
@@ -49,5 +56,4 @@
         </div>
       </div>
     </div>
-  </div>
-<% end %>
+  </div> -->
