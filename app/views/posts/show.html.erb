@@ -17,6 +17,7 @@
                           Posted by <%= link_to @post.member.username, member_path(@post.member_id) %>
                           <%= time_ago_in_words(@post.created_at)%> ago
                         </div>
+                        <!--THIS NEEDS STYLING CAUSE I JUST TOOK FROM BOOTSTRAP STUFF AND STUFFED IT -->
                         <% if flash[:error] %>
                           <div class="alert alert-danger fade in">
                             <a href="#" class="close" data-dismiss="alert">&times;</a>
