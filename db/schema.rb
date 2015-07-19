@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150719005458) do
+ActiveRecord::Schema.define(version: 20150719073735) do
 
   create_table "coffeemeets", force: true do |t|
     t.string   "location"
@@ -75,6 +75,8 @@ ActiveRecord::Schema.define(version: 20150719005458) do
     t.string   "social_handles"
     t.string   "location"
     t.integer  "coffeepoints",           default: 0
+    t.string   "blurb"
+    t.string   "fave_coffee"
   end
 
   add_index "members", ["email"], name: "index_members_on_email", unique: true
