@@ -17,7 +17,6 @@ class CommentsController < ApplicationController
     if params[:parent_id]
       @comment.parent_comment_id = params[:parent_id].to_i
       @comment.text = params[:text]
-      binding.pry
     else
       @comment.post_id = params[:post_id].to_i
       @comment.text = params[:comment][:text]

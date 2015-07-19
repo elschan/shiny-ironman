@@ -19,8 +19,13 @@ If they are not signed in, they can only see how many upvotes -->
       </div>
         <div class="posttext pull-left">
           <p><%= comment.text %></p>
+         <div class="posted">
+          by <%= link_to comment.get_commenter_name, member_path(comment.member_id)%>
+          <%= time_ago_in_words(comment.created_at) %> ago
         </div>
-        <div class="clearfix"></div>
+
+        </div>
+          <div class="clearfix"></div>
         <!-- THEME CODE -->
         <button class="btn btn-primary reply-button pull-right"> Reply </button>
 
@@ -32,17 +37,6 @@ If they are not signed in, they can only see how many upvotes -->
             <%= submit_tag "Reply", class: 'btn btn-primary' %>
           <% end %>
         </div>
-
-    <div class="postinfobot">
-
-        <div class="posted pull-left">
-          <i class="fa fa-clock-o"></i>
-          Posted by <%= link_to comment.get_commenter_name, member_path(comment.member_id)%>
-          <%= time_ago_in_words(comment.created_at) %> ago
-        </div>
-
-        <div class="clearfix"></div>
-    </div>
     </div>
 
   </div>
