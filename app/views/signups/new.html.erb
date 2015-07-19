@@ -1,0 +1,7 @@
+<%= form_for @signup do |f| %>
+  Tell us about yourself or why you want to join the shine experiment!
+  <%= f.text_area :application %><br>
+ <br>
+ <%= f.email_field :email %>
+  <%= f.submit %>
+<% end %>

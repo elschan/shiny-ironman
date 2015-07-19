@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150719073735) do
+ActiveRecord::Schema.define(version: 20150719132943) do
 
   create_table "coffeemeets", force: true do |t|
     t.string   "location"
@@ -99,6 +99,14 @@ ActiveRecord::Schema.define(version: 20150719073735) do
   create_table "posts_tags", id: false, force: true do |t|
     t.integer "post_id"
     t.integer "tag_id"
+  end
+
+  create_table "signups", force: true do |t|
+    t.string   "email"
+    t.string   "application"
+    t.boolean  "accepted",    default: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "tags", force: true do |t|
