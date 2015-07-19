@@ -9,7 +9,6 @@ class CoffeemeetsController < ApplicationController
     @coffee = Coffeemeet.new(coffeemeet_params)
     @coffee.inviter_id = current_member.id
     if @coffee.save
-      flash[:notice] = "Invite for coffee sent! #{@coffee.inspect}"
       redirect_to member_path(@coffee.invitee_id)
 
     else
