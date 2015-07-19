@@ -9,40 +9,35 @@
                     Upvotes: <span class="upvote-post"> <%= @post.get_upvotes.size %> </span></p>
                   </div>
                     <div class="posttext pull-left">
-                      <!-- OUR POST STUFF -->
                         <h2><%= @post.title %></h2>
                         <p><%= @post.text %></p>
 
-                        <div class="posted pull-right"><i class="fa fa-clock-o"></i>
-                          Posted by <%= link_to @post.member.username, member_path(@post.member_id) %>
+                        <div class="posted pull-left">
+                          by <%= link_to @post.member.username, member_path(@post.member_id) %>
                           <%= time_ago_in_words(@post.created_at)%> ago
                         </div>
+                        
                         <!--THIS NEEDS STYLING CAUSE I JUST TOOK FROM BOOTSTRAP STUFF AND STUFFED IT -->
+
                         <% if flash[:error] %>
                           <div class="alert alert-danger fade in">
                             <a href="#" class="close" data-dismiss="alert">&times;</a>
                             <strong><%=flash[:error]%></strong> 
                           </div>
-                        <% end %><!-- I TANGLED THE COMMENT FORM UP IN HERE -->
+                        <% end %>
+
+                     <!-- DEFAULT COMMENT -->
                         <div class="posttext pull-left">
-                            <div class="textwraper">
-                                <div class="postreply">Comment</div>
-
+                            <div class="textwraper post-comment-form">
                                 <%= form_for [@post, @comment] do |f| %>
-                                <%= f.text_area :text, placeholder: "Type your comment here" %>
+                                <%= f.text_area :text, placeholder: "Type your comment here", class: "text-area" %>
+                                <%= f.submit class: 'btn btn-primary' %>
+                                <% end %>
                             </div>
-                            <div class="pull-right postreply">
-                                <div class="pull-left smile"><a href="#"><i class="fa fa-smile-o"></i></a></div>
-                                <div class="pull-left"><%= f.submit class: 'btn btn-primary' %></div>
-                                <div class="clearfix"></div>
-                            </div>
-                            <% end %>
                         </div>
-                        <!--/// I TANGLED THE COMMENT FORM UP IN HERE -->
+                     <!-- /// DEFAULT COMMENT -->
 
-                      <!--/// OUR POST STUFF -->
-
-                    </div>
+                      </div>
                     <div class="clearfix"></div>
                 </div>
             </div><!-- POST -->
@@ -54,3 +49,9 @@
         </div>
     </div>
   </div>
+
+
+
+
+
+
