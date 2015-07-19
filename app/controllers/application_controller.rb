@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
   def configure_permitted_parameters
     devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:login, :username, :email, :password, :location, :social_handles, :open_to_irl) }
     devise_parameter_sanitizer.for(:sign_in) { |u| u.permit(:login, :username, :email, :password, :remember_me) }
-    devise_parameter_sanitizer.for(:accept_invitation).concat([:username, :open_to_irl, :location, :social_handles,:blurb, :fave_coffee])
+    devise_parameter_sanitizer.for(:accept_invitation).concat([:username, :open_to_irl, :location, :social_handles,:blurb, :fave_coffee, :fullname])
   end
 
 
