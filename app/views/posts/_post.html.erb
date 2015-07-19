@@ -28,28 +28,27 @@
                <% if !post.url.empty? %>
                  <h2><%= link_to post.title, post.url %></h2>
                <% else %>
-                 <h2><%= link_to post.title, post_path(post.id) %></h2>
+                 <h2><%= post.title %></h2>
                <% end %>
                <% if !post.tags.empty? %>
-                Tagged:<%=raw tag_links(post.tag_list) %>
+                Tagged: <%=raw tag_links(post.tag_list) %>
                <% end %>
-
-             <p><%= get_preview(post) %> </p>
+            
+             <p class="post-description"><%= get_preview(post) %> </p>
   
+
+
+
               <!-- TODO accomodate deleted user? #devproblems-->
               <!-- POST METADATA -->
              <p class="post-metadata"> 
               by <%= link_to post.member.username, member_path(post.member_id) if post.member %>
               <%= time_ago_in_words(post.created_at) %> ago
+              <span class="pull-right see-more">More <b class="caret"></b></span>
              </p>
               <!-- /// POST METADATA -->
 
-             <% if current_member %>
-               <% if current_member.admin? || (post.member_id == current_member.id) %>
-                 <%= link_to "Edit", edit_post_path(post.id) %>
-                 <%= link_to "Delete", post_path(post.id), method: :delete %>
-               <% end %>
-             <% end %>
+             
            </div>
            <div class="clearfix"></div>
 
@@ -58,6 +57,23 @@
        </div>
 
        <!-- COMMENTS  -->
+
+          
+
+
+       <% if current_member %>
+          <% if current_member.admin? || (post.member_id == current_member.id) %>
+              <div class="dropdown">
+                <i class="fa fa-angle-down fa-2x pull-right post-actions dropdown-toggle" aria-haspopup="true" aria-expanded="true"> </i>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                  <li><%= link_to "Edit", edit_post_path(post.id) %></li>
+                  <li><%= link_to "Delete", post_path(post.id), method: :delete %></li>
+                </ul>
+               
+             </div>
+           <% end %>
+         <% end %>
+
        <div class="postinfo pull-left custom-comment">
            <div class="comments">
                <div class="commentbg">
@@ -73,6 +89,19 @@
    </div><!-- POST -->
 
 <script>
+
+  $('.dropdown').on('click', function(){
+    $this = $(this)
+    $this.addClass('open');
+
+  });
+
+
+  $('.see-more').on('click', function(){
+    $this = $(this);
+    alert('see=more clicked');
+  });
+
   $('.can_vote')
    .on('ajax:error', function () {
      $(this).after('<div>There was an upvote issue.</div>');
