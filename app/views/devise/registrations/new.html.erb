@@ -37,13 +37,15 @@
                                 <%= f.email_field :email, autofocus: true %>
                               </div>
 
+
+
                               <div class="field">
                                 <br />
 
-                                  Yes<%= f.radio_button :open_to_irl, :true %>
+                                  Yes<%= f.radio_button :open_to_irl, :true , :id => 'yes_irl'%>
 
-                                  <%= f.text_field :location, autofocus: true , :placeholder => "Put in your city"%> <br>
-                                  Not yet<%= f.radio_button :open_to_irl, :true %>
+                                  <%= f.text_field :location, autofocus: true , :placeholder => "Put in your city" , :style => 'display:none'%> <br>
+                                  Not yet<%= f.radio_button :open_to_irl, :true , :id => 'no_irl'%>
                               </div>
 
                               <div class="actions">
@@ -60,3 +62,16 @@
                 </div>
             </div>
         </div>
+
+        <script>
+          $('#yes_irl').on('click', function(){
+            $('#member_location').show();
+          });
+          $('#no_irl').on('click', function(){
+            $('#member_location').hide();
+          });
+
+        </script>
+        
+
+       
