@@ -15,6 +15,12 @@ Open to IRL coffees: <%= current_member.open_to_irl ? "Yes" : "No" %> <br>
   <% end %>
 <% end %>
  <br>
+ <% if flash[:notice] %>
+  <div class="alert alert-danger fade in">
+    <a href="#" class="close" data-dismiss="alert">&times;</a>
+    <strong><%=flash[:notice]%></strong> 
+  </div>
+<% end %>
 <%= link_to "Invite for coffee!", new_member_coffeemeet_path(@member.id) unless current_member == @member %>
 <%= link_to "Create a post", new_post_path %><br>
 

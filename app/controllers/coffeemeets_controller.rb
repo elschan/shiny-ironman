@@ -11,7 +11,7 @@ before_action :authenticate_member!
     @coffee.inviter_id = current_member.id
     if @coffee.save
       redirect_to member_path(@coffee.invitee_id)
-
+      flash[:notice] = "Coffee invite sent!"
     else
       flash[:notice] = "Something went wrong. Try again"
       redirect_to member_path(@coffee.invitee_id)
