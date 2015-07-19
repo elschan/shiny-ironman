@@ -32,8 +32,8 @@ class PostsController < ApplicationController
     @posts = Post.all
     @posts.sort! { |p1, p2| p2.trending_value <=> p1.trending_value }
     # NAMESCOPE LATER FOR FASTER SORTING
+    end
   end
-end
 
   def newest
     @posts = Post.all.reverse

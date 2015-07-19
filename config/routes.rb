@@ -14,7 +14,7 @@ ShinyIronman::Application.routes.draw do
 # map.resources :posts do |posts|
 #   posts.resources :newest
 # end
-
+  
 
 
   resources :posts do
@@ -25,9 +25,15 @@ ShinyIronman::Application.routes.draw do
   end
 
 
+  resources :coffeemeets 
 
 
   resources :members do
+   resources :coffeemeets do
+      member do
+        put "remove_from_profile", to: "coffeemeets#remove"
+      end
+   end
     member do
       post 'ban'
     end

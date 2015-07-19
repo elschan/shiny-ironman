@@ -12,6 +12,10 @@ class MembersController < ApplicationController
   def show
     @member = Member.find(params[:id])
     @posts = Post.where("member_id = #{@member.id}")
+    @coffees_invited_to = Coffeemeet.where("invitee_id = #{@member.id}").reverse
+    @coffees_waiting_for = Coffeemeet.where("inviter_id = #{@member.id}").reverse
+    @coffees = Coffeemeet.where("invitee_id or inviter_id = #{@member.id}").reverse
+    # binding.pry
   end
 
   def index
