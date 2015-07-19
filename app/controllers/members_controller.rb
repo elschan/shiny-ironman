@@ -22,12 +22,14 @@ class MembersController < ApplicationController
 
   def index
     @members = Member.all
+    @signups = Signup.all
   end
 
   def new
       # render form
       # should also create a new profile.. for this user QUESTION ?
     @member = Member.new
+    binding.pry
   end
 
   def create

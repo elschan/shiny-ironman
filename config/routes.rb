@@ -13,6 +13,11 @@ ShinyIronman::Application.routes.draw do
     get "posts/projects", to: "posts#projects"
     get "posts/jobs", to: "posts#jobs"
 
+    resources :signups, only: [:create, :new] do
+      member do
+        put "accepted"
+      end
+    end
 # map.resources :posts do |posts|
 #   posts.resources :newest
 # end
