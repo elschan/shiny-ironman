@@ -31,10 +31,7 @@
                  <h2><%= link_to post.title, post_path(post.id) %></h2>
                <% end %>
                <% if !post.tags.empty? %>
-               Tagged:
-                 <% post.tags.each do |tag| %>
-                 <%= tag.name %>
-                 <% end %>
+                Tagged:<%=raw tag_links(post.tag_list) %>
                <% end %>
 
              <p><%= get_preview(post) %> </p>
