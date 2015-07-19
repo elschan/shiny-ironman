@@ -31,8 +31,9 @@ If they are not signed in, they can only see how many upvotes -->
           <%= form_tag( {controller: "comments", action: "create"}, method: "post") do %>
             <%= hidden_field_tag(:post_id, comment.post_id) %>
             <%= hidden_field_tag(:parent_id, comment.id) %>
-            <%= text_area_tag :text %>
+            <%= text_area_tag 'text' %>
             <%= submit_tag "Reply", class: 'btn btn-primary pull-left' %>
+            <%= form
           <% end %>
         </div>
       </div>

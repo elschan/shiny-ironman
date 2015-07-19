@@ -1,0 +1,12 @@
+<%= form_for @member do |f| %>
+
+  Location: <%= f.text_field :location %><br>
+  About yourself: <%= f.text_field :blurb %><br>
+  Open to IRL coffees <br>
+  Yes <%= f.radio_button :open_to_irl, :true %>
+  No  <%= f.radio_button :open_to_irl, :false%><br>
+  Favorite coffee drink (or tea?): <%= f.text_field :fave_coffee %>
+
+ <br>
+  <%= f.submit %>
+<% end %>

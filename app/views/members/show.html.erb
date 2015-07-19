@@ -2,9 +2,13 @@
 <% if current_member == @member %>
 Hi <%=current_member.username%>
 <br>
-You've been to <%=current_member.coffeepoints %> coffees
-You have <%=current_member.reputation %> rep points
-you have <%=current_member.invitation_limit %> invitations left.
+You've been to <%=current_member.coffeepoints %> coffees <br>
+You have <%=current_member.reputation %> rep points <br>
+you have <%=current_member.invitation_limit %> invitations left. <br>
+About me: <%= current_member.blurb %> <br>
+Open to IRL coffees: <%= current_member.open_to_irl ? "Yes" : "No" %> <br>
+<%= current_member.fave_coffee %><br>
+<%= link_to "Edit Profile", edit_member_path(current_member.id) %><br>
   <%= form_for(Member.new, url: member_invitation_path) do |f| %>
     <%= f.email_field :email, placeholder: 'Email to send invite to', label: false %>
     <%= f.button :submit %>
