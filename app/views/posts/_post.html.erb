@@ -1,6 +1,8 @@
 <!-- POST -->
    <div class="post" data-sr >
        <div class="wrap-ut pull-left">
+
+        <!-- UPVOTES -->
            <div class="userinfo pull-left">
              <span class="upvote-post">
 
@@ -8,61 +10,106 @@
      If they are not signed in, they can only see how many upvotes -->
                <% if member_signed_in? %>
                  <%= link_to (vote_post_path(post)), :class => "can_vote", :method => "put", :remote => true do %>
-                   <i class="fa fa-arrow-up fa-2x<% if current_member.voted_for?(post) %> voted <% end %>"></i>
+                   <i class="fa fa-caret-up fa-2x<% if current_member.voted_for?(post) %> voted <% end %>"></i>
                  <%end%>
                <% else %>
-                 <i class="fa fa-arrow-up fa-2x"></i>
+                 <i class="fa fa-caret-up fa-2x"></i>
                <% end %>
 
                <span class="upvote-count"><%= post.get_upvotes.size %></span>
              </span>
 
            </div>
+        <!-- /// UPVOTES -->
+
+
+           <!-- POST DATA -->
            <div class="posttext pull-left">
                <% if !post.url.empty? %>
                  <h2><%= link_to post.title, post.url %></h2>
                <% else %>
-                 <h2><%= link_to post.title, post_path(post.id) %></h2>
+                 <h2><%= post.title %></h2>
                <% end %>
+
+               <p class="post-description"><%= get_preview(post) %> </p>
+
                <% if !post.tags.empty? %>
-                Tagged:<%=raw tag_links(post.tag_list) %>
+                Tagged: <%=raw tag_links(post.tag_list) %>
                <% end %>
 
-             <p><%= get_preview(post) %> </p>
+              <!-- TODO accomodate deleted user? #devproblems-->
+              <!-- POST METADATA -->
+             <p class="post-metadata"> 
+              by <%= link_to post.member.username, member_path(post.member_id) if post.member %>
+              <%= time_ago_in_words(post.created_at) %> ago
+              <% if !post.text.empty? %>
+                <span class="pull-right toggle-description">More <b class="fa fa-caret-down"></b></span>
+              <% end %>
+             </p>
+              <!-- /// POST METADATA -->
 
-             <p> Username: <%= link_to post.member.username, member_path(post.member_id) if post.member %> </p>
-             <% if current_member %>
-               <% if current_member.admin? || (post.member_id == current_member.id) %>
-                 <%= link_to "Edit", edit_post_path(post.id) %>
-                 <%= link_to "Delete", post_path(post.id), method: :delete %>
-               <% end %>
-             <% end %>
+             
            </div>
            <div class="clearfix"></div>
-       </div>
-       <div class="postinfo pull-left">
-           <div class="comments">
-               <div class="commentbg">
-                   89
-                   <div class="mark"></div>
-               </div>
 
-           </div>
-           <div class="views"><%= link_to (post.comments.count.to_s + " comments"), post_path(post.id) %></div>
-           <div class="time"><i class="fa fa-clock-o"></i> <%= time_ago_in_words(post.created_at) %></div>
+           <!-- /// POST DATA -->
+
        </div>
+
+       <!-- COMMENTS  -->
+
+
+       <% if current_member %>
+          <% if current_member.admin? || (post.member_id == current_member.id) %>
+              <div class="dropdown">
+                <i class="fa fa-angle-down fa-2x pull-right post-actions dropdown-toggle" aria-haspopup="true" aria-expanded="true"> </i>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                  <li><%= link_to "Edit", edit_post_path(post.id) %></li>
+                  <li><%= link_to "Delete", post_path(post.id), method: :delete %></li>
+                </ul>
+               
+             </div>
+           <% end %>
+         <% end %>
+          <%= link_to(post_path(post.id)) do %>
+             <div class="postinfo pull-left custom-comment">
+                 <div class="comments">
+                     <div class="commentbg">
+                         <%= post.comments.count %>
+                         <div class="mark"></div>
+                     </div>
+
+                 </div>           
+             </div>
+           <% end %>
        <div class="clearfix"></div>
+      <!-- /// COMMENTS  -->
+
    </div><!-- POST -->
 
 <script>
+
+  $('.dropdown').on('click', function(){
+    $this = $(this)
+    $this.toggleClass('open');
+  });
+
+
+  $('.toggle-description').on('click', function(){
+    $this = $(this);
+    $this.closest('.post').find('.post-description').show();
+    $this.remove();
+
+  });
+
   $('.can_vote')
    .on('ajax:error', function () {
      $(this).after('<div>There was an upvote issue.</div>');
    }).on('ajax:success', function (res, data) {
-     var $this = $(this)
-     $this.find('.fa-arrow-up').toggleClass('voted');
-     $this.closest('.upvote-post').find('.upvote-count').text(data.vote_count)
-     console.log(data)
+     var $this = $(this);
+     $this.find('.fa-caret-up').toggleClass('voted');
+     $this.closest('.upvote-post').find('.upvote-count').text(data.vote_count);
+     console.log(data);
     //  $this.closest('.comment').find('.comment-upvote-count').text(data.vote_count)
      //var current_text = $this.text()
      //$this.text(data.voted_for ? "Unvote" : "Upvote")

@@ -450,7 +450,7 @@ td.chbox {
 
 .post .postinfo {
     width: 15%;
-    border-left: solid 1px #f1f1f1;
+    /*border-left: solid 1px #f1f1f1;*/
 
 
 }
@@ -476,7 +476,7 @@ td.chbox {
 }
 
 .post .comments {
-    border-bottom: solid 1px #f1f1f1;
+    /*border-bottom: solid 1px #f1f1f1;*/
     padding: 18px 0 25px 0;
     text-align: center;
 }
