@@ -40,6 +40,16 @@ class PostsController < ApplicationController
     render :index
   end
 
+  def projects
+    @posts = Post.where(:category => 'Projects').reverse
+    render :index
+  end
+
+  def jobs
+    @posts = Post.where(:category => 'Jobs').reverse
+    render :index
+  end
+
   def new
     @post = Post.new
   end
@@ -116,6 +126,6 @@ class PostsController < ApplicationController
   protected
 
   def post_params
-    params.require(:post).permit(:title, :url, :text, :tag_list)
+    params.require(:post).permit(:title, :url, :text, :tag_list, :category)
   end
 end
