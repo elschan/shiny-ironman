@@ -7,7 +7,7 @@
 <!-- If member is signed in, they can upvote and see whether they have upvoted.
 If they are not signed in, they can only see how many upvotes -->
           <% if member_signed_in? %>
-            <%= link_to (vote_comment_path(comment)), :class => "can_vote", :method => "put", :remote => true do %>
+            <%= link_to (vote_comment_path(comment)), :class => "can_vote", :method => "put", :remote => true do :id => %>
               <i class="fa fa-arrow-up <% if current_member.voted_for?(comment) %> voted <% end %>"></i>
             <%end%>
           <% else %>
@@ -28,7 +28,7 @@ If they are not signed in, they can only see how many upvotes -->
           <%= form_tag( {controller: "comments", action: "create"}, method: "post") do %>
             <%= hidden_field_tag(:post_id, comment.post_id) %>
             <%= hidden_field_tag(:parent_id, comment.id) %>
-            <%= text_area_tag :text, class: 'text-area' %>
+            <%= text_area_tag :text, class: 'text-area', :placeholder => 'Place your comment here' %>
             <%= submit_tag "Reply", class: 'btn btn-primary' %>
           <% end %>
         </div>

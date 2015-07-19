@@ -18,6 +18,7 @@
                               <%= form_for resource, :as => resource_name, :url => invitation_path(resource_name), :html => { :method => :put } do |f| %>
                                 <%= devise_error_messages! %>
                                 <%= f.hidden_field :invitation_token %>
+                                -----------<em>required</em>-------------
 
                                 <p><%= f.label :username %><br />
                                 <%= f.text_field :username %></p>
@@ -33,6 +34,7 @@
                                     <%= f.text_field :location, autofocus: true , :placeholder => "Put in your city"%> <br>
                                     Not yet<%= f.radio_button :open_to_irl, :true %>
                                 <!--<%= f.text_field :social_handles %> -->
+                                 -----------<em>optional (you can also fill this out later!)</em>-------------
                                 <%= f.text_field :blurb, autofocus: true, :placeholder => 'Write something about yourself. (interests, hobbies, careers, resolutions' %> <br>
                                 <%= f.text_field :favorite_coffee_drink, autofocus: true, :placeholder => "What's your favorite coffee drink?" %> 
 
