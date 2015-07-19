@@ -1,0 +1,12 @@
+<%= current_member.username %>'s inbox
+
+<% @interactions.each do |interaction| %>
+   <% if interaction.sender_id == current_member.id ||      interaction.recipient_id == current_member.id %>
+    <% if interaction.sender_id == current_member.id %>
+      <% recipient = Member.find(interaction.recipient_id) %>
+    <% else %>
+      <% recipient = Member.find(interaction.sender_id) %>
+    <% end %>
+    <%= link_to recipient.username,   interaction_messages_path(interaction)%>
+   <% end %>
+  <% end %>

@@ -1,0 +1,8 @@
+
+<%= form_for @coffee do |f| %>
+invite blurb
+  <%= f.text_field :invite_blurb %><br>
+<br>
+<%= hidden_field_tag 'coffeemeet[invitee_id]', @member.id  %>
+  <%= f.submit %>
+<% end %>

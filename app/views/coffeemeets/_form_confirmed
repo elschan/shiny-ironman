@@ -1,0 +1,6 @@
+<%= form_for @coffee do |f| %>
+  Where did you guys meetup? <%= f.text_field :location %><br>
+ <br>
+ <%= hidden_field_tag 'coffeemeet[confirmed]', true  %>
+  <%= f.submit %>
+<% end %>
