@@ -1,4 +1,5 @@
 class CoffeemeetsController < ApplicationController
+before_action :authenticate_member!
 
   def new
     @member = Member.find(params[:member_id])
@@ -37,18 +38,23 @@ class CoffeemeetsController < ApplicationController
 
   def update
     @coffee = Coffeemeet.find(params[:id])
-    if @coffee.update_attributes(coffeemeet_params)
-      if @coffee.confirmed
-        Member.find(@coffee.invitee_id).increment!(:coffeepoints)
-        Member.find(@coffee.inviter_id).increment!(:coffeepoints)
-        redirect_to member_path(current_member.id)
-      elsif @coffee.accepted
+    if @coffee.confirmed
+      flash[:notice] = "This coffee's already been confirmed!"
       redirect_to member_path(current_member.id)
-      else 
-      redirect_to member_path(current_member.id)
-      end
     else
-      render :edit
+      if @coffee.update_attributes(coffeemeet_params)
+        if @coffee.confirmed
+          Member.find(@coffee.invitee_id).increment!(:coffeepoints)
+          Member.find(@coffee.inviter_id).increment!(:coffeepoints)
+          redirect_to member_path(current_member.id)
+        elsif @coffee.accepted
+        redirect_to member_path(current_member.id)
+        else 
+        redirect_to member_path(current_member.id)
+        end
+      else
+        render :edit
+      end
     end
   end
 
