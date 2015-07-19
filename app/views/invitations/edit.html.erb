@@ -27,12 +27,14 @@
 
                                 <p><%= f.label :password_confirmation %><br />
                                 <%= f.password_field :password_confirmation %></p>
-
+                                Open to IRL coffee dates? 
                                 Yes<%= f.radio_button :open_to_irl, :true %>
 
                                     <%= f.text_field :location, autofocus: true , :placeholder => "Put in your city"%> <br>
                                     Not yet<%= f.radio_button :open_to_irl, :true %>
-                                <%= f.text_field :social_handles %>
+                                <!--<%= f.text_field :social_handles %> -->
+                                Blurb about yourself: <%= f.text_field :blurb, :placeholder =>"interests, hobbies, career goals, aspirations..."%>
+                                Favorite coffee drink: <%= f.text_field :fave_coffee %>
 
                                 <p><%= f.submit t("devise.invitations.edit.submit_button"), class: "btn btn-primary" %></p>
                               <% end %>
