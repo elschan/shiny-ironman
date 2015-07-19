@@ -17,10 +17,17 @@
                           Posted by <%= link_to @post.member.username, member_path(@post.member_id) %>
                           <%= time_ago_in_words(@post.created_at)%> ago
                         </div>
-                        <!-- I TANGLED THE COMMENT FORM UP IN HERE -->
+                        <!--THIS NEEDS STYLING CAUSE I JUST TOOK FROM BOOTSTRAP STUFF AND STUFFED IT -->
+                        <% if flash[:error] %>
+                          <div class="alert alert-danger fade in">
+                            <a href="#" class="close" data-dismiss="alert">&times;</a>
+                            <strong><%=flash[:error]%></strong> 
+                          </div>
+                        <% end %><!-- I TANGLED THE COMMENT FORM UP IN HERE -->
                         <div class="posttext pull-left">
                             <div class="textwraper">
                                 <div class="postreply">Comment</div>
+
                                 <%= form_for [@post, @comment] do |f| %>
                                 <%= f.text_area :text, placeholder: "Type your comment here" %>
                             </div>

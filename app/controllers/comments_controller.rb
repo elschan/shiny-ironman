@@ -17,6 +17,7 @@ class CommentsController < ApplicationController
     if params[:parent_id]
       @comment.parent_comment_id = params[:parent_id].to_i
       @comment.text = params[:text]
+      binding.pry
     else
       @comment.post_id = params[:post_id].to_i
       @comment.text = params[:comment][:text]
@@ -29,7 +30,9 @@ class CommentsController < ApplicationController
       # TODO how to I print the error from here? Comment save fails when the
       # comment text is too dang short
       # find error here : @comment.errors
-      render post_path(@comment.get_post_id)
+      flash[:error] = "you can't have an empty comment"
+      redirect_to post_path(params[:post_id].to_i)
+
       # render post_path(@comment.post_id)
     end
     # binding.pry

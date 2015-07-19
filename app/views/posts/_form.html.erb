@@ -25,6 +25,8 @@
                                <p><%= f.label "Tag this post (separated by spaces)" %><br />                               
                                 <%= f.text_field :tag_list %>  
                                <br>
+                               <%= f.select :category, ['', 'Jobs', 'Projects', 'Events']%>
+                               <br>
                                 <%= f.submit class: "btn btn-primary form-submit" %>
                               <% end %>
 

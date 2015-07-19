@@ -8,8 +8,10 @@ ShinyIronman::Application.routes.draw do
       put "vote", to: "comments#vote"
     end
   end
-
+    get 'tags/:tag', to: 'posts#index', as: "tag"
     get "posts/newest", to: "posts#newest"
+    get "posts/projects", to: "posts#projects"
+    get "posts/jobs", to: "posts#jobs"
 
 # map.resources :posts do |posts|
 #   posts.resources :newest
@@ -39,7 +41,6 @@ ShinyIronman::Application.routes.draw do
     end
   end
 
-get 'tags/:tag', to: 'posts#index', as: "tag"
   # You can have the root of your site routed with "root"
   root 'posts#index'
 

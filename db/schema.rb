@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150718183818) do
+ActiveRecord::Schema.define(version: 20150719005458) do
 
   create_table "coffeemeets", force: true do |t|
     t.string   "location"
@@ -74,6 +74,7 @@ ActiveRecord::Schema.define(version: 20150718183818) do
     t.boolean  "open_to_irl",            default: false
     t.string   "social_handles"
     t.string   "location"
+    t.integer  "coffeepoints",           default: 0
   end
 
   add_index "members", ["email"], name: "index_members_on_email", unique: true
@@ -90,6 +91,7 @@ ActiveRecord::Schema.define(version: 20150718183818) do
     t.string   "comments"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "category"
   end
 
   create_table "posts_tags", id: false, force: true do |t|
