@@ -1,23 +1,50 @@
-<h2><%= t 'devise.invitations.edit.header' %></h2>
-THIS IS THE ACCEPT INVITE
-<%= form_for resource, :as => resource_name, :url => invitation_path(resource_name), :html => { :method => :put } do |f| %>
-  <%= devise_error_messages! %>
-  <%= f.hidden_field :invitation_token %>
 
-  <p><%= f.label :username %><br />
-  <%= f.text_field :username %></p>
 
-  <p><%= f.label :password %><br />
-  <%= f.password_field :password %></p>
 
-  <p><%= f.label :password_confirmation %><br />
-  <%= f.password_field :password_confirmation %></p>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 col-md-8">
+          <!-- POST -->
+          <div class="post">
+                  <!-- acc section -->
+                  <div class="accsection">
+                      <div class="topwrap">
 
-  Yes<%= f.radio_button :open_to_irl, :true %>
+                          <div class="userinfo pull-left">
+                          </div>
 
-      <%= f.text_field :location, autofocus: true , :placeholder => "Put in your city"%> <br>
-      Not yet<%= f.radio_button :open_to_irl, :true %>
-  <%= f.text_field :social_handles %>
+                          <div class="posttext pull-left">
+                            <h1>Welcome! Set your password.</h1>
+                              <%= form_for resource, :as => resource_name, :url => invitation_path(resource_name), :html => { :method => :put } do |f| %>
+                                <%= devise_error_messages! %>
+                                <%= f.hidden_field :invitation_token %>
 
-  <p><%= f.submit t("devise.invitations.edit.submit_button") %></p>
-<% end %>
+                                <p><%= f.label :username %><br />
+                                <%= f.text_field :username %></p>
+
+                                <p><%= f.label :password %><br />
+                                <%= f.password_field :password %></p>
+
+                                <p><%= f.label :password_confirmation %><br />
+                                <%= f.password_field :password_confirmation %></p>
+
+                                Yes<%= f.radio_button :open_to_irl, :true %>
+
+                                    <%= f.text_field :location, autofocus: true , :placeholder => "Put in your city"%> <br>
+                                    Not yet<%= f.radio_button :open_to_irl, :true %>
+                                <%= f.text_field :social_handles %>
+
+                                <p><%= f.submit t("devise.invitations.edit.submit_button"), class: "btn btn-primary" %></p>
+                              <% end %>
+
+                            <!-- render "devise/shared/links" -->
+                            <!-- Took out devise links because it seems none of them are relevant here -->
+
+                          </div>
+                          <div class="clearfix"></div>
+                      </div>
+                  </div><!-- acc section END -->
+                </div>
+            </div>
+        </div>
+

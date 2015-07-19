@@ -41,6 +41,11 @@ end
 
 gem 'pry'
 
+source 'http://rails-assets.org' do
+  gem 'rails-assets-bootstrap'
+end
+
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
