@@ -32,7 +32,9 @@
 
                                     <%= f.text_field :location, autofocus: true , :placeholder => "Put in your city"%> <br>
                                     Not yet<%= f.radio_button :open_to_irl, :true %>
-                                <%= f.text_field :social_handles %>
+                                <!--<%= f.text_field :social_handles %> -->
+                                <%= f.text_field :blurb, autofocus: true, :placeholder => 'Write something about yourself. (interests, hobbies, careers, resolutions' %> <br>
+                                <%= f.text_field :favorite_coffee_drink, autofocus: true, :placeholder => "What's your favorite coffee drink?" %> 
 
                                 <p><%= f.submit t("devise.invitations.edit.submit_button"), class: "btn btn-primary" %></p>
                               <% end %>

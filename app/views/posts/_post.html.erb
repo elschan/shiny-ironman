@@ -9,7 +9,7 @@
      <!-- If member is signed in, they can upvote and see whether they have upvoted.
      If they are not signed in, they can only see how many upvotes -->
                <% if member_signed_in? %>
-                 <%= link_to (vote_post_path(post)), :class => "can_vote", :method => "put", :remote => true do %>
+                 <%= link_to (vote_post_path(post)), :class => "can_vote", :method => "put", :remote => true, :id => "can_vote-#{post.id}"  %>
                    <i class="fa fa-caret-up fa-2x<% if current_member.voted_for?(post) %> voted <% end %>"></i>
                  <%end%>
                <% else %>
@@ -86,7 +86,11 @@
       <!-- /// COMMENTS  -->
 
    </div><!-- POST -->
-
+<style>
+.oranged {
+  color: orange;
+}
+</style>
 <script>
 
   $('.dropdown').on('click', function(){
@@ -102,16 +106,43 @@
 
   });
 
-  $('.can_vote')
-   .on('ajax:error', function () {
-     $(this).after('<div>There was an upvote issue.</div>');
-   }).on('ajax:success', function (res, data) {
-     var $this = $(this);
-     $this.find('.fa-caret-up').toggleClass('voted');
-     $this.closest('.upvote-post').find('.upvote-count').text(data.vote_count);
-     console.log(data);
+$('.can_vote').on('click', function() {
+  this.toggleClass('oranged')
+  $.ajax({
+    success: function(res, data) {
+      $(this).closest('.upvote-post').find('.upvote-count').text(data.vote_count);
+    }
+
+
+  })
+
+
+});
+
+
+
+
+
+  // $('.can_vote')
+  //  .on('ajax:error', function () {
+  //    $(this).after('<div>There was an upvote issue.</div>');
+  //  }).on('ajax:success', function (res, data) {
+  //   console.log(data);
+  //    // var $this = $(this);
+  //    // $this.find('.fa-caret-up').toggleClass('voted');
+  //    $(this).closest('.upvote-post').find('.upvote-count').text(data.vote_count);
+  //    var thingy = this
+     // data.voted_for ? thingy.css('color','orange') : thingy.css('color', 'black')
+     // if (data.voted_for == true) {
+     //  $(thingy).addClass('voted');
+     // }
+     // else {
+     //  $(thingy).removeClass('voted');
+     // };
+     // console.log(data);
     //  $this.closest('.comment').find('.comment-upvote-count').text(data.vote_count)
      //var current_text = $this.text()
      //$this.text(data.voted_for ? "Unvote" : "Upvote")
-   });
+      
+  
 </script>
