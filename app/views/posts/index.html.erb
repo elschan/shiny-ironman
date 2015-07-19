@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <div class="col-lg-8 col-md-8 col-md-offset-2 col-lg-offset-2">
+    <div class="col-lg-7 col-md-7 col-md-offset-2 col-lg-offset-2">
       <%= render partial: "post", collection: @posts %>
     </div>
     <%= link_to "Create a post", new_post_path, class:"btn btn-primary" if member_signed_in? %>

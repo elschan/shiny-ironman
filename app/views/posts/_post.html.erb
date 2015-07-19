@@ -30,14 +30,12 @@
                <% else %>
                  <h2><%= post.title %></h2>
                <% end %>
+
+               <p class="post-description"><%= get_preview(post) %> </p>
+
                <% if !post.tags.empty? %>
                 Tagged: <%=raw tag_links(post.tag_list) %>
                <% end %>
-            
-             <p class="post-description"><%= get_preview(post) %> </p>
-  
-
-
 
               <!-- TODO accomodate deleted user? #devproblems-->
               <!-- POST METADATA -->
