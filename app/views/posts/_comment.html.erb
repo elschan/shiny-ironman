@@ -19,34 +19,36 @@ If they are not signed in, they can only see how many upvotes -->
       </div>
         <div class="posttext pull-left">
           <p><%= comment.text %></p>
-         <div class="posted">
+         <div class="posted pull-left">
           by <%= link_to comment.get_commenter_name, member_path(comment.member_id)%>
           <%= time_ago_in_words(comment.created_at) %> ago
-        </div>
 
         </div>
-          <div class="clearfix"></div>
-        <!-- THEME CODE -->
-        <button class="btn btn-primary reply-button pull-right"> Reply </button>
+
+        <span class="toggle-reply pull-right"> Reply </span>        
 
         <div class="textwraper reply-form">
           <%= form_tag( {controller: "comments", action: "create"}, method: "post") do %>
             <%= hidden_field_tag(:post_id, comment.post_id) %>
             <%= hidden_field_tag(:parent_id, comment.id) %>
-            <%= text_area_tag :text, class: 'text-area' %>
-            <%= submit_tag "Reply", class: 'btn btn-primary' %>
+            <%= text_area_tag :text %>
+            <%= submit_tag "Reply", class: 'btn btn-primary pull-left' %>
           <% end %>
         </div>
+      </div>
+    <div class="clearfix"></div>
+
     </div>
 
   </div>
+
 
   <%= render partial: "comment", collection: comment.replies %>
 
 </div>
 
 <script>
-  $('.reply-button').on('click', function(){
+  $('.toggle-reply').on('click', function(){
     $(this).closest('.post').find('.reply-form:first').show()
     // toggle?
     $(this).hide()
@@ -65,3 +67,5 @@ If they are not signed in, they can only see how many upvotes -->
      //$this.text(data.voted_for ? "Unvote" : "Upvote")
    });
 </script>
+
+

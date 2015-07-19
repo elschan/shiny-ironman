@@ -15,7 +15,7 @@
 .textwraper.reply-form {
   background-color: #fff;
   textarea{
-    height: 200px;
+    height: 80px;
   }
   input.btn {
     float:right;
@@ -39,4 +39,10 @@
 }
 a.can_vote:hover, a.can_vote:focus {
   text-decoration: none;
+}
+
+.toggle-reply {
+  &:hover{
+    text-decoration: underline;
+  }
 }

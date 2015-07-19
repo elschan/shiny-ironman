@@ -9,7 +9,6 @@
                     Upvotes: <span class="upvote-post"> <%= @post.get_upvotes.size %> </span></p>
                   </div>
                     <div class="posttext pull-left">
-                      <!-- OUR POST STUFF -->
                         <h2><%= @post.title %></h2>
                         <p><%= @post.text %></p>
 
@@ -25,7 +24,9 @@
                             <a href="#" class="close" data-dismiss="alert">&times;</a>
                             <strong><%=flash[:error]%></strong> 
                           </div>
-                        <% end %><!-- I TANGLED THE COMMENT FORM UP IN HERE -->
+                        <% end %>
+
+                     <!-- DEFAULT COMMENT -->
                         <div class="posttext pull-left">
                             <div class="textwraper post-comment-form">
                                 <%= form_for [@post, @comment] do |f| %>
@@ -33,17 +34,10 @@
                                 <%= f.submit class: 'btn btn-primary' %>
                                 <% end %>
                             </div>
-                            <div class="pull-right postreply">
-                                <div class="pull-left"></div>
-                                <div class="clearfix"></div>
-                            </div>
-
                         </div>
-                        <!--/// I TANGLED THE COMMENT FORM UP IN HERE -->
+                     <!-- /// DEFAULT COMMENT -->
 
-                      <!--/// OUR POST STUFF -->
-
-                    </div>
+                      </div>
                     <div class="clearfix"></div>
                 </div>
             </div><!-- POST -->
@@ -55,3 +49,9 @@
         </div>
     </div>
   </div>
+
+
+
+
+
+
