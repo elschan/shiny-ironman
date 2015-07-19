@@ -44,7 +44,9 @@
              <p class="post-metadata"> 
               by <%= link_to post.member.username, member_path(post.member_id) if post.member %>
               <%= time_ago_in_words(post.created_at) %> ago
-              <span class="pull-right toggle-description">More <b class="caret"></b></span>
+              <% if !post.text.empty? %>
+                <span class="pull-right toggle-description">More <b class="fa fa-caret-down"></b></span>
+              <% end %>
              </p>
               <!-- /// POST METADATA -->
 
@@ -71,16 +73,17 @@
              </div>
            <% end %>
          <% end %>
+          <%= link_to(post_path(post.id)) do %>
+             <div class="postinfo pull-left custom-comment">
+                 <div class="comments">
+                     <div class="commentbg">
+                         <%= post.comments.count %>
+                         <div class="mark"></div>
+                     </div>
 
-       <div class="postinfo pull-left custom-comment">
-           <div class="comments">
-               <div class="commentbg">
-                   <%= post.comments.count %>
-                   <div class="mark"></div>
-               </div>
-
-           </div>           
-       </div>
+                 </div>           
+             </div>
+           <% end %>
        <div class="clearfix"></div>
       <!-- /// COMMENTS  -->
 
@@ -97,6 +100,7 @@
   $('.toggle-description').on('click', function(){
     $this = $(this);
     $this.closest('.post').find('.post-description').show();
+    $this.remove();
 
   });
 
@@ -104,10 +108,10 @@
    .on('ajax:error', function () {
      $(this).after('<div>There was an upvote issue.</div>');
    }).on('ajax:success', function (res, data) {
-     var $this = $(this)
+     var $this = $(this);
      $this.find('.fa-caret-up').toggleClass('voted');
-     $this.closest('.upvote-post').find('.upvote-count').text(data.vote_count)
-     console.log(data)
+     $this.closest('.upvote-post').find('.upvote-count').text(data.vote_count);
+     console.log(data);
     //  $this.closest('.comment').find('.comment-upvote-count').text(data.vote_count)
      //var current_text = $this.text()
      //$this.text(data.voted_for ? "Unvote" : "Upvote")
