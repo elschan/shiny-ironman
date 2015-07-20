@@ -16,14 +16,15 @@ class CommentsController < ApplicationController
     # If comment is a reply
     if params[:parent_id]
       @comment.parent_comment_id = params[:parent_id].to_i
-      @comment.text = params[:text]
+      @comment.text = params[:text] 
     else
       @comment.post_id = params[:post_id].to_i
       @comment.text = params[:comment][:text]
     end
 
     if @comment.save
-      # TODO Fix this, it's broken and doesn't take params in this way.
+      # TODO Fix this, it's broken and doesn't take params in this way
+      Post.find(params[:post_id].to_i).increment!(:comment_count)
       redirect_to post_path(@comment.get_post_id)
     else
       # TODO how to I print the error from here? Comment save fails when the

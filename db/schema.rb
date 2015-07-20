@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150719212755) do
+ActiveRecord::Schema.define(version: 20150720010839) do
 
   create_table "coffeemeets", force: true do |t|
     t.string   "location"
@@ -95,6 +95,7 @@ ActiveRecord::Schema.define(version: 20150719212755) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "category"
+    t.integer  "comment_count", default: 0
   end
 
   create_table "posts_tags", id: false, force: true do |t|
