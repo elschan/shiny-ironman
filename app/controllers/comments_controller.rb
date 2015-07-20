@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-
+before_action :authenticate_member!
   def new
     # This should be called when reply is clicked... ?
     @comment = Comment.new()
