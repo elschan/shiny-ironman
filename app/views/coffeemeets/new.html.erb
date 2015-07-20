@@ -1,3 +1,8 @@
-
+<% if flash[:notice] %>
+  <div class="alert alert-info fade in">
+    <a href="#" class="close" data-dismiss="alert">&times;</a>
+    <strong><%=flash[:notice]%></strong> 
+  </div>
+<% end %>
 
 <%= render "form_invite_first" %>

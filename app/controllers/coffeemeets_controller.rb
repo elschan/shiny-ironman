@@ -19,7 +19,7 @@ before_action :authenticate_member!
       else
       flash[:notice] = "Something went wrong. Try again"
       end
-      redirect_to member_path(@coffee.invitee_id)
+      redirect_to new_member_coffeemeet_path(@coffee.invitee_id)
     end
   end
 
