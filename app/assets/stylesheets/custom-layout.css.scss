@@ -48,39 +48,27 @@
   padding-top: 10px;
 }
 
-.hero {
-  background-color: #107F71;
-  min-height: 200px;
-  margin-top: -10px;
-  margin-bottom: 10px;
-}
-
-#hero-img {
+/*#hero-img {
   width: 100%;
   position: absolute;
   top: 30px;
   left: 0px;
-}
+}*/
 
 body {
   background-color: #ecf0f1;
 }
 
-.hero-container{
-  position: absolute;
-  z-index: 101;
+#hero {
+  background-image: url('/coffee-friends.jpg');
+  height:400px;
+  background-size: cover;
+  background-position: bottom;
+
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+@media (max-width: 600px) {
+  #hero {      
+    background-image: url('/little-coffee-friends.jpg');
+  }
+}
