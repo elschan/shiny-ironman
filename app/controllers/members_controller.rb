@@ -5,6 +5,7 @@ class MembersController < ApplicationController
   # registering for the first time
   # before_filter :restrict_only_invited_members 
     before_action :authenticate_member!, :except =>[:show]
+    #REMEMBER VALIDATIONS BEFORE DEPLOY FOR UNIQUENESS AND PRESENCE
 
 
   def restrict_only_invited_members
@@ -90,7 +91,7 @@ class MembersController < ApplicationController
 
   protected
   def member_params
-    params.require(:member).permit(:blurb, :location, :fave_coffee, :open_to_irl)
+    params.require(:member).permit(:blurb, :location, :fave_coffee, :open_to_irl, :fullname, :username)
   end
 
 end

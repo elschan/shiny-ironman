@@ -6,23 +6,19 @@
 <p><%= f.label :username %><br />
 <%= f.text_field :username %></p>
 
-<p><%= f.label :password %><br />
-<%= f.password_field :password %></p>
-
-<p><%= f.label :password_confirmation %><br />
-<%= f.password_field :password_confirmation %></p><br>
 <p><%= f.label :Open_to_coffee_dates_? %><br />
 
 Yes<%= f.radio_button :open_to_irl, :true,:id => 'yes_irl' %>
-Not yet<%= f.radio_button :open_to_irl, :true , :id => 'no_irl'%>
+Not yet<%= f.radio_button :open_to_irl, :true , :id => 'no_irl'%><br>
 
     <%= f.text_field :location, autofocus: true , :placeholder => "What city are you located in?", :style => 'display:none'%> <br>
    <br>
 <!--<%= f.text_field :social_handles %> -->
 <%= f.label :Tell_us_about_yourself %><br>
-<%= f.text_field :blurb, :placeholder =>"interests, hobbies, career goals, aspirations..."%><br>
+<%= f.text_area :blurb, :placeholder =>"interests, hobbies, career goals, aspirations..."%><br>
 <%= f.label :Favorite_coffee_drink? %><br>
 <%= f.text_field :fave_coffee %>
  <br>
   <%= f.submit %>
 <% end %>
+
