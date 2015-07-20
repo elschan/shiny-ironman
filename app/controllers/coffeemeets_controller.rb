@@ -7,6 +7,7 @@ before_action :authenticate_member!
   end
 
   def create
+    binding.pry
     @coffee = Coffeemeet.new(coffeemeet_params)
     @coffee.inviter_id = current_member.id
     if @coffee.save

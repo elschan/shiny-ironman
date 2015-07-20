@@ -28,7 +28,8 @@
             <div id="fave-coffee"> Fave coffee drink: <%= @member.fave_coffee %> </div>
 
             <% if current_member != @member %>
-              <%= button_to "Invite for coffee!", new_member_coffeemeet_path(@member.id), class: "btn" %>
+              <%= button_to "Invite for coffee!", new_member_coffeemeet_path(@member.id), class: "btn", method: "get" %>
+              <%= link_to "Invite for coffee!", new_member_coffeemeet_path(@member.id) unless current_member == @member %>
             <% else %>
             <br>
              You have <%= current_member.invitation_limit %> new member invitations left. <br>
