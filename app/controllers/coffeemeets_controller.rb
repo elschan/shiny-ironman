@@ -7,14 +7,18 @@ before_action :authenticate_member!
   end
 
   def create
-    binding.pry
     @coffee = Coffeemeet.new(coffeemeet_params)
     @coffee.inviter_id = current_member.id
+
     if @coffee.save
-      redirect_to member_path(@coffee.invitee_id)
       flash[:notice] = "Coffee invite sent!"
+      redirect_to member_path(@coffee.invitee_id)
     else
+      if @coffee.invite_blurb.length < 20
+        flash[:notice] = "You need to say something! (more than 20 char.)"
+      else
       flash[:notice] = "Something went wrong. Try again"
+      end
       redirect_to member_path(@coffee.invitee_id)
     end
   end
