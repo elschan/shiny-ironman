@@ -10,12 +10,12 @@
     <!-- MEMBER STATS -->
     <div class="sidebarblock">
         <h3> <%= @member.username %>'s profile 
-          <% if current_member.admin? %> 
+          <% if current_member && current_member.admin %> 
             <span class="pull-right"><%= link_to "Edit", edit_member_path(current_member.id) %> </span></h3>
           <% end %>
         <div class="divline"></div>
         <div class="blocktxt">
-          <%= render partial: "stats" %>
+          
           <br>
           <%= link_to "Invite for coffee!", new_member_coffeemeet_path(@member.id) unless current_member == @member %>
         </div>
