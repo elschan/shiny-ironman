@@ -54,92 +54,92 @@
 
 <% end %>
 <div class="col-lg-8 col-md-8">
-                            <div class="post">
-                                <div class="wrap-ut pull-left">
-                                    <div class="userinfo pull-left">
-                                        <div class="avatar">
-                                            <img src="images/avatar.jpg" alt="">
-                                            <div class="status green">&nbsp;</div>
-                                        </div>
+  <div class="post">
+      <div class="wrap-ut pull-left">
+          <div class="userinfo pull-left">
+              <div class="avatar">
+                  <img src="images/avatar.jpg" alt="">
+                  <div class="status green">&nbsp;</div>
+              </div>
 
-                                        <div class="icons">
-                                            <img src="images/icon1.jpg" alt=""><img src="images/icon4.jpg" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="posttext pull-left">
-                                        <h2><a href="02_topic.html">10 Kids Unaware of Their Halloween Costume</a></h2>
-                                        <p>It's one thing to subject yourself to a Halloween costume mishap because, hey, that's your prerogative.</p>
-                                    </div>
-                                    <div class="clearfix"></div>
-                                </div>
-                                <div class="postinfo pull-left">
-                                    <div class="comments">
-                                        <div class="commentbg">
-                                            560
-                                            <div class="mark"></div>
-                                        </div>
+              <div class="icons">
+                  <img src="images/icon1.jpg" alt=""><img src="images/icon4.jpg" alt="">
+              </div>
+          </div>
+          <div class="posttext pull-left">
+              <h2><a href="02_topic.html">10 Kids Unaware of Their Halloween Costume</a></h2>
+              <p>It's one thing to subject yourself to a Halloween costume mishap because, hey, that's your prerogative.</p>
+          </div>
+          <div class="clearfix"></div>
+      </div>
+      <div class="postinfo pull-left">
+          <div class="comments">
+              <div class="commentbg">
+                  560
+                  <div class="mark"></div>
+              </div>
 
-                                    </div>
-                                    <div class="views"><i class="fa fa-eye"></i> 1,568</div>
-                                    <div class="time"><i class="fa fa-clock-o"></i> 24 min</div>                                    
-                                </div>
-                                <div class="clearfix"></div>
-                            </div><!-- POST -->
+          </div>
+          <div class="views"><i class="fa fa-eye"></i> 1,568</div>
+          <div class="time"><i class="fa fa-clock-o"></i> 24 min</div>                                    
+      </div>
+      <div class="clearfix"></div>
+  </div><!-- POST -->
 
-                        </div>
-                        <div class="col-lg-4 col-md-4">
+</div>
+<div class="col-lg-4 col-md-4">
 
-                            <!-- MY STATS -->
-
-
-                            <div class="sidebarblock">
-                                <h3> My profile <span class="pull-right"><%= link_to "Edit", edit_member_path(current_member.id) %> </span></h3>
-                                <div class="divline"></div>
-                                <div class="blocktxt">
-                                  <%= render partial: "stats" %>
-
-                                    <br>
-                                    You have <%= current_member.invitation_limit %> invitations left. <br>
-                                    <%= form_for(Member.new, url: member_invitation_path) do |f| %>
-                                      <%= f.email_field :email, placeholder: 'Email to send invite to', label: false %>
-                                      <%= f.button :submit %>
-                                    <% end %>
-                                    <br>
-
-                                    <%= link_to "Invite for coffee!", new_member_coffeemeet_path(@member.id) unless current_member == @member %>
-                                </div>
-                            </div>
-                            <!-- /// MY STATS -->
+  <!-- MY STATS -->
 
 
-                            <!-- PEOPLE I MET -->
-                            <div class="sidebarblock">
-                              <h3>People I met</h3>
-                              <div class="blocktxt">
-                                <% if @coffees %>
-                                  <% @coffees.each do |coffee| %>
-                                    <% if coffee.confirmed %>
-                                    <%= link_to  "#{coffee.had_coffee_with(current_member).username}", member_path(coffee.had_coffee_with(current_member).id)  %> || <%=coffee.had_coffee_with(current_member).email %> <br> 
-                                    <% end %>
-                                  <% end %>
-                                <% end %> 
-                              </div>
-                            </div>
-                            <!-- /// PEOPLE I MET -->
+  <div class="sidebarblock">
+      <h3> My profile <span class="pull-right"><%= link_to "Edit", edit_member_path(current_member.id) %> </span></h3>
+      <div class="divline"></div>
+      <div class="blocktxt">
+        <%= render partial: "stats" %>
+
+          <br>
+          You have <%= current_member.invitation_limit %> invitations left. <br>
+          <%= form_for(Member.new, url: member_invitation_path) do |f| %>
+            <%= f.email_field :email, placeholder: 'Email to send invite to', label: false %>
+            <%= f.button :submit %>
+          <% end %>
+          <br>
+
+          <%= link_to "Invite for coffee!", new_member_coffeemeet_path(@member.id) unless current_member == @member %>
+      </div>
+  </div>
+  <!-- /// MY STATS -->
 
 
-                            <!-- MY POSTS -->
-                            <div class="sidebarblock">
-                                <h3>My Posts <span class="pull-right"> <%= link_to "Create a post", new_post_path %></span></h3>
-                                <div class="divline"></div>
+  <!-- PEOPLE I MET -->
+  <div class="sidebarblock">
+    <h3>People I met</h3>
+    <div class="blocktxt">
+      <% if @coffees %>
+        <% @coffees.each do |coffee| %>
+          <% if coffee.confirmed %>
+          <%= link_to  "#{coffee.had_coffee_with(current_member).username}", member_path(coffee.had_coffee_with(current_member).id)  %> || <%=coffee.had_coffee_with(current_member).email %> <br> 
+          <% end %>
+        <% end %>
+      <% end %> 
+    </div>
+  </div>
+  <!-- /// PEOPLE I MET -->
 
-                                <% @posts.each do |post| %>
-                                  <div class="blocktxt">
-                                    <%= post.get_upvotes.count %> <%= link_to post.title, post_path(post.id) %> </a>
-                                  </div>
-                                  <div class="divline"></div>
-                                <% end %>
 
-                            </div>
-                            <!-- /// MY POSTS -->
+  <!-- MY POSTS -->
+  <div class="sidebarblock">
+      <h3>My Posts <span class="pull-right"> <%= link_to "Create a post", new_post_path %></span></h3>
+      <div class="divline"></div>
 
+      <% @posts.each do |post| %>
+        <div class="blocktxt">
+          <%= post.get_upvotes.count %> <%= link_to post.title, post_path(post.id) %> </a>
+        </div>
+        <div class="divline"></div>
+      <% end %>
+
+  </div>
+  <!-- /// MY POSTS -->
+</div>

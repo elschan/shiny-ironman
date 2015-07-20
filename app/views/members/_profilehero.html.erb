@@ -1,0 +1,36 @@
+<div class="hero">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-8">
+        <div id="name">
+          <%= @member.fullname %>
+        </div>
+        <div id="username">
+          <%= @member.username %>
+        </div>
+        <div id="blurb">
+          <%= @member.blurb %> 
+        </blurb>
+
+      </div>
+    </div>
+      <div class="col-lg-4 col-md-4">
+        <div class="stats">
+          <div><i class="fa fa-star-o"> Reputation: <%= @member.reputation %> </i></div>
+          <div><i class="fa fa-coffee"> Coffees: <%= @member.coffeepoints %></i></div>
+        </div>
+        <% if @member.open_to_irl %>
+          <div class="coffee-invite">
+            <div id="open-to-irl"> Up for coffee IRL in <%= @member.location %> </div>
+            <div id="fave-coffee"> Fave coffee drink: <%= @member.fave_coffee %> </div>
+
+            <%= button_to "Invite for coffee!", new_member_coffeemeet_path(@member.id), class: "btn" unless current_member == @member %>
+
+          </div>
+        <% else %>
+          <p> Not open to coffee-meets IRL </p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
