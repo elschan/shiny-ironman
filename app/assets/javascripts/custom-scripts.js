@@ -36,15 +36,15 @@ $(document).ready(function(){
 
 
   $('.toggle-description').on('click', function(){
-    $this = $(this);
-    $this.closest('.post').find('.post-description').show();
+    $this = $(this); // This is the "more" link
+    $this.closest('.clean-post').find('.post-description').show();
     $this.remove();
 
   });
 
   // COMMENTS
     $('.toggle-reply').on('click', function(){
-    $(this).closest('.post').find('.reply-form:first').show()
+    $(this).closest('.clean-post').find('.reply-form:first').show()
     // toggle?
     $(this).hide()
   })

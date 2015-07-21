@@ -16,7 +16,12 @@
 
   <div class="col-md-11">
     <h4><%= link_to post.title, post_path(post.id) %></h4>
-    <p class="post-description"><%= get_preview(post) %> </p>
+    <div class="post-description">
+      <% if !post.url.empty? %>
+        <p> <%= link_to "(link)", post.url, target: "_blank" %> </p>
+      <% end %>
+      <p><%= post.text %></p>
+    </div>
      <% if !post.tags.empty? %>
       Tagged: <%=raw tag_links(post.tag_list) %>
      <% end %>
