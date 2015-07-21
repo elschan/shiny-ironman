@@ -18,6 +18,8 @@ class MembersController < ApplicationController
     @coffees_invited_to = Coffeemeet.where("invitee_id = #{@member.id}").reverse
     @coffees_waiting_for = Coffeemeet.where("inviter_id = #{@member.id}").reverse
     @coffees = Coffeemeet.where("invitee_id or inviter_id = #{@member.id}").reverse
+    @coffee = Coffeemeet.new
+    @coffee_accept = Coffeemeet.find(params[:id])
     # binding.pry
   end
 

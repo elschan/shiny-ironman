@@ -39,8 +39,9 @@
               <div id="fave-coffee"> Fave coffee drink: <%= @member.fave_coffee %> </div>
 
               <% if current_member != @member %>
-                <%= button_to "Invite for coffee!", new_member_coffeemeet_path(@member.id), class: "btn", method: "get" %>
-                <%= link_to "Invite for coffee!", new_member_coffeemeet_path(@member.id) unless current_member == @member %>
+                <!--<%= button_to "Invite for coffee!", '#myModal', 'data-toggle' => 'modal', class: "btn"%>-->
+                <button type="button" class="btn btn-info btn-md" data-toggle="modal" data-target="#myModal">Invite for coffee!</button>
+                <!--<%= link_to "Invite for coffee!", new_member_coffeemeet_path(@member.id) unless current_member == @member %>-->
               <% else %>
               <br>
 
