@@ -13,7 +13,7 @@
                     <div class="form-group" >
                     <%= simple_form_for @signup do |f| %>
                       <%= f.text_area :application, :class=> 'form-control', :placeholder => 'Tell us about yourself or why you want to join the shine project. We promise to review it asap! ' %><br>
-                     <%= f.email_field :email ,:class=> 'form-control', :placeholder => 'Email', :style => 'text-align: center' %><br>
+                     <%= f.email_field :email ,:class=> 'form-control', :placeholder => 'What email should we send the invite to?', :style => 'text-align: center' %><br>
                       <%= f.submit "Send us this message!", class: "btn btn-primary btn-pad-top form-control" %>
                     <% end %>
                   </div>
