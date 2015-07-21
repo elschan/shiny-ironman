@@ -2,16 +2,16 @@
     <div class="topwrap">
       <div class="post">
       <div class="userinfo pull-left">
-        <span class="upvote-comment">
+        <span class="upvote">
 
 <!-- If member is signed in, they can upvote and see whether they have upvoted.
 If they are not signed in, they can only see how many upvotes -->
           <% if member_signed_in? %>
             <%= link_to (vote_comment_path(comment)), :class => "can_vote", :method => "put", :remote => true do %>
-              <i class="fa fa-arrow-up <% if current_member.voted_for?(comment) %> voted <% end %>"></i>
+              <i class="fa fa-caret-up fa-2x<% if current_member.voted_for?(comment) %> voted <% end %>"></i>
             <%end%>
           <% else %>
-            <i class="fa fa-arrow-up"></i>
+            <i class="fa fa-caret-up fa-2x"></i>
           <% end %>
 
           <span class="upvote-count"><%= comment.get_upvotes.size %></span>
@@ -44,28 +44,4 @@ If they are not signed in, they can only see how many upvotes -->
 
 
   <%= render partial: "comment", collection: comment.replies %>
-
 </div>
-
-<script>
-  $('.toggle-reply').on('click', function(){
-    $(this).closest('.post').find('.reply-form:first').show()
-    // toggle?
-    $(this).hide()
-  })
-
-  $('.can_vote')
-   .on('ajax:error', function () {
-     $(this).after('<div>There was an upvote issue.</div>');
-   }).on('ajax:success', function (res, data) {
-     var $this = $(this)
-     $this.find('.fa-arrow-up').toggleClass('voted');
-     $this.closest('.upvote-comment').find('.upvote-count').text(data.vote_count)
-     console.log(data)
-    //  $this.closest('.comment').find('.comment-upvote-count').text(data.vote_count)
-     //var current_text = $this.text()
-     //$this.text(data.voted_for ? "Unvote" : "Upvote")
-   });
-</script>
-
-

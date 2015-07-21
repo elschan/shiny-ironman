@@ -11,19 +11,8 @@ $(function(){
    }).on('ajax:success', function (res, data) {
      var $this = $(this);
      $this.find('.fa-caret-up').toggleClass('voted');
-     $this.closest('.upvote-post').find('.upvote-count').text(data.vote_count);
+     $this.closest('.upvote').find('.upvote-count').text(data.vote_count);
    });
-
-   $('.upvote')
-   .on('ajax:error', function () {
-     $(this).after('<div>There was an issue.</div>');
-   }).on('ajax:success', function (res, data) {
-     var $this = $(this)
-     $this.closest('.post').find('.upvote-post').text(data.vote_count)
-     var current_text = $this.text()
-     $this.text(data.voted_for ? "Unvote" : "Upvote")
-   });
-
 
 // COFFEEMEETS/EDIT
     $('#yes_irl').on('click', function(){
@@ -47,4 +36,11 @@ $(function(){
     $this.remove();
 
   });
+
+  // COMMENTS
+    $('.toggle-reply').on('click', function(){
+    $(this).closest('.post').find('.reply-form:first').show()
+    // toggle?
+    $(this).hide()
+  })
 })            
