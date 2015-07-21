@@ -12,7 +12,7 @@ before_action :authenticate_member!
 
     if @coffee.save
       flash[:notice] = "Coffee invite sent!"
-      redirect_to member_path(@coffee.invitee_id)
+      redirect_to member_path(current_member)
     else
       if @coffee.invite_blurb.length < 20
         flash[:notice] = "You need to say something! (more than 20 char.)"

@@ -9,16 +9,14 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Invite <%= @member.fullname ? @member.fullname : @member.username %> for coffee!</h4>
+        <h4 style = "color: black" class="modal-title">Invite <%= @member.fullname ? @member.fullname : @member.username %> for coffee!</h4>
       </div>
-      <div class="modal-body">
-
+      <div class="modal-body form-group">
         <%= simple_form_for(@coffee, html: { class: 'form-horizontal' }) do |f| %>
-        
-          <%= f.input :invite_blurb, :as => :text %><br>
-        <br>
+
+          <%= f.input :invite_blurb,:as => :text , :placeholder=> "Tips: Explain either who you are or why you want to have coffee with them. Feel free to include other contact info if you prefer to be reached out via that instead of the email you logged in with.", :input_html => {:rows => 5}, :class => "form-control" %><br>
         <%= hidden_field_tag 'coffeemeet[invitee_id]', @member.id  %>
-          <%= f.button :submit,'Invite!', :class => 'btn-info' %>
+          <%= f.button :submit,'Invite!', :class => 'btn-info form-control' %>
         <% end %>
       </div>
       <div class="modal-footer">
