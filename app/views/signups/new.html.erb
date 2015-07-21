@@ -1,7 +1,26 @@
-<%= form_for @signup do |f| %>
-  Tell us about yourself or why you want to join the shine experiment!
-  <%= f.text_area :application %><br>
- <br>
- <%= f.email_field :email %>
-  <%= f.submit %>
-<% end %>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 col-md-8">
+          <!-- POST -->
+          <div class="post">
+            <!-- acc section -->
+            <div class="accsection">
+              <div class="topwrap">
+                 <div class="userinfo pull-left"></div>
+
+                  <div class="posttext pull-left">
+                    <h4>Tell us about yourself or why you want to join the shine experiment!</h4><br>
+
+                    <%= form_for @signup do |f| %>
+                      <%= f.text_area :application %><br>
+                      <%= f.label :email %></br>
+                     <%= f.email_field :email %><br>
+                      <%= f.submit "Send us this message!", class: "btn btn-primary btn-pad-top" %>
+                    <% end %>
+                 </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div><!-- acc section END -->
+          </div>
+      </div>
+  </div>
