@@ -1,6 +1,5 @@
-$(function(){
-  
-// SCROLL REVEAL
+$(document).ready(function(){
+  // SCROLL REVEAL
   window.sr = new scrollReveal();
 
 
@@ -22,6 +21,12 @@ $(function(){
     $('#member_location').hide();
   });
 
+ // REMOVE COFFEES
+  $('.remove-coffee').on('click', function() {
+    $(this).remove();
+    var coffee = this.id
+    $('#'+ coffee).remove();
+  }); 
 
 // POSTS
    $('.dropdown').on('click', function(){
@@ -43,4 +48,4 @@ $(function(){
     // toggle?
     $(this).hide()
   })
-})            
+});

@@ -11,9 +11,10 @@
         <h4 class="modal-title">Accept coffee!</h4>
       </div>
       <div class="modal-body">
+<!-- PROBLEM  -->
+
         <%= simple_form_for(@coffee_accept, html: { class: 'form-horizontal' }) do |f| %>
           <%= f.input :invite_accept, :as => :text %><br>
-        
           <!-- Yes let's meet!<br>   <%= f.radio_button(:accepted, "true") %><br>
           Sorry not now <br>    <%= f.radio_button(:accepted, "false") %> -->
           <%=f.collection_radio_buttons :accepted, [[true, 'Yes'] ,[false, ' No']], :first, :last %>
