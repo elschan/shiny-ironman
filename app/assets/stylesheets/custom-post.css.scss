@@ -7,3 +7,18 @@
   right: 5px;
   top: 27px;  
 }
+
+.clean-post {
+  background-color: #fff;
+  border: 1px solid black;
+
+  .upvote {
+    text-align: center;
+    .fa-caret-up {
+      margin-left: 2px;
+    }
+    .upvote-count{
+      margin-top: -10px;
+    }
+  }
+}

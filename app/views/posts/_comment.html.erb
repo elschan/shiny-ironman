@@ -8,10 +8,10 @@
 If they are not signed in, they can only see how many upvotes -->
           <% if member_signed_in? %>
             <%= link_to (vote_comment_path(comment)), :class => "can_vote", :method => "put", :remote => true do %>
-              <i class="fa fa-caret-up fa-2x<% if current_member.voted_for?(comment) %> voted <% end %>"></i>
+              <i class="fa fa-caret-up fa-3x<% if current_member.voted_for?(comment) %> voted <% end %>"></i>
             <%end%>
           <% else %>
-            <i class="fa fa-caret-up fa-2x"></i>
+            <i class="fa fa-caret-up fa-3x"></i>
           <% end %>
 
           <span class="upvote-count"><%= comment.get_upvotes.size %></span>
