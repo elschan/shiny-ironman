@@ -2,10 +2,9 @@
 
   <div class="row">
    
-    <% if @member.nil? %>
+    <% if @member.nil? || @member.id.nil? %>
       MOTIVATIONAL QUOTE GOES HERE.
     <% else %>
-
       <!-- NAME AND ABOUT ME -->
       <div class="col-md-6 col-md-offset-1">
         <div class="hero-content">
