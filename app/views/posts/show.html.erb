@@ -18,7 +18,13 @@
                    </div>
                  </div>
                     <div class="posttext pull-left">
-                        <h2><%= @post.title %></h2>
+                        <h2>
+                          <%= @post.title %> 
+                          <% if !@post.url.empty? %>
+                            (<%= link_to "link", @post.url %>)
+                          <% end %>
+                    
+                        </h2>
                         <p><%= @post.text %></p>
 
                         <div class="posted pull-left">
