@@ -23,8 +23,12 @@ before_action :authenticate_member!
     end
   end
 
+  # /coffeemeets/:id/edit
+  # Sends back the contents of the invite modal
   def edit
-    @coffee_accept = Coffeemeet.find(params[:id])
+    # PROBLEM
+    @coffee_accept = Coffeemeet.find(@coffee.id)
+    layout false # ask rails not to render the layout
   end
 
   def remove
@@ -42,6 +46,7 @@ before_action :authenticate_member!
 
 
   def update
+    # PROBLEM
     @coffee_accept = Coffeemeet.find(params[:id])
     if @coffee_accept.confirmed
       flash[:notice] = "This coffee's already been confirmed!"

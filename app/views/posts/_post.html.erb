@@ -1,84 +1,47 @@
 <!-- POST -->
-   <div class="post" data-sr >
-       <div class="wrap-ut pull-left">
+<div class="row clean-post" data-sr>
+  <!-- UPVOTE -->
+  <div class="col-md-1">
+      <span class="upvote">
+       <% if member_signed_in? %>
+          <%= link_to (vote_post_path(post)), :class => "can_vote", :method => "put", :remote => true do %>
+            <i class="fa fa-caret-up fa-3x<% if current_member.voted_for?(post) %> voted <% end %>"></i>
+          <%end%>
+        <% else %>
+          <i class="fa fa-caret-up fa-3x"></i>
+        <% end %>
+       <p class="upvote-count"><%= post.get_upvotes.size %></p>
+     </span>
+  </div><!-- /// UPVOTE -->
 
-        <!-- UPVOTES -->
-           <div class="userinfo pull-left">
-             <span class="upvote">
+  <div class="col-md-11">
+    <h4><%= link_to post.title, post_path(post.id) %></h4>
+    <div class="post-description">
+      <% if !post.url.empty? %>
+        <p> <%= link_to "(link)", post.url, target: "_blank" %> </p>
+      <% end %>
+      <p><%= post.text %></p>
+    </div>
+     <% if !post.tags.empty? %>
+      Tagged: <%=raw tag_links(post.tag_list) %>
+     <% end %>
 
-     <!-- If member is signed in, they can upvote and see whether they have upvoted.
-     If they are not signed in, they can only see how many upvotes -->
-               <% if member_signed_in? %>
-                 <%= link_to (vote_post_path(post)), :class => "can_vote", :method => "put", :remote => true do %>
-                   <i class="fa fa-caret-up fa-2x<% if current_member.voted_for?(post) %> voted <% end %>"></i>
-                 <%end%>
-               <% else %>
-                 <i class="fa fa-caret-up fa-2x"></i>
-               <% end %>
+    <!-- TODO accomodate deleted user? #devproblems-->
+    <!-- POST METADATA -->
+   <p class="post-metadata"> 
+    by <%= link_to post.member.username, member_path(post.member_id) if post.member %>
+    <%= time_ago_in_words(post.created_at) %> ago. <%= link_to (post.comment_count.to_s + " comments."), post_path(post.id) %>
+    
+    <% if !post.text.empty? %>
+      <span class="pull-right toggle-description">More <b class="fa fa-caret-down"></b></span>
+    <% end %>
+   </p>
 
-               <span class="upvote-count"><%= post.get_upvotes.size %></span>
-             </span>
+    <!-- /// POST METADATA -->
+  </div>
 
-           </div>
-        <!-- /// UPVOTES -->
-
-
-           <!-- POST DATA -->
-           <div class="posttext pull-left">
-                <h2><%= link_to post.title, post_path(post.id) %></h2>
-
-               <p class="post-description"><%= get_preview(post) %> </p>
-
-               <% if !post.tags.empty? %>
-                Tagged: <%=raw tag_links(post.tag_list) %>
-               <% end %>
-
-              <!-- TODO accomodate deleted user? #devproblems-->
-              <!-- POST METADATA -->
-             <p class="post-metadata"> 
-              by <%= link_to post.member.username, member_path(post.member_id) if post.member %>
-              <%= time_ago_in_words(post.created_at) %> ago
-              <% if !post.text.empty? %>
-                <span class="pull-right toggle-description">More <b class="fa fa-caret-down"></b></span>
-              <% end %>
-             </p>
-              <!-- /// POST METADATA -->
-
-             
-           </div>
-           <div class="clearfix"></div>
-
-           <!-- /// POST DATA -->
-
-       </div>
-
-       <!-- COMMENTS  -->
+</div>
 
 
-       <% if current_member %>
-          <% if current_member.admin? || (post.member_id == current_member.id) %>
-              <div class="dropdown">
-                <i class="fa fa-angle-down fa-2x pull-right post-actions dropdown-toggle" aria-haspopup="true" aria-expanded="true"> </i>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                  <li><%= link_to "Edit", edit_post_path(post.id) %></li>
-                  <li><%= link_to "Delete", post_path(post.id), method: :delete %></li>
-                </ul>
-               
-             </div>
-           <% end %>
-         <% end %>
-          <%= link_to(post_path(post.id)) do %>
-             <div class="postinfo pull-left custom-comment">
-                 <div class="comments">
-                     <div class="commentbg">
-                         <%= post.comment_count %>
-                         <div class="mark"></div>
-                     </div>
 
-                 </div>           
-             </div>
-           <% end %>
-       <div class="clearfix"></div>
-      <!-- /// COMMENTS  -->
 
-   </div><!-- POST -->

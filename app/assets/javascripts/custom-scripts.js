@@ -1,6 +1,5 @@
-$(function(){
-  
-// SCROLL REVEAL
+$(document).ready(function(){
+  // SCROLL REVEAL
   window.sr = new scrollReveal();
 
 
@@ -39,8 +38,12 @@ $('.confirm-to').on('click', function() {
   
 });
 
-
-
+ // REMOVE COFFEES
+  $('.remove-coffee').on('click', function() {
+    $(this).remove();
+    var coffee = this.id
+    $('#'+ coffee).remove();
+  }); 
 
 // POSTS
    $('.dropdown').on('click', function(){
@@ -50,16 +53,16 @@ $('.confirm-to').on('click', function() {
 
 
   $('.toggle-description').on('click', function(){
-    $this = $(this);
-    $this.closest('.post').find('.post-description').show();
+    $this = $(this); // This is the "more" link
+    $this.closest('.clean-post').find('.post-description').show();
     $this.remove();
 
   });
 
   // COMMENTS
     $('.toggle-reply').on('click', function(){
-    $(this).closest('.post').find('.reply-form:first').show()
+    $(this).closest('.clean-post').find('.reply-form:first').show()
     // toggle?
     $(this).hide()
   })
-})            
+});
