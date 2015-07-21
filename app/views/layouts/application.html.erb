@@ -11,11 +11,14 @@
     <p class="alert"><%= alert %></p> -->
     <%= render partial: "layouts/nav" %>
 
+    <%= render partial: "layouts/hero" %>  
+
     <div class="content">
       <%= yield %>
       <script>
         window.sr = new scrollReveal();
       </script>
     </div>
+  </div>
   </body>
 </html>
