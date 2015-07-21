@@ -1,6 +1,3 @@
-<% if @coffee.accepted == nil %>
   <%= render "form_invite_accepted" %>
-<% end %>
-<% if @coffee.accepted %>
+
   <%= render "form_confirmed" %>
-<% end %>

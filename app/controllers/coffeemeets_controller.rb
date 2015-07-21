@@ -24,7 +24,7 @@ before_action :authenticate_member!
   end
 
   def edit
-    @coffee = Coffeemeet.find(params[:id])
+    @coffee_accept = Coffeemeet.find(params[:id])
   end
 
   def remove
@@ -42,17 +42,17 @@ before_action :authenticate_member!
 
 
   def update
-    @coffee = Coffeemeet.find(params[:id])
-    if @coffee.confirmed
+    @coffee_accept = Coffeemeet.find(params[:id])
+    if @coffee_accept.confirmed
       flash[:notice] = "This coffee's already been confirmed!"
       redirect_to member_path(current_member.id)
     else
-      if @coffee.update_attributes(coffeemeet_params)
-        if @coffee.confirmed
-          Member.find(@coffee.invitee_id).increment!(:coffeepoints)
-          Member.find(@coffee.inviter_id).increment!(:coffeepoints)
+      if @coffee_accept.update_attributes(coffeemeet_params)
+        if @coffee_accept.confirmed
+          Member.find(@coffee_accept.invitee_id).increment!(:coffeepoints)
+          Member.find(@coffee_accept.inviter_id).increment!(:coffeepoints)
           redirect_to member_path(current_member.id)
-        elsif @coffee.accepted
+        elsif @coffee_accept.accepted
         redirect_to member_path(current_member.id)
         else 
         redirect_to member_path(current_member.id)
