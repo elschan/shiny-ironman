@@ -11,7 +11,7 @@
         <h4 class="modal-title">Invite <%= @member.fullname ? @member.fullname : @member.username %> for coffee!</h4>
       </div>
       <div class="modal-body">
-
+<!-- PROBLEM  -->
         <%= simple_form_for(@coffee_accept, html: { class: 'form-horizontal' }) do |f|%>
           Where did you guys meetup? <%= f.input :location %><br>
          <br>
