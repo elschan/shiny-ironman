@@ -41,15 +41,15 @@
               <% if current_member != @member %>
                 <!--<%= button_to "Invite for coffee!", '#myModal', 'data-toggle' => 'modal', class: "btn"%>-->
                 <button type="button" class="btn btn-info btn-md" data-toggle="modal" data-target="#myModal">Invite for coffee!</button>
-                <!--<%= link_to "Invite for coffee!", new_member_coffeemeet_path(@member.id) unless current_member == @member %>-->
+                <!--<%= link_to "Invite for coffee!", new_member_coffeemeet_path(@member.id) unless current_member == @member %>
               <% else %>
               <br>
 
               <!-- THIS SHOULD GO ELSEWHERE -->
                You have <%= current_member.invitation_limit %> new member invitations left. <br>
-                <%= form_for(Member.new, url: member_invitation_path) do |f| %>
+                <%= simple_form_for(Member.new, url: member_invitation_path) do |f| %>
                   <%= f.email_field :email, placeholder: 'Email to send invite to', label: false %>
-                  <%= f.button :submit %>
+                  <%= f.button :submit , "Invite!"%>
                 <% end %>
               <% end %>
             </div>

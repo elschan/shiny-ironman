@@ -33,20 +33,25 @@ class PostsController < ApplicationController
     @posts.sort! { |p1, p2| p2.trending_value <=> p1.trending_value }
     # NAMESCOPE LATER FOR FASTER SORTING
     end
+    @post = Post.new
+
   end
 
   def newest
     @posts = Post.all.reverse
+    @post = Post.new
     render :index
   end
 
   def projects
     @posts = Post.where(:category => 'Projects').reverse
+    @post = Post.new
     render :index
   end
 
   def jobs
     @posts = Post.where(:category => 'Jobs').reverse
+    @post = Post.new
     render :index
   end
 
@@ -64,7 +69,7 @@ class PostsController < ApplicationController
 
       redirect_to posts_path
     else
-      render :new
+      redirect_to posts_path
     end
   end
 

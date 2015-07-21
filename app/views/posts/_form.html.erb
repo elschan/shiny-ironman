@@ -1,18 +1,21 @@
-<div class="container">
-    <div class="row">
-        <div class="col-lg-8 col-md-8">
-          <!-- POST -->
-          <div class="post">
-                  <!-- acc section -->
-                  <div class="accsection">
-                      <div class="topwrap">
 
-                          <div class="userinfo pull-left">
-                          </div>
 
-                          <div class="posttext pull-left">
-                            <h1>Create a Post</h1>
-                              <%= form_for @post do |f| %>
+
+
+
+<div id="myModalpost" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Create a post</h4>
+      </div>
+      <div class="modal-body">
+
+       
+        <%= form_for @post do |f| %>
                                 <p><%= f.label :title %><br />
                                 <%= f.text_field :title %><br>
                                
@@ -29,15 +32,12 @@
                                <br>
                                 <%= f.submit class: "btn btn-primary btn-pad-top" %>
                               <% end %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
 
-                            <!-- render "devise/shared/links" -->
-                            <!-- Took out devise links because it seems none of them are relevant here -->
-
-                          </div>
-                          <div class="clearfix"></div>
-                      </div>
-                  </div><!-- acc section END -->
-                </div>
-            </div>
-        </div>
+  </div>
+</div>
 
