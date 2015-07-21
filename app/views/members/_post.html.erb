@@ -22,15 +22,3 @@
     <%= link_to (current_member.voted_for?(post) ? "Unvote" : "Upvote"), vote_post_path(post), :class => "upvote", :method => "put", :remote => true %>
   <% end %>
 </div>
-
-<script>
-$('.upvote')
- .on('ajax:error', function () {
-   $(this).after('<div>There was an issue.</div>');
- }).on('ajax:success', function (res, data) {
-   var $this = $(this)
-   $this.closest('.post').find('.upvote-post').text(data.vote_count)
-   var current_text = $this.text()
-   $this.text(data.voted_for ? "Unvote" : "Upvote")
- });
-</script>
