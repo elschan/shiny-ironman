@@ -1,25 +1,9 @@
 
 <!-- MEMBER'S POSTS -->
-<div class="col-lg-8 col-md-8">
+<div class="col-lg-8 col-md-8 col-lg-offset-2 col-md-offset-2">
+    <h3>Her posts</h3>
     <%= render partial: "posts/post", collection: @posts %>
 </div>
 <!-- /// MEMBER'S POSTS -->
 
-
-<div class="col-lg-4 col-md-4">
-    <!-- MEMBER STATS -->
-    <div class="sidebarblock">
-        <h3> <%= @member.username %>'s profile 
-          <% if current_member && current_member.admin %> 
-            <span class="pull-right"><%= link_to "Edit", edit_member_path(current_member.id) %> </span></h3>
-          <% end %>
-        <div class="divline"></div>
-        <div class="blocktxt">
-          
-          <br>
-          <!--<%= link_to "Invite for coffee!", '#myModal', 'data-toggle' => 'modal' unless current_member == @member %>-->
-        </div>
-    </div>
-  </div>
-    <!-- /// MEMBER STATS -->
 
