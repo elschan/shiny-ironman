@@ -1,12 +1,63 @@
 <div id="hero">
 
   <div class="row">
-    <div class="col-md-8"> HI HELLO </div>
-    <div class="col-md-4"> HI HELLELELEELLE </div>
+   
+    <% if @member.nil? %>
+      MOTIVATIONAL QUOTE GOES HERE.
+    <% else %>
+
+      <!-- NAME AND ABOUT ME -->
+      <div class="col-md-6 col-md-offset-1">
+        <div class="hero-content">
+          <div id="name">
+            <%= @member.fullname %>
+          </div>
+          <div id="username">
+            <%= @member.username %>
+          </div>
+          <div id="blurb">
+            <%= @member.blurb %> 
+          </div>
+        </div>
+      </div>
+      <!-- /// NAME AND ABOUT ME -->
+
+      <div class="col-md-4">
+        <div class="hero-content">
+          <div class="stats">
+            
+            <% if current_member == @member %>
+              <span class="pull-right"><%= link_to "Edit Profile", edit_member_path(current_member.id) %></span>
+            <% end %>
+
+            <div><i class="fa fa-star-o fa-2x"> Reputation: <%= @member.reputation %> </i></div>
+            <div><i class="fa fa-coffee fa-2x"> Coffees: <%= @member.coffeepoints %></i></div>
+          </div>
+
+          <% if @member.open_to_irl %>
+            <div class="coffee-invite">
+              <div id="open-to-irl"> Up for coffee IRL in <strong><%= @member.location %></strong> </div>
+              <div id="fave-coffee"> Fave coffee drink: <%= @member.fave_coffee %> </div>
+
+              <% if current_member != @member %>
+                <%= button_to "Invite for coffee!", new_member_coffeemeet_path(@member.id), class: "btn", method: "get" %>
+                <%= link_to "Invite for coffee!", new_member_coffeemeet_path(@member.id) unless current_member == @member %>
+              <% else %>
+              <br>
+
+              <!-- THIS SHOULD GO ELSEWHERE -->
+               You have <%= current_member.invitation_limit %> new member invitations left. <br>
+                <%= form_for(Member.new, url: member_invitation_path) do |f| %>
+                  <%= f.email_field :email, placeholder: 'Email to send invite to', label: false %>
+                  <%= f.button :submit %>
+                <% end %>
+              <% end %>
+            </div>
+          <% else %>
+            <p> Not open to coffee IRL </p>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
   </div>
-  <% if @member.nil? %>
-    HEY HI HELLO
-  <% else %>
-    BYE!
-  <% end %>
 </div>

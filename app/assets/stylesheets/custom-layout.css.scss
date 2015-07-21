@@ -48,27 +48,47 @@
   padding-top: 10px;
 }
 
-/*#hero-img {
-  width: 100%;
-  position: absolute;
-  top: 30px;
-  left: 0px;
-}*/
-
 body {
   background-color: #ecf0f1;
 }
 
 #hero {
   background-image: url('/coffee-friends.jpg');
-  height:400px;
+  height:300px;
   background-size: cover;
   background-position: bottom;
+  color:#fff;
 
+  #name {
+    font-size:3em;
+  }
+  #username{
+    font-size: 1.5em;
+    margin-top: -8px;
+  }
+  #stats{
+    font-size: 1.1em;
+  }
+  .coffee-invite{
+    font-size: 1.1em;
+    margin-top: 20px;
+  }
 }
 
 @media (max-width: 600px) {
   #hero {      
-    background-image: url('/little-coffee-friends.jpg');
+    background-image: url('/coffee-friend.jpg');
+    height:600px;
   }
 }
+
+.hero-content{
+  padding-top:50px;
+}
+/*
+.vertical-align {
+  display: flex;
+  align-items: center;
+  height:100%;
+}*/
+
