@@ -86,32 +86,3 @@
       <!-- /// COMMENTS  -->
 
    </div><!-- POST -->
-
-<script>
-
-  $('.dropdown').on('click', function(){
-    $this = $(this)
-    $this.toggleClass('open');
-  });
-
-
-  $('.toggle-description').on('click', function(){
-    $this = $(this);
-    $this.closest('.post').find('.post-description').show();
-    $this.remove();
-
-  });
-
-  $('.can_vote')
-   .on('ajax:error', function () {
-     $(this).after('<div>There was an upvote issue.</div>');
-   }).on('ajax:success', function (res, data) {
-     var $this = $(this);
-     $this.find('.fa-caret-up').toggleClass('voted');
-     $this.closest('.upvote-post').find('.upvote-count').text(data.vote_count);
-     console.log(data);
-    //  $this.closest('.comment').find('.comment-upvote-count').text(data.vote_count)
-     //var current_text = $this.text()
-     //$this.text(data.voted_for ? "Unvote" : "Upvote")
-   });
-</script>
