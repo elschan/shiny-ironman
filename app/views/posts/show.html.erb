@@ -6,8 +6,17 @@
                 <div class="topwrap">
 
                   <div class="userinfo pull-left">
-                    Upvotes: <span class="upvote-post"> <%= @post.get_upvotes.size %> </span></p>
-                  </div>
+                    <div class="upvote">
+                      <% if member_signed_in? %>
+                         <%= link_to (vote_post_path(@post)), :class => "can_vote", :method => "put", :remote => true do %>
+                           <i class="fa fa-caret-up fa-2x<% if current_member.voted_for?(@post) %> voted <% end %>"></i>
+                         <%end%>
+                      <% else %>
+                        <i class="fa fa-caret-up fa-2x"></i>
+                      <% end %>
+                     <span class="upvote-count"><%= @post.get_upvotes.size %></span>
+                   </div>
+                 </div>
                     <div class="posttext pull-left">
                         <h2><%= @post.title %></h2>
                         <p><%= @post.text %></p>
