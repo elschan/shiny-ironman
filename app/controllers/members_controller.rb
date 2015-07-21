@@ -19,11 +19,6 @@ class MembersController < ApplicationController
     @coffees_waiting_for = Coffeemeet.where("inviter_id = #{@member.id}").reverse
     @coffees = Coffeemeet.where("invitee_id or inviter_id = #{@member.id}").reverse
     @coffee = Coffeemeet.new
-    # @coffee_accept = Coffeemeet.find(params)
-# PROBLEMS
-    # if !@coffee_accept.nil? 
-    #   @coffee_accept = Coffeemeet.find(@coffee.id)
-    # end
   end
 
   def index
