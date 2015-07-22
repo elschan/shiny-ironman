@@ -11,57 +11,81 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150710024202) do
+ActiveRecord::Schema.define(version: 20150714035724) do
 
-  create_table "comments", force: :cascade do |t|
+  create_table "comments", force: true do |t|
     t.integer  "parent_comment_id"
     t.integer  "post_id"
+    t.integer  "member_id"
     t.string   "text"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "invites", force: :cascade do |t|
-    t.integer  "member_id"
-    t.integer  "member_received_id"
-    t.string   "code"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
-  end
-
-  create_table "members", force: :cascade do |t|
+  create_table "members", force: true do |t|
     t.string   "username"
-    t.string   "password_digest"
-    t.string   "email"
+    t.integer  "invite_count"
+    t.integer  "reputation"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "email",                  default: "",    null: false
+    t.string   "encrypted_password",     default: ""
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,     null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.string   "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string   "unconfirmed_email"
+    t.integer  "failed_attempts",        default: 0,     null: false
+    t.string   "unlock_token"
+    t.datetime "locked_at"
+    t.string   "invitation_token"
+    t.datetime "invitation_created_at"
+    t.datetime "invitation_sent_at"
+    t.datetime "invitation_accepted_at"
+    t.integer  "invitation_limit"
+    t.integer  "invited_by_id"
+    t.string   "invited_by_type"
+    t.integer  "invitations_count",      default: 0
+    t.boolean  "admin",                  default: false
+    t.boolean  "banned",                 default: false
   end
 
-  create_table "posts", force: :cascade do |t|
+  add_index "members", ["email"], name: "index_members_on_email", unique: true
+  add_index "members", ["invitation_token"], name: "index_members_on_invitation_token", unique: true
+  add_index "members", ["invitations_count"], name: "index_members_on_invitations_count"
+  add_index "members", ["invited_by_id"], name: "index_members_on_invited_by_id"
+  add_index "members", ["reset_password_token"], name: "index_members_on_reset_password_token", unique: true
+
+  create_table "posts", force: true do |t|
     t.integer  "member_id"
     t.string   "title"
     t.string   "url"
     t.string   "text"
-    t.integer  "upvote_count", default: 1
     t.string   "comments"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "profiles", force: :cascade do |t|
-    t.integer  "member_id"
-    t.integer  "reputation"
+  create_table "votes", force: true do |t|
+    t.integer  "votable_id"
+    t.string   "votable_type"
+    t.integer  "voter_id"
+    t.string   "voter_type"
+    t.boolean  "vote_flag"
+    t.string   "vote_scope"
+    t.integer  "vote_weight"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "invite_count"
   end
 
-  create_table "upvotes", force: :cascade do |t|
-    t.integer  "member_id"
-    t.integer  "parent_id"
-    t.string   "type"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
+  add_index "votes", ["votable_id", "votable_type", "vote_scope"], name: "index_votes_on_votable_id_and_votable_type_and_vote_scope"
+  add_index "votes", ["voter_id", "voter_type", "vote_scope"], name: "index_votes_on_voter_id_and_voter_type_and_vote_scope"
 
 end

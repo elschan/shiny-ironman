@@ -1,0 +1,34 @@
+<div class="post" style="background-color: blue">
+  <% if !post.url.empty? %>
+    <h2><%= link_to post.title, post.url %></h2>
+  <% else %>
+    <h2><%= post.title %></h2>
+  <% end %>
+
+  <p><%= post.text %> </p>
+  <p> Upvotes: <span class="upvote-post"> <%= post.get_upvotes.size %> </span></p>
+  <p> Created: <%= time_ago_in_words(post.created_at) %> </p>
+  <p> Username:<%= post.member.username if post.member %> </p>
+  <% if current_member %>
+    <% if current_member.admin? || (post.member_id == current_member.id) %>
+      <%= link_to "Edit", edit_post_path(post.id) %>
+      <%= link_to "Delete", post_path(post.id), method: :delete %>
+    <% end %>
+  <% end %>
+
+  <% if member_signed_in? %>
+    <%= link_to (current_member.voted_for?(post) ? "Unvote" : "Upvote"), vote_post_path(post), :class => "upvote", :method => "put", :remote => true %>
+  <% end %>
+</div>
+
+<script>
+$('.upvote')
+ .on('ajax:error', function () {
+   $(this).after('<div>There was an issue.</div>');
+ }).on('ajax:success', function (res, data) {
+   var $this = $(this)
+   $this.closest('.post').find('.upvote-post').text(data.vote_count)
+   var current_text = $this.text()
+   $this.text(data.voted_for ? "Unvote" : "Upvote")
+ });
+</script>

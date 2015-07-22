@@ -15,5 +15,11 @@
 /log/*.log
 /tmp
 
-# Ignore DS Store
-*.DS_Store
+
+
+# Ignore .DS_Store
+.DS_Store
+
+# Ignore application configuration
+/config/application.yml
+f547cae7d5012932dd51d5890b50276e94c82d07

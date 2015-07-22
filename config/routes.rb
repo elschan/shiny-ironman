@@ -1,10 +1,26 @@
 ShinyIronman::Application.routes.draw do
+  devise_for :members, controllers: {sessions: "sessions", invitations: "invitations"} #:controllers => { :invitations => 'members/invitations'}
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
-  get 'posts', to: 'posts#index'
+  resources :comments, only: [:show, :destroy, :create]
+
+  resources :posts do
+    member do
+      put "vote", to: "posts#vote"
+    end
+    resources :comments, only: [:create, :new]
+  end
+
+resources :members do
+  member do
+    post 'ban'
+  end
+end
+
+
   # You can have the root of your site routed with "root"
-  # root 'welcome#index'
+  root 'posts#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

@@ -1,0 +1,16 @@
+<% if current_member %>
+  Logged in as <%= current_member.username %>
+<% else %>
+  You are not logged in.
+<% end %>
+<br><br><br>
+<% if current_member %>
+  <% if current_member.admin %>
+    <%@members.each do |member| %>
+    <%=member.username%> || <%=member.email%> || Confirmed: <%=member.confirmed_at%> || invitations:<%=member.invitation_limit %> || Reputation: <%=member.reputation %>  ||admin: <%=member.admin %>   <%= link_to "Delete", member_path(member.id), method: :delete %>
+    <%= link_to (member.banned ? "UnBan" : "Ban"), ban_member_path(member.id), :method => "post"%>
+   <br><br>
+    <% end %>
+  <% end %>
+<% end %>
+

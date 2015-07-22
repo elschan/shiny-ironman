@@ -1,0 +1,14 @@
+<%=@member.username%> 's profile <br><br>
+<% if current_member == @member %>
+Hi <%=current_member.username%>
+<br>
+You have <%=current_member.reputation %> rep points
+you have <%=current_member.invitation_limit %> invitations left.
+  <%= form_for(Member.new, url: member_invitation_path) do |f| %>
+    <%= f.email_field :email, placeholder: 'Email to send invite to', label: false %>
+    <%= f.button :submit %>
+  <% end %>
+<% end %>
+<%= link_to "Create a post", new_post_path %>
+
+<%= render partial: "posts/post", collection: @posts %>
