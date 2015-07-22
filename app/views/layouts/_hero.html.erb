@@ -47,7 +47,7 @@
               <!-- THIS SHOULD GO ELSEWHERE -->
                You have <%= current_member.invitation_limit %> new member invitations left. <br>
                 <%= simple_form_for(Member.new, url: member_invitation_path) do |f| %>
-                  <%= f.email_field :email, placeholder: 'Email to send invite to', label: false %>
+                  <%= f.email_field :email, placeholder: 'Email to send invite to', label: false, class: "email-invite" %>
                   <%= f.button :submit , "Invite!"%>
                 <% end %>
               <% end %>
