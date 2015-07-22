@@ -13,13 +13,30 @@ $(document).ready(function(){
      $this.closest('.upvote').find('.upvote-count').text(data.vote_count);
    });
 
-// COFFEEMEETS/EDIT
+// location/irl
     $('#yes_irl').on('click', function(){
     $('#member_location').show();
   });
   $('#no_irl').on('click', function(){
     $('#member_location').hide();
   });
+
+// coffeemeets
+$('.reply-to').on('click', function() {
+  var showForm = this.id;
+  var newId = '#accept-form-'+ showForm;
+  $('.accepting').hide();
+  $(newId).show();
+ 
+});
+
+$('.confirm-to').on('click', function() {
+  var showConfirm = this.id;
+  var confirmId = '#confirm-form-' + showConfirm;
+  $('.confirming').hide();
+  $(confirmId).show();
+  
+});
 
  // REMOVE COFFEES
   $('.remove-coffee').on('click', function() {

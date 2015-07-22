@@ -11,15 +11,18 @@
         <h4 class="modal-title">Accept coffee!</h4>
       </div>
       <div class="modal-body">
-<!-- PROBLEM  -->
+        <%@coffees_invited_to.each do |coffee_invited| %>
+        <div class = "accepting" id="accept-form-<%=coffee_invited.id.to_s %>">
+          <%= simple_form_for(coffee_invited, html: { class: 'form-horizontal form-accept-coffee' }, :input_html => {:id => '#{coffee_invited.id}'}) do |f| %>
+            <%= f.input :invite_accept, :as => :text %><br>
+            <!-- Yes let's meet!<br>   <%= f.radio_button(:accepted, "true") %><br>
+            Sorry not now <br>    <%= f.radio_button(:accepted, "false") %> -->
+            <%=f.collection_radio_buttons :accepted, [[true, 'Yes'] ,[false, ' No']], :first, :last %>
+           <br>
+            <%= f.button :submit, "Accept invite!", :class => 'btn-info', style: "display:inline" %>
+          <% end %>
+        </div>
 
-        <%= simple_form_for(@coffee_accept, html: { class: 'form-horizontal' }) do |f| %>
-          <%= f.input :invite_accept, :as => :text %><br>
-          <!-- Yes let's meet!<br>   <%= f.radio_button(:accepted, "true") %><br>
-          Sorry not now <br>    <%= f.radio_button(:accepted, "false") %> -->
-          <%=f.collection_radio_buttons :accepted, [[true, 'Yes'] ,[false, ' No']], :first, :last %>
-         <br>
-          <%= f.button :submit, "Accept invite!", :class => 'btn-info', style: "display:inline" %>
         <% end %>
       </div>
       <div class="modal-footer">

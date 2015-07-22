@@ -14,11 +14,11 @@
                 <% if coffee.accepted == nil %>
                   She says: <%= coffee.invite_blurb %> <br>
                   <strong><%= Member.find(coffee.inviter_id).email%></strong><br>
-                  <%= link_to "Reply to Invite!", "#myModaledit", "data-toggle" => "modal" %><br>
+                  <%= link_to "Reply to Invite!", "#myModaledit", "data-toggle" => "modal" , id: coffee.id , :class => 'reply-to'%><br>
                 <% elsif coffee.accepted == true %>
                    Accepted <%= coffee.updated_at.strftime("%m/%d/%Y") %> <br>
                    <%= link_to "Confirm", "#myModalconfirm", "data-toggle" => 
-                   "modal" %> 
+                   "modal", :class => 'confirm-to', id: coffee.id %> 
                  <% else %>
                    You declined. 
                    <%= link_to "Remove", remove_from_profile_member_coffeemeet_path(coffee.inviter_id, coffee.id), :class =>"remove-coffee", :id => "coffee-#{coffee.id}", :method => "put" %>
