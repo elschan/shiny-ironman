@@ -49,6 +49,18 @@ class PostsController < ApplicationController
     render :index
   end
 
+  def events
+    @posts = Post.where(:category => 'Events').reverse
+    @post = Post.new
+    render :index
+  end
+
+  def news
+    @posts = Post.where(:category => 'News').reverse
+    @post = Post.new
+    render :index
+  end
+
   def jobs
     @posts = Post.where(:category => 'Jobs').reverse
     @post = Post.new
