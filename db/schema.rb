@@ -11,7 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150714035724) do
+ActiveRecord::Schema.define(version: 20150720010839) do
+
+  create_table "coffeemeets", force: true do |t|
+    t.string   "location"
+    t.boolean  "accepted"
+    t.boolean  "confirmed"
+    t.string   "invite_blurb"
+    t.string   "invite_accept"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "inviter_id"
+    t.integer  "invitee_id"
+    t.string   "invite_blurb_contact"
+    t.string   "invite_accept_contact"
+    t.boolean  "inviter_hide",          default: false
+    t.boolean  "invitee_hide",          default: false
+  end
 
   create_table "comments", force: true do |t|
     t.integer  "parent_comment_id"
@@ -55,6 +71,13 @@ ActiveRecord::Schema.define(version: 20150714035724) do
     t.integer  "invitations_count",      default: 0
     t.boolean  "admin",                  default: false
     t.boolean  "banned",                 default: false
+    t.boolean  "open_to_irl",            default: false
+    t.string   "social_handles"
+    t.string   "location"
+    t.integer  "coffeepoints",           default: 0
+    t.string   "blurb"
+    t.string   "fave_coffee"
+    t.string   "fullname"
   end
 
   add_index "members", ["email"], name: "index_members_on_email", unique: true
@@ -69,6 +92,27 @@ ActiveRecord::Schema.define(version: 20150714035724) do
     t.string   "url"
     t.string   "text"
     t.string   "comments"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "category"
+    t.integer  "comment_count", default: 0
+  end
+
+  create_table "posts_tags", id: false, force: true do |t|
+    t.integer "post_id"
+    t.integer "tag_id"
+  end
+
+  create_table "signups", force: true do |t|
+    t.string   "email"
+    t.string   "application"
+    t.boolean  "accepted",    default: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "tags", force: true do |t|
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

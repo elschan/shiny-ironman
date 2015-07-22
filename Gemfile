@@ -27,7 +27,7 @@ gem 'devise_invitable'
 
 gem 'acts_as_votable', '~> 0.10.0'
 gem 'figaro'
-
+gem 'simple_form'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 
@@ -40,6 +40,11 @@ group :doc do
 end
 
 gem 'pry'
+
+source 'http://rails-assets.org' do
+  gem 'rails-assets-bootstrap'
+end
+
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

@@ -3,7 +3,26 @@ ShinyIronman::Application.routes.draw do
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
-  resources :comments, only: [:show, :destroy, :create]
+  resources :comments, only: [:show, :destroy, :create] do
+    member do
+      put "vote", to: "comments#vote"
+    end
+  end
+    get 'tags/:tag', to: 'posts#index', as: "tag"
+    get "posts/newest", to: "posts#newest"
+    get "posts/projects", to: "posts#projects"
+    get "posts/jobs", to: "posts#jobs"
+
+    resources :signups, only: [:create, :new] do
+      member do
+        put "accepted"
+      end
+    end
+# map.resources :posts do |posts|
+#   posts.resources :newest
+# end
+  
+
 
   resources :posts do
     member do
@@ -12,12 +31,20 @@ ShinyIronman::Application.routes.draw do
     resources :comments, only: [:create, :new]
   end
 
-resources :members do
-  member do
-    post 'ban'
-  end
-end
 
+  resources :coffeemeets 
+
+
+  resources :members do
+   resources :coffeemeets do
+      member do
+        put "remove_from_profile", to: "coffeemeets#remove"
+      end
+   end
+    member do
+      post 'ban'
+    end
+  end
 
   # You can have the root of your site routed with "root"
   root 'posts#index'

@@ -4,30 +4,20 @@
     <title>ShinyIronman</title>
     <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
     <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+
     <%= csrf_meta_tags %>
   </head>
   <body>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-    <% if member_signed_in? %>
-      <li>
-        <%= link_to('Logout', destroy_member_session_path, :method => :delete) %>
-      </li>
-      <li>
-        <%= link_to('Profile', member_path(current_member.id), :method => :get) %>
-      </li>
-      <% if current_member.admin? %>
-        <li>
-          <%= link_to('Admin panel', members_path, :method => :get) %>        
-        </li>
-      <% end %>
-    <% else %>
-      <li>
-        <%= link_to('Login', new_member_session_path)  %>  
-      </li>
-    <% end %>
+    <!-- <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p> -->
+    <%= render partial: "layouts/nav" %>
 
-    <%= yield %>
+    <%= render partial: "layouts/hero" %>  
+
+    <div class="content">
+      <%= yield %>
+    </div>
+  </div>
 
   </body>
 </html>

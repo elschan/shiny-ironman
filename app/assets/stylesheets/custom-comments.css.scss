@@ -1,0 +1,53 @@
+// Place all the styles related to the Comments controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.comment {
+  margin-left: 30px;
+}
+.reply-form{
+  display: none;
+}
+
+#comment_text {
+  max-width: 100%
+}
+
+.textwraper.reply-form {
+  background-color: #fff;
+  textarea{
+    height: 80px;
+  }
+  input.btn {
+    float:right;
+    margin-bottom: 10px;
+  }
+}
+.textwraper.post-comment-form {
+  background-color: #fff;
+}
+
+.text-area {
+  padding: 10px;
+}
+
+.postinfobot{
+  clear:both;
+}
+
+.voted {
+  color: #C0FF33;
+}
+a.can_vote:hover, a.can_vote:focus {
+  text-decoration: none;
+}
+
+.toggle-reply {
+  &:hover{
+    text-decoration: underline;
+  }
+}
+
+.clean-comment {
+  background: #fff;
+}

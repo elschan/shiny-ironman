@@ -6,10 +6,20 @@
 <br><br><br>
 <% if current_member %>
   <% if current_member.admin %>
+  <%= form_for(Member.new, url: member_invitation_path) do |f| %>
+    <%= f.email_field :email, placeholder: 'Email to send invite to', label: false %>
+    <%= f.button :submit %>
+  <% end %>
     <%@members.each do |member| %>
     <%=member.username%> || <%=member.email%> || Confirmed: <%=member.confirmed_at%> || invitations:<%=member.invitation_limit %> || Reputation: <%=member.reputation %>  ||admin: <%=member.admin %>   <%= link_to "Delete", member_path(member.id), method: :delete %>
     <%= link_to (member.banned ? "UnBan" : "Ban"), ban_member_path(member.id), :method => "post"%>
    <br><br>
+    <% end %>
+    <%=@signups.each do |signup| %>
+      <%=signup.email %> || Invited <%= signup.accepted ? "Yes" : "pending" %>
+      <%= link_to "invited", accepted_signup_path(signup.id), :method => "put"%><br>
+
+      <%=signup.application %>  <hr> 
     <% end %>
   <% end %>
 <% end %>

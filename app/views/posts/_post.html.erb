@@ -1,34 +1,47 @@
-<div class="post">
-  <% if !post.url.empty? %>
-    <h2><%= link_to post.title, post.url %></h2>
-  <% else %>
-    <h2><%= post.title %></h2>
-  <% end %>
+<!-- POST -->
+<div class="row clean-post" data-sr>
+  <!-- UPVOTE -->
+  <div class="col-md-1">
+      <span class="upvote">
+       <% if member_signed_in? %>
+          <%= link_to (vote_post_path(post)), :class => "can_vote", :method => "put", :remote => true do %>
+            <i class="fa fa-caret-up fa-3x<% if current_member.voted_for?(post) %> voted <% end %>"></i>
+          <%end%>
+        <% else %>
+          <i class="fa fa-caret-up fa-3x"></i>
+        <% end %>
+       <p class="upvote-count"><%= post.get_upvotes.size %></p>
+     </span>
+  </div><!-- /// UPVOTE -->
 
-  <p><%= post.text %> </p>
-  <p> Upvotes: <span class="upvote-post"> <%= post.get_upvotes.size %> </span></p>
-  <p> Created: <%= time_ago_in_words(post.created_at) %> </p>
-  <p> Username: <%= post.member.username if post.member %> </p>
-  <% if current_member %>
-    <% if current_member.admin? || (post.member_id == current_member.id) %>
-      <%= link_to "Edit", edit_post_path(post.id) %>
-      <%= link_to "Delete", post_path(post.id), method: :delete %>
+  <div class="col-md-11">
+    <h4><%= link_to post.title, post_path(post.id) %></h4>
+    <div class="post-description">
+      <% if !post.url.empty? %>
+        <p> <%= link_to "(link)", post.url, target: "_blank" %> </p>
+      <% end %>
+      <p><%= post.text %></p>
+    </div>
+     <% if !post.tags.empty? %>
+      Tagged: <%=raw tag_links(post.tag_list) %>
+     <% end %>
+
+    <!-- TODO accomodate deleted user? #devproblems-->
+    <!-- POST METADATA -->
+   <p class="post-metadata"> 
+    by <%= link_to post.member.username, member_path(post.member_id) if post.member %>
+    <%= time_ago_in_words(post.created_at) %> ago. <%= link_to (post.comment_count.to_s + " comments."), post_path(post.id) %>
+    
+    <% if !post.text.empty? %>
+      <span class="pull-right toggle-description">More <b class="fa fa-caret-down"></b></span>
     <% end %>
-  <% end %>
-  <%= link_to "Comments", post_path(post.id) %>
-  <% if member_signed_in? %>
-    <%= link_to (current_member.voted_for?(post) ? "Unvote" : "Upvote"), vote_post_path(post), :class => "upvote", :method => "put", :remote => true %>
-  <% end %>
+   </p>
+
+    <!-- /// POST METADATA -->
+  </div>
+
 </div>
 
-<script>
-$('.upvote')
- .on('ajax:error', function () {
-   $(this).after('<div>There was an upvote issue.</div>');
- }).on('ajax:success', function (res, data) {
-   var $this = $(this)
-   $this.closest('.post').find('.upvote-post').text(data.vote_count)
-   var current_text = $this.text()
-   $this.text(data.voted_for ? "Unvote" : "Upvote")
- });
-</script>
+
+
+
