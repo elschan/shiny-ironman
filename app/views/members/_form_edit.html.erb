@@ -1,24 +1,50 @@
-<%= form_for @member do |f| %>
 
- <p><%= f.label :Full_Name %><br />
-<%= f.text_field :fullname %></p>
 
-<p><%= f.label :username %><br />
-<%= f.text_field :username %></p>
 
-<p><%= f.label :Open_to_coffee_dates_? %><br />
 
-Yes<%= f.radio_button :open_to_irl, :true,:id => 'yes_irl' %>
-Not yet<%= f.radio_button :open_to_irl, :true , :id => 'no_irl'%><br>
 
-    <%= f.text_field :location, autofocus: true , :placeholder => "What city are you located in?", :style => 'display:none'%> <br>
-   <br>
-<!--<%= f.text_field :social_handles %> -->
-<%= f.label :Tell_us_about_yourself %><br>
-<%= f.text_area :blurb, :placeholder =>"interests, hobbies, career goals, aspirations..."%><br>
-<%= f.label :Favorite_coffee_drink? %><br>
-<%= f.text_field :fave_coffee %>
- <br>
-  <%= f.submit %>
-<% end %>
+
+
+<div id="myModaleditMember" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Edit your Profile!</h4>
+      </div>
+      <div class="modal-body form-group">
+        <%= simple_form_for @member do |f| %>
+
+         <p><%= f.label :Full_Name %><br />
+        <%= f.text_field :fullname, :class => 'form-control' %></p>
+
+        <p><%= f.label :username %><br />
+        <%= f.text_field :username,:class => 'form-control' %></p>
+
+        <p><%= f.label :Open_to_coffee_dates_? %><br />
+        Yes<%= f.radio_button :open_to_irl, :true,:id => 'yes_irl' %>
+        Not yet<%= f.radio_button :open_to_irl, :true , :id => 'no_irl'%><br>
+<br><%= f.label :Location %>
+            <%= f.text_field :location, autofocus: true , :placeholder => "What city are you located in?",:class => 'form-control'%> <br>
+           <br>
+        <!--<%= f.text_field :social_handles %> -->
+        <%= f.label :Tell_us_about_yourself %><br>
+        <%= f.text_area :blurb,:class => 'form-control', :placeholder =>"interests, hobbies, career goals, aspirations..."%><br>
+        <%= f.label :Favorite_coffee_drink? %><br>
+        <%= f.text_field :fave_coffee,:class => 'form-control' %>
+         <br>
+          <%= f.button :submit, :class => 'form-control btn-primary' %>
+        <% end %>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
 
