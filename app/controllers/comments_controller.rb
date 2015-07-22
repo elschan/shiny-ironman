@@ -24,7 +24,7 @@ before_action :authenticate_member!
 
     if @comment.save
       # TODO Fix this, it's broken and doesn't take params in this way
-      Post.find(params[:post_id].to_i).increment!(:comment_count)
+      Post.find(params[:post_id]).increment!(:comment_count)
       redirect_to post_path(@comment.get_post_id)
     else
       # TODO how to I print the error from here? Comment save fails when the
