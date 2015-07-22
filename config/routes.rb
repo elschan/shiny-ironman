@@ -12,6 +12,10 @@ ShinyIronman::Application.routes.draw do
     get "posts/newest", to: "posts#newest"
     get "posts/projects", to: "posts#projects"
     get "posts/jobs", to: "posts#jobs"
+    get "posts/news", to: "posts#news"
+    get "posts/events", to: "posts#events"
+
+
 
     resources :signups, only: [:create, :new] do
       member do
