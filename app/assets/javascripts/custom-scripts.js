@@ -38,6 +38,15 @@ $('.confirm-to').on('click', function() {
   
 });
 
+
+$('.confirm-for').on('click', function() {
+  var showConfirm = this.id;
+  var confirmId = '#confirm-form-' + showConfirm;
+  $('.confirming').hide();
+  $(confirmId).show();
+  
+});
+
  // REMOVE COFFEES
   $('.remove-coffee').on('click', function() {
     $(this).remove();
