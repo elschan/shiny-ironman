@@ -1,69 +1,77 @@
 <div class="container">
     <div class="row">
-        <div class="col-lg-8 col-md-8">
+        <div class="col-lg-8 col-md-8 col-lg-offset-2 col-md-offset-2">
           <!-- POST -->
-            <div class="post">
-                <div class="topwrap">
-
-                  <div class="userinfo pull-left">
-                    <div class="upvote">
-                      <% if member_signed_in? %>
-                         <%= link_to (vote_post_path(@post)), :class => "can_vote", :method => "put", :remote => true do %>
-                           <i class="fa fa-caret-up fa-2x<% if current_member.voted_for?(@post) %> voted <% end %>"></i>
-                         <%end%>
+            <div class="row clean-post">
+                <!-- UPVOTE -->
+                <div class="col-md-1">
+                    <span class="upvote">
+                     <% if member_signed_in? %>
+                        <%= link_to (vote_post_path(@post)), :class => "can_vote", :method => "put", :remote => true do %>
+                          <i class="fa fa-caret-up fa-3x<% if current_member.voted_for?(@post) %> voted <% end %>"></i>
+                        <%end%>
                       <% else %>
-                        <i class="fa fa-caret-up fa-2x"></i>
+                        <i class="fa fa-caret-up fa-3x"></i>
                       <% end %>
-                     <span class="upvote-count"><%= @post.get_upvotes.size %></span>
-                   </div>
-                 </div>
-                    <div class="posttext pull-left">
-                        <h2>
-                          <%= @post.title %> 
-                          <% if !@post.url.empty? %>
-                            (<%= link_to "link", @post.url %>)
+                     <p class="upvote-count"><%= @post.get_upvotes.size %></p>
+                   </span>
+                </div><!-- /// UPVOTE -->
+
+                <div class="col-md-11">
+                  <h4><%= @post.title %></h4>
+                  <div class="post-show-description">
+                    <% if !@post.url.empty? %>
+                      <p> <%= link_to "(link)", @post.url, target: "_blank" %> </p>
+                    <% end %>
+                    <p><%= @post.text %></p>
+                  </div>
+                   <% if !@post.tags.empty? %>
+                    Tagged: <%=raw tag_links(@post.tag_list) %>
+                   <% end %>
+
+                  <!-- TODO accomodate deleted user? #devproblems-->
+                  <!-- POST METADATA -->
+                 <p class="post-metadata"> 
+                  by <%= link_to @post.member.username, member_path(@post.member_id) if @post.member %>
+                  <%= time_ago_in_words(@post.created_at) %> ago. <%= @post.comment_count %> comments.
+                 </p><!-- /// POST METADATA -->
+
+
+                  <!--THIS NEEDS STYLING CAUSE I JUST TOOK FROM BOOTSTRAP STUFF AND STUFFED IT -->
+
+                  <% if flash[:error] %>
+                    <div class="alert alert-danger fade in">
+                      <a href="#" class="close" data-dismiss="alert">&times;</a>
+                      <strong><%=flash[:error]%></strong> 
+                    </div>
+                  <% end %>
+                  
+                <!-- DEFAULT COMMENT -->
+                  <div class="posttext pull-left">
+                      <div class="textwraper post-comment-form">
+                          <%= form_for [@post, @comment] do |f| %>
+                          <%= f.text_area :text, placeholder: "Type your comment here", class: "text-area" %>
+                          <%= f.submit class: 'btn btn-primary' %>
                           <% end %>
-                    
-                        </h2>
-                        <p><%= @post.text %></p>
-
-                        <div class="posted pull-left">
-                          by <%= link_to @post.member.username, member_path(@post.member_id) %>
-                          <%= time_ago_in_words(@post.created_at)%> ago
-                        </div>
-                        
-                        <!--THIS NEEDS STYLING CAUSE I JUST TOOK FROM BOOTSTRAP STUFF AND STUFFED IT -->
-
-                        <% if flash[:error] %>
-                          <div class="alert alert-danger fade in">
-                            <a href="#" class="close" data-dismiss="alert">&times;</a>
-                            <strong><%=flash[:error]%></strong> 
-                          </div>
-                        <% end %>
-                        
-                     <!-- DEFAULT COMMENT -->
-                        <div class="posttext pull-left">
-                            <div class="textwraper post-comment-form">
-                                <%= form_for [@post, @comment] do |f| %>
-                                <%= f.text_area :text, placeholder: "Type your comment here", class: "text-area" %>
-                                <%= f.submit class: 'btn btn-primary' %>
-                                <% end %>
-                            </div>
-                        </div>
-                     <!-- /// DEFAULT COMMENT -->
-
                       </div>
-                    <div class="clearfix"></div>
+                  </div>
+                <!-- /// DEFAULT COMMENT -->
                 </div>
-            </div><!-- POST -->
+
+            </div>
+          </div>
+      </div><!-- POST -->
+      <br>
 
           <!-- START COMMENTS -->
-          <div id="comments">
+      <div class="row">
+        <div class="col-lg-8 col-md-8 col-lg-offset-2 col-md-offset-2">
+          <div>
             <%= render partial: "comment", collection: @comments %>
           </div>
         </div>
+      </div>
     </div>
-  </div>
 
 
 
