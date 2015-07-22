@@ -74,6 +74,10 @@ body {
     font-size: 1.1em;
     margin-top: 20px;
   }
+  .logo {
+    height: 200px;
+    margin: auto;
+  }
 }
 
 @media (max-width: 600px) {
@@ -95,3 +99,13 @@ body {
 h1, h2, h3, h4 {
   color: #363838;
 }
+
+.vertical-align {
+  display: flex;
+  align-items: center;
+  height:100%;
+}
+
+
+
+
