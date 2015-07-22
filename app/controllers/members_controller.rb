@@ -14,10 +14,10 @@ class MembersController < ApplicationController
 
   def show
     @member = Member.find(params[:id])
-    @posts = Post.where("member_id = #{@member.id}")
-    @coffees_invited_to = Coffeemeet.where("invitee_id = #{@member.id}").reverse
-    @coffees_waiting_for = Coffeemeet.where("inviter_id = #{@member.id}").reverse
-    @coffees = Coffeemeet.where("invitee_id or inviter_id = #{@member.id}").reverse
+    @posts = Post.where("member_id = ?",@member.id)
+    @coffees_invited_to = Coffeemeet.where("invitee_id = ?", @member.id).reverse
+    @coffees_waiting_for = Coffeemeet.where("inviter_id = ?", @member.id).reverse
+    @coffees = Coffeemeet.where("invitee_id = ? or inviter_id = ?",@member.id, @member.id).reverse
     @coffee = Coffeemeet.new
   end
 
@@ -30,7 +30,6 @@ class MembersController < ApplicationController
       # render form
       # should also create a new profile.. for this user QUESTION ?
     @member = Member.new
-    binding.pry
   end
 
   def create

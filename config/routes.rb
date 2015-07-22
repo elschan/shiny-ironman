@@ -23,7 +23,6 @@ ShinyIronman::Application.routes.draw do
 # end
   
 
-
   resources :posts do
     member do
       put "vote", to: "posts#vote"
@@ -33,7 +32,7 @@ ShinyIronman::Application.routes.draw do
 
 
   resources :coffeemeets 
-
+  resources :about
 
   resources :members do
    resources :coffeemeets do

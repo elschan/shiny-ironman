@@ -11,12 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150720010839) do
+ActiveRecord::Schema.define(version: 20150722151202) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "coffeemeets", force: true do |t|
     t.string   "location"
     t.boolean  "accepted"
-    t.boolean  "confirmed"
+    t.boolean  "confirmed",             default: false
     t.string   "invite_blurb"
     t.string   "invite_accept"
     t.datetime "created_at"
@@ -80,11 +83,11 @@ ActiveRecord::Schema.define(version: 20150720010839) do
     t.string   "fullname"
   end
 
-  add_index "members", ["email"], name: "index_members_on_email", unique: true
-  add_index "members", ["invitation_token"], name: "index_members_on_invitation_token", unique: true
-  add_index "members", ["invitations_count"], name: "index_members_on_invitations_count"
-  add_index "members", ["invited_by_id"], name: "index_members_on_invited_by_id"
-  add_index "members", ["reset_password_token"], name: "index_members_on_reset_password_token", unique: true
+  add_index "members", ["email"], name: "index_members_on_email", unique: true, using: :btree
+  add_index "members", ["invitation_token"], name: "index_members_on_invitation_token", unique: true, using: :btree
+  add_index "members", ["invitations_count"], name: "index_members_on_invitations_count", using: :btree
+  add_index "members", ["invited_by_id"], name: "index_members_on_invited_by_id", using: :btree
+  add_index "members", ["reset_password_token"], name: "index_members_on_reset_password_token", unique: true, using: :btree
 
   create_table "posts", force: true do |t|
     t.integer  "member_id"
@@ -129,7 +132,7 @@ ActiveRecord::Schema.define(version: 20150720010839) do
     t.datetime "updated_at"
   end
 
-  add_index "votes", ["votable_id", "votable_type", "vote_scope"], name: "index_votes_on_votable_id_and_votable_type_and_vote_scope"
-  add_index "votes", ["voter_id", "voter_type", "vote_scope"], name: "index_votes_on_voter_id_and_voter_type_and_vote_scope"
+  add_index "votes", ["votable_id", "votable_type", "vote_scope"], name: "index_votes_on_votable_id_and_votable_type_and_vote_scope", using: :btree
+  add_index "votes", ["voter_id", "voter_type", "vote_scope"], name: "index_votes_on_voter_id_and_voter_type_and_vote_scope", using: :btree
 
 end

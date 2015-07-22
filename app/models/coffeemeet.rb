@@ -1,8 +1,7 @@
 class Coffeemeet < ActiveRecord::Base
   belongs_to :inviter, class_name: "Member"
   belongs_to :invitee, class_name: "Member"
-  validates :invite_blurb, presence: true, length: { in: 20..140 }
-  
+  validates :invite_blurb, presence: true
   
 
   def had_coffee_with(me)

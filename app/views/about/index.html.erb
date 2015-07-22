@@ -1,0 +1,37 @@
+<div class = "container">
+    <div class="row-fluid">
+        <div class="col-md-8" style="padding-right:8em; border-right: 1px solid #ccc;">
+          <h2>About Shine</h2>
+            <p>Today, it’s not uncommon to hear stats like these: only 26% of tech jobs are held by women; females
+
+make up only 15% of CEOs; just 7% of venture capital financing goes to women-owned businesses. Women in the workplace is without a doubt, a huge issue
+
+right now and we care about it deeply, enough to devote our entire final project to it. We believe that 
+
+change can start now and can start here.We believe that 
+
+change can start now and can start here.</p>
+        </div>
+
+        <div class="col-md-4">
+          <div class = "row">
+           <h3 style = "float: right">Total coffees confirmed: <%= @coffees.count %></h3>
+              <h3 style = "float: right"> Pending coffees: <%=@pendingcoffees.count %></h3>
+          </div>
+          <div class = "row">
+              <ul class = "coffee-list" style = "list-style: none" >
+              <% @coffees.each do |coffee| %>
+              <li>
+                Coffee date @ <%=coffee.location %> - <%=coffee.updated_at.strftime("%m/%d/%Y")%>
+              </li>
+              <% end %>
+              <li>coffee date example</li>
+              <li>coffee date example</li>
+              <li>coffee date example</li>
+              <li>coffee date example</li>
+              <li>coffee date example</li>
+            </ul>
+          </div>
+        </div>
+    </div>
+</div>

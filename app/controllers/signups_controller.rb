@@ -10,7 +10,7 @@ class SignupsController < ApplicationController
       redirect_to root_path
       flash[:notice] = "We've received your signup and will be looking into it shortly!"
     else
-      flash[:notice] = "Something went wrong. You probaby wnat to try again."
+      flash[:notice] = "Something went wrong. You probably wnat to try again."
       render :new
     end
   end
