@@ -11,7 +11,7 @@
         <h4 class="modal-title">Confirm your coffee location for a coffeecup point!</h4>
       </div>
       <div class="modal-body">
-        <% @coffees_invited_to.each do |coffee_invited| %>
+        <% @coffees.each do |coffee_invited| %>
         <div class = "confirming" id="confirm-form-<%=coffee_invited.id.to_s %>">
         <%= simple_form_for(coffee_invited, html: { class: 'form-horizontal form-confirm-coffee' },:input_html => {:id => '#{coffee_invited.id}'}) do |f|%>
           Where did you guys meetup? <%= f.input :location %><br>

@@ -63,6 +63,7 @@ before_action :authenticate_member!
         redirect_to member_path(current_member.id)
         end
       else
+        #we probably want to redirect instead somewhere
         render :edit
       end
     end
