@@ -32,7 +32,7 @@ ShinyIronman::Application.routes.draw do
 
 
   resources :coffeemeets 
-
+  resources :about
 
   resources :members do
    resources :coffeemeets do
