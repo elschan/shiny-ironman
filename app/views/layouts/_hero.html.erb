@@ -1,62 +1,77 @@
 <div id="hero">
 
-  <div class="row">
+  <div class="row vertical-align">
    
     <% if @member.nil? || @member.id.nil? %>
-      MOTIVATIONAL QUOTE GOES HERE.
+
+      <img src="/s-logo.png" class="logo"/>
     <% else %>
-      <!-- NAME AND ABOUT ME -->
-      <div class="col-md-6 col-md-offset-1">
+      <div class="col-md-8 col-lg-8 col-lg-offset-2 col-md-offset-2">
         <div class="hero-content">
-          <div id="name">
-            <%= @member.fullname %>
-          </div>
-          <div id="username">
-            <%= @member.username %>
-          </div>
-          <div id="blurb">
-            <%= @member.blurb %> 
-          </div>
-        </div>
-      </div>
-      <!-- /// NAME AND ABOUT ME -->
 
-      <div class="col-md-4">
-        <div class="hero-content">
-          <div class="stats">
-            
-            <% if current_member == @member %>
-              <span class="pull-right"><%= link_to "Edit Profile", "#myModaleditMember", "data-toggle" => "modal" %></span>
-            <% end %>
-            
+<!-- NAME AND ABOUT ME -->
 
-            <div><i class="fa fa-star-o fa-2x"> Reputation: <%= @member.reputation %> </i></div>
-            <div><i class="fa fa-coffee fa-2x"> Coffees: <%= @member.coffeepoints %></i></div>
-          </div>
-
-          <% if @member.open_to_irl %>
-            <div class="coffee-invite">
-              <div id="open-to-irl"> Up for coffee IRL in <strong><%= @member.location %></strong> </div>
-              <div id="fave-coffee"> Fave coffee drink: <%= @member.fave_coffee %> </div>
-
-              <% if current_member != @member %>
-                <!--<%= button_to "Invite for coffee!", '#myModal', 'data-toggle' => 'modal', class: "btn"%>-->
-                <button type="button" class="btn btn-info btn-md" data-toggle="modal" data-target="#myModal">Invite for coffee!</button>
-              <% else %>
-
-              <!-- THIS SHOULD GO ELSEWHERE -->
-               You have <%= current_member.invitation_limit %> new member invitations left. <br>
-                <%= simple_form_for(Member.new, url: member_invitation_path) do |f| %>
-                  <%= f.email_field :email, placeholder: 'Email to send invite to', label: false %>
-                  <%= f.button :submit , "Invite!"%>
-                <% end %>
-              <% end %>
+          <div class="name-about">
+            <div id="name">
+              <%= @member.fullname %>
             </div>
-          <% else %>
-            <p> Not open to coffee IRL </p>
-          <% end %>
+            <div id="username">
+              <%= @member.username %>
+
+            </div>
+            <div id="blurb">
+              <%= @member.blurb %> 
+            </div>
+          </div>
+<!-- /// NAME AND ABOUT ME -->
+
+<!-- STATS -->
+          <div class="stats">
+              <div class="col-md-4 col-lg-4 col-md-offset-2 col-lg-offset-2">
+                <table>
+                  <tr>
+                    <td><i class="fa fa-star-o fa-2x"> </td>
+                    <td><%= @member.reputation ? @member.reputation : 0 %></td>
+                    <td>Reputation</td>
+
+                  </tr>
+                  <tr>
+                    <td><i class="fa fa-coffee fa-2x"></td>
+                    <td><%= @member.coffeepoints %></td>
+                    <td>Coffees</td>
+                  </tr>
+                </table>
+              </div>
+          </div>
+<!-- /// STATS -->
+
+<!-- COFFEEMEET -->
+          <div class="col-md-4 col-lg-4">
+
+              <% if @member.open_to_irl %>
+                <div class="coffee-invite">
+                  <div id="open-to-irl"> Up for coffee IRL in <strong><%= @member.location %></strong> </div>
+                  <div id="fave-coffee"> Fave coffee drink: <%= @member.fave_coffee %> </div>
+
+                  <% if current_member != @member %>
+                    <!--<%= button_to "Invite for coffee!", '#myModal', 'data-toggle' => 'modal', class: "btn"%>-->
+                    <button type="button" class="btn btn-hero btn-pad-top" data-toggle="modal" data-target="#myModal">INVITE FOR COFFEE</button>
+                  <% else %>
+
+ 
+                  <% end %>
+                </div>
+              <% else %>
+                <p> Not open to coffee IRL </p>
+              <% end %>
+              <% if current_member == @member %>
+                <p><%= link_to "Edit Profile", "#myModaleditMember", "data-toggle" => "modal" %></p>
+              <% end %>
+          </div>
+<!-- /// COFFEEMEET -->
+
         </div>
-      </div>
-    <% end %>
+      <% end %>
+    </div>
   </div>
 </div>
