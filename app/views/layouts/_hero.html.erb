@@ -26,8 +26,9 @@
           <div class="stats">
             
             <% if current_member == @member %>
-              <span class="pull-right"><%= link_to "Edit Profile", edit_member_path(current_member.id) %></span>
+              <span class="pull-right"><%= link_to "Edit Profile", "#myModaleditMember", "data-toggle" => "modal" %></span>
             <% end %>
+            
 
             <div><i class="fa fa-star-o fa-2x"> Reputation: <%= @member.reputation %> </i></div>
             <div><i class="fa fa-coffee fa-2x"> Coffees: <%= @member.coffeepoints %></i></div>
