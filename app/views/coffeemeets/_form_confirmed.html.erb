@@ -1,0 +1,33 @@
+
+
+
+<div id="myModalconfirm" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Confirm your coffee location for a coffeecup point!</h4>
+      </div>
+      <div class="modal-body">
+        <% @coffees.each do |coffee_invited| %>
+        <div class = "confirming" id="confirm-form-<%=coffee_invited.id.to_s %>">
+        <%= simple_form_for(coffee_invited, html: { class: 'form-horizontal form-confirm-coffee' },:input_html => {:id => '#{coffee_invited.id}'}) do |f|%>
+          Where did you guys meetup? <%= f.input :location %><br>
+         <br>
+         <%= hidden_field_tag 'coffeemeet[confirmed]', true  %>
+          <%= f.button :submit,"Confirm Coffee!", :class => "btn-info" %>
+        <% end %>
+      </div>
+        <% end %>
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+

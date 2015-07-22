@@ -1,0 +1,24 @@
+ <!-- render partial: "profilehero" -->
+
+<% if flash[:notice] %>
+  <div class="alert alert-info fade in">
+    <a href="#" class="close" data-dismiss="alert">&times;</a>
+    <strong><%=flash[:notice]%></strong> 
+  </div>
+<% end %>
+
+<div class="container">
+  <div class="row">
+      <% if current_member == @member %>
+        <%= render partial: "myprofile" %>
+      <% else %>
+        <%= render partial: "profile" %>
+      <% end %>
+  </div>
+</div>
+
+<%= render partial: "members/form_edit" %>
+
+<%= render 'coffeemeets/form_invite_first' %>
+<%= render 'coffeemeets/form_invite_accepted' %>
+<%= render "coffeemeets/form_confirmed" %>

@@ -1,0 +1,68 @@
+
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 col-md-8">
+          <!-- POST -->
+          <div class="post">
+                  <!-- acc section -->
+                  <div class="accsection">
+                      <div class="topwrap">
+
+                          <div class="userinfo pull-left">
+                          </div>
+
+                          <div class="posttext pull-left">
+                            <h1>Welcome! Set your password.</h1>
+                              <%= form_for resource, :as => resource_name, :url => invitation_path(resource_name), :html => { :method => :put } do |f| %>
+                                <%= devise_error_messages! %>
+                                <%= f.hidden_field :invitation_token %>
+                                <p><%= f.label :Full_Name %><br />
+                                <%= f.text_field :fullname %></p>
+
+                                <p><%= f.label :username %><br />
+                                <%= f.text_field :username %></p>
+
+                                <p><%= f.label :password %><br />
+                                <%= f.password_field :password %></p>
+
+                                <p><%= f.label :password_confirmation %><br />
+                                <%= f.password_field :password_confirmation %></p><br>
+                                <p><%= f.label :Open_to_coffee_dates_? %><br />
+
+                                Yes<%= f.radio_button :open_to_irl, :true,:id => 'yes_irl' %>
+                                Not yet<%= f.radio_button :open_to_irl, :true , :id => 'no_irl'%>
+
+                                    <%= f.text_field :location, autofocus: true , :placeholder => "What city are you located in?", :style => 'display:none'%> <br>
+                                   <br>
+                                <!--<%= f.text_field :social_handles %> -->
+                                <%= f.label :Tell_us_about_yourself %><br>
+                                <%= f.text_field :blurb, :placeholder =>"interests, hobbies, career goals, aspirations..."%><br>
+                                <%= f.label :Favorite_coffee_drink? %><br>
+                                <%= f.text_field :fave_coffee %>
+
+                                <p><%= f.submit t("devise.invitations.edit.submit_button"), class: "btn btn-primary" %></p>
+                              <% end %>
+
+                            <!-- render "devise/shared/links" -->
+                            <!-- Took out devise links because it seems none of them are relevant here -->
+
+                          </div>
+                          <div class="clearfix"></div>
+                      </div>
+                  </div><!-- acc section END -->
+                </div>
+            </div>
+        </div>
+
+         <script>
+          $('#yes_irl').on('click', function(){
+            $('#member_location').show();
+          });
+          $('#no_irl').on('click', function(){
+            $('#member_location').hide();
+          });
+
+        </script>
+

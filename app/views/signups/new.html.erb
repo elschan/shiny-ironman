@@ -1,0 +1,26 @@
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 col-md-8">
+          <!-- POST -->
+          <div class="post">
+            <!-- acc section -->
+            <div class="accsection">
+              <div class="topwrap">
+                 <div class="userinfo pull-left"></div>
+
+                  <div class="posttext pull-left">
+                    <h4>Welcome to the Shine Project!</h4><br>
+                    <div class="form-group" >
+                    <%= simple_form_for @signup do |f| %>
+                      <%= f.text_area :application, :class=> 'form-control', :placeholder => 'Tell us about yourself or why you want to join the shine project. We promise to review it asap! ' %><br>
+                     <%= f.email_field :email ,:class=> 'form-control', :placeholder => 'What email should we send the invite to?', :style => 'text-align: center' %><br>
+                      <%= f.submit "Send us this message!", class: "btn btn-primary btn-pad-top form-control" %>
+                    <% end %>
+                  </div>
+                 </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div><!-- acc section END -->
+          </div>
+      </div>
+  </div>

@@ -1,0 +1,2 @@
+module CoffeemeetsHelper
+end

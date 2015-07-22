@@ -1,14 +1,23 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>ShinyIronman</title>
-  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+  <head>
+    <title>ShinyIronman</title>
+    <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+    <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
 
-<%= yield %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <!-- <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p> -->
+    <%= render partial: "layouts/nav" %>
 
-</body>
+    <%= render partial: "layouts/hero" %>  
+
+    <div class="content">
+      <%= yield %>
+    </div>
+  </div>
+
+  </body>
 </html>

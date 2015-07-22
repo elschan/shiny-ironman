@@ -1,0 +1,31 @@
+<div class="row clean-comment comment">
+    <div class="col-md-1">
+      <span class="upvote">
+       <% if member_signed_in? %>
+          <%= link_to (vote_comment_path(comment)), :class => "can_vote", :method => "put", :remote => true do %>
+            <i class="fa fa-caret-up fa-3x<% if current_member.voted_for?(comment) %> voted <% end %>"></i>
+          <%end%>
+        <% else %>
+          <i class="fa fa-caret-up fa-3x"></i>
+        <% end %>
+       <p class="upvote-count"><%= comment.get_upvotes.size %></p>
+     </span>
+  </div><!-- /// UPVOTE -->
+  <div class="col-md-11">
+    <p><%= comment.text %></p>
+    <p>by <%= link_to comment.get_commenter_name, member_path(comment.member_id)%>
+      <%= time_ago_in_words(comment.created_at) %> ago <span class="toggle-reply pull-right"> Reply </span>  </p>
+          
+    <div class="textwraper reply-form">
+      <%= form_tag( {controller: "comments", action: "create"}, method: "post") do %>
+        <%= hidden_field_tag(:post_id, params[:id]) %>
+        <%= hidden_field_tag(:parent_id, comment.id) %>
+        <%= text_area_tag 'text' %>
+        <%= submit_tag "Reply", class: 'btn btn-primary pull-left' %>
+      <% end %>
+    </div>
+    <hr>
+  </div>
+  <%= render partial: "comment", collection: comment.replies %>
+</div>
+
