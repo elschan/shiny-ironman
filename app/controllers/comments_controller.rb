@@ -40,7 +40,7 @@ before_action :authenticate_member!
 
   def vote
     @comment = Comment.find(params[:id])
-    @member = Member.find_by(@comment.member_id)
+    @member = Member.find(@comment.member_id)
     if current_member.voted_for? @comment
       @comment.unvote_by current_member
       @member.decrement!(:reputation, 2)

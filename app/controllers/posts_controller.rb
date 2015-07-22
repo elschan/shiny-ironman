@@ -109,7 +109,7 @@ class PostsController < ApplicationController
 
   def vote
     @post = Post.find(params[:id])
-    @member = Member.find_by(@post.member_id)
+    @member = Member.find(@post.member_id)
     if current_member.voted_for? @post
       @post.unvote_by current_member
       @member.decrement!(:reputation, 2)
