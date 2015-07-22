@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
 
-  before_action :authenticate_member!, :except =>[:index, :newest, :show]
+  before_action :authenticate_member!, :except =>[:index, :newest, :show, :news, :projects]
 
   def index
     # TODO sort chronologically or by upvotes/time
