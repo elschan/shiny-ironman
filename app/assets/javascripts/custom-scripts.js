@@ -60,18 +60,15 @@ $('.confirm-for').on('click', function() {
     $this.toggleClass('open');
   });
 
-
   $('.toggle-description').on('click', function(){
-    $this = $(this); // This is the "more" link
+    $this = $(this); 
     $this.closest('.clean-post').find('.post-description').show();
     $this.remove();
-
   });
 
   // COMMENTS
     $('.toggle-reply').on('click', function(){
-    $(this).closest('.clean-post').find('.reply-form:first').show()
-    // toggle?
+    $(this).closest('.clean-comment').find('.reply-form:first').show()
     $(this).hide()
   })
 });
