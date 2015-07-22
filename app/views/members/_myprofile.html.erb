@@ -27,6 +27,14 @@
   <div class="col-lg-5 col-md-5">
     <h2>Shared Coffees</h2>
     <!-- PEOPLE I MET -->
+       <!-- THIS SHOULD GO ELSEWHERE -->
+    <div class="email-invite">
+     You have <%= current_member.invitation_limit %> new member invitations left. <br>
+      <%= simple_form_for(Member.new, url: member_invitation_path) do |f| %>
+        <%= f.email_field :email, placeholder: 'Email to send invite to', label: false %>
+        <%= f.button :submit , "Invite!"%>
+      <% end %>
+    </div>
       <div class="blocktxt">
         <% if @coffees %>
           <% @coffees.each do |coffee| %>
