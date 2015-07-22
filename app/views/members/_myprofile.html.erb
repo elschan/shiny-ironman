@@ -1,14 +1,4 @@
 <div class="container">
-   <% if current_member.invitation_limit > 0 %>
-      <div class="email-invite">
-        Invite your friends to the Shine Project!
-         You have <%= current_member.invitation_limit %> new member invitations left.
-          <%= simple_form_for(Member.new, url: member_invitation_path) do |f| %>
-            <%= f.email_field :email, placeholder: 'Email to send invite to', label: false %>
-            <%= f.button :submit , "Invite!"%>
-          <% end %>
-      </div>
-    <% end %>
   <div class="row coffees">
 
     <div class="col-lg-5 col-md-5 col-md-offset-1 col-lg-offset-1">
@@ -49,6 +39,19 @@
           <% end %>
         <% end %> 
       </div>
+    </div>
+
+<% if current_member.invitation_limit > 0 %>
+    <div class="col-lg-5 col-md-5">
+      <div class="email-invite">
+        Invite your friends to the Shine Project!<br>
+         You have <%= current_member.invitation_limit %> new member invitations left.
+          <%= simple_form_for(Member.new, url: member_invitation_path) do |f| %>
+            <%= f.email_field :email, placeholder: 'Email to send invite to', label: false %>
+            <%= f.button :submit , "Invite!"%>
+          <% end %>
+      </div>
+    <% end %>
     </div>
     <!-- /// PEOPLE I MET -->
 </div>
