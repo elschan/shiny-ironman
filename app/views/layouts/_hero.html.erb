@@ -6,9 +6,11 @@
 
       <img src="/s-logo.png" class="logo"/>
     <% else %>
-      <!-- NAME AND ABOUT ME -->
       <div class="col-md-8 col-lg-8 col-lg-offset-2 col-md-offset-2">
         <div class="hero-content">
+
+<!-- NAME AND ABOUT ME -->
+
           <div class="name-about">
             <div id="name">
               <%= @member.fullname %>
@@ -21,7 +23,9 @@
               <%= @member.blurb %> 
             </div>
           </div>
+<!-- /// NAME AND ABOUT ME -->
 
+<!-- STATS -->
           <div class="stats">
               <div class="col-md-4 col-lg-4 col-md-offset-2 col-lg-offset-2">
                 <table>
@@ -38,9 +42,10 @@
                   </tr>
                 </table>
               </div>
-
-          
           </div>
+<!-- /// STATS -->
+
+<!-- COFFEEMEET -->
           <div class="col-md-4 col-lg-4">
 
               <% if @member.open_to_irl %>
@@ -63,10 +68,10 @@
                 <p><%= link_to "Edit Profile", "#myModaleditMember", "data-toggle" => "modal" %></p>
               <% end %>
           </div>
-        </div>
-      <!-- /// NAME AND ABOUT ME -->
+<!-- /// COFFEEMEET -->
 
-   <!--  -->
-    <% end %>
+        </div>
+      <% end %>
+    </div>
   </div>
 </div>
