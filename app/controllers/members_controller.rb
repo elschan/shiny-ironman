@@ -30,7 +30,6 @@ class MembersController < ApplicationController
       # render form
       # should also create a new profile.. for this user QUESTION ?
     @member = Member.new
-    binding.pry
   end
 
   def create

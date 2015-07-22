@@ -38,7 +38,6 @@ before_action :authenticate_member!
       @coffee.save
     else
       @coffee.invitee_hide = true
-      puts 'oops'
       @coffee.save
     end
     redirect_to member_path(current_member.id)
