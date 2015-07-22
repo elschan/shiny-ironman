@@ -75,9 +75,9 @@ config.action_mailer.default_url_options = { :host => 'theshineproject.heroku.co
 
   # Disable automatic flushing of the log to improve performance.
   # config.autoflush_log = false
-    config.action_mailer.smtp_settings = {
+  config.action_mailer.smtp_settings = {
   address: "smtp.gmail.com",
-  port: 587,
+  port: 25,
   domain: "gmail.com",
   authentication: "plain",
   enable_starttls_auto: true,
