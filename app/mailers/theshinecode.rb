@@ -1,5 +1,5 @@
-# require 'mandrill'
-# class Theshinecode < ActionMailer::Base
+ require 'mandrill'
+ class Theshinecode < ActionMailer::Base
 
 #   def confirmation_instructions(record, token, opts={})
 #     # code to be added here later
@@ -40,4 +40,4 @@
 #       Rails.logger.debug("#{e.class}: #{e.message}")
 #       raise
 #   end
-# end
+ end
