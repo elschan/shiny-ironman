@@ -3,7 +3,7 @@
     <div class="col-lg-7 col-md-7 col-md-offset-2 col-lg-offset-2">
       <%= render partial: "post", collection: @posts %>
     </div>
-    <%= link_to "Create a Post!", "#myModalpost", "data-toggle" => "modal" , class:"btn btn-primary" if member_signed_in? %>
+    <%= link_to "Create a Post", "#myModalpost", "data-toggle" => "modal" , class:"btn btn-main" if member_signed_in? %>
   </div>
 </div>
 

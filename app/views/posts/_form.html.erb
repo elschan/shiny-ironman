@@ -14,26 +14,26 @@
       </div>
       <div class="modal-body form-group">
 
-       
-                                <%= form_for @post do |f| %>
-                                <br />
-                                <%= f.text_field :title, :class => 'form-control', :placeholder => 'Title' %><br>
-                               
-                                <br />
-                                <%= f.text_field :url,:class => 'form-control', :placeholder => 'Link (optional)' %><br>
-                               
-                               <br />
-                                <%= f.text_area :text,:class => 'form-control', :placeholder => 'Description' %><br>
 
-                               <br />                               
-                                <%= f.text_field :tag_list,:class => 'form-control' , :placeholder => 'Tag this post (separated by spaces)'%>  
-                               <br>
-                               
-                               <br>
-                                 <%= f.select(:category, options_for_select(['', 'News', 'Events', 'Jobs', 'Projects', 'Events']), {}, {class: "form-control"}) %><br>
+                <%= form_for @post do |f| %>
+                <br />
+                <%= f.text_field :title, :class => 'form-control', :placeholder => 'Title' %><br>
+               
+                <br />
+                <%= f.text_field :url,:class => 'form-control', :placeholder => 'Link (optional)' %><br>
+               
+               <br />
+                <%= f.text_area :text,:class => 'form-control', :placeholder => 'Description' %><br>
 
-                                <%= f.submit class: "btn btn-primary btn-pad-top form-control" %>
-                              <% end %>
+               <br />                               
+                <%= f.text_field :tag_list,:class => 'form-control' , :placeholder => 'Tag this post (separated by spaces)'%>  
+               <br>
+               
+               <br>
+                 <%= f.select(:category, options_for_select(['', 'News', 'Events', 'Jobs', 'Projects', 'Events']), {}, {class: "form-control"}) %><br>
+
+                <%= f.submit class: "btn btn-primary btn-pad-top form-control" %>
+              <% end %>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
