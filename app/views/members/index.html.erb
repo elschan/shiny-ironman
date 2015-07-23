@@ -10,30 +10,23 @@
       <%= f.email_field :email, placeholder: 'Email to send invite to', label: false %>
       <%= f.button :submit %>
     <% end %>
-    <h3>Members table</h3>
-    <table>
-      <tr>
-        <th>Username</th>
-        <th>Email</th>
-        <th>Confirmed</th>
-        <th>Invitations</th>
-        <th>Reputation</th>
-        <th>Admin</th>
-        <th>Actions</th>
-      </tr>
-      <%@members.each do |member| %>
-      <tr>
-        <td><%=member.username%></td>
-        <td><%=member.email%></td>
-        <td><%=member.confirmed_at%><td>
-        <td><%=member.invitation_limit %></td>
-        <td><%=member.reputation %></td>
-        <td><%=member.admin %></td>
-        <td><%= link_to "Delete", member_path(member.id), method: :delete %>
-      <%= link_to (member.banned ? "UnBan" : "Ban"), ban_member_path(member.id), :method => "post"%> </td>
-      </tr>
-      <% end %>
-    </table>
+      <h3>Members table</h3>
+      <table class="table table-hover">
+        <%@members.each do |member| %>
+        <tr>
+          <td><%=member.username%></td>
+          <td><%=member.email%></td>
+          <td>Confirmed: <%=member.confirmed_at%><td>
+          <td>Invites: <%=member.invitation_limit %></td>
+          <td>Reputation: <%=member.reputation %></td>
+          <td>Admin: <%=member.admin %></td>
+          <td><%= link_to "Delete", member_path(member.id), method: :delete %>
+        <%= link_to (member.banned ? "UnBan" : "Ban"), ban_member_path(member.id), :method => "post"%> </td>
+        </tr>
+        <% end %>
+      </table>
+
+      <br>
     <%=@signups.each do |signup| %>
       <%=signup.email %> || Invited <%= signup.accepted ? "Yes" : "pending" %>
       <%= link_to "invited", accepted_signup_path(signup.id), :method => "put"%><br>
