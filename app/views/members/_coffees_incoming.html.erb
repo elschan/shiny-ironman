@@ -19,14 +19,16 @@
         <strong><%= link_to "#{Member.find(coffee.inviter_id).fullname || Member.find(coffee.inviter_id).username}", member_path(coffee.inviter_id) %></strong> invited you for coffee! <br>
           
         <% if coffee.accepted == nil %>
-          She says: <%= coffee.invite_blurb %> <br>
+          <% if !coffee.invite_blurb.empty? %>
+            She says: <%= coffee.invite_blurb %> <br>
+          <% end %>
           <strong><%#= Member.find(coffee.inviter_id).email %></strong><!-- <br> -->
           <%= link_to "Reply to Invite!", "#myModaledit", "data-toggle" => "modal" , id: coffee.id , :class => 'reply-to'%>
           <br>
         <% elsif coffee.accepted == true %>
-           Accepted <%= coffee.updated_at.strftime("%m/%d/%Y") %> <br>
+           You accepted <%= coffee.updated_at.strftime("%m/%d/%Y") %> <br>
            <%= link_to "Confirm", "#myModalconfirm", "data-toggle" => 
-           "modal", :class => 'confirm-to', id: coffee.id %> 
+           "modal", :class => 'confirm-to', id: coffee.id %> where you met!
          <% else %>
            You declined. 
            <%= link_to "Remove", remove_from_profile_member_coffeemeet_path(coffee.inviter_id, coffee.id), :class =>"remove-coffee", :id => "coffee-#{coffee.id}", :method => "put" %>

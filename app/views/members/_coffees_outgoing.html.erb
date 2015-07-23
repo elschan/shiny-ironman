@@ -15,12 +15,20 @@
     <!-- COFFEE TEXT LOGIC -->
       <% if coffee.accepted %>
           <strong><%= link_to "#{Member.find(coffee.invitee_id).fullname || Member.find(coffee.invitee_id).username}", member_path(coffee.invitee_id) %></strong> accepted your coffee invitation @ <%= coffee.updated_at.strftime("%m/%d/%Y") %> <br>
-           <%= coffee.invite_accept %><br>
+
+          <% if !coffee.invite_accept.empty? %>
+            She says: <%= coffee.invite_accept %><br>
+          <% end %>
+
           <%= link_to "Confirm", "#myModalconfirm", "data-toggle" => 
-       "modal", :class => 'confirm-to', id: coffee.id %> where you guys met! <br>
+       "modal", :class => 'confirm-to', id: coffee.id %> where you met! <br>
       <% elsif coffee.accepted == false %>
         <strong><%= link_to "#{Member.find(coffee.invitee_id).fullname || Member.find(coffee.invitee_id).username}", member_path(coffee.invitee_id) %></strong> declined your coffee invitation @ <%= coffee.updated_at.strftime("%m/%d/%Y") %> <br>  
-        She says: <%= coffee.invite_accept %>
+        
+        <% if !coffee.invite_accept.empty? %>
+          She says: <%= coffee.invite_accept %><br>
+        <% end %> 
+        
         <%= link_to "Remove", remove_from_profile_member_coffeemeet_path(coffee.inviter_id, coffee.id), :class =>"remove-coffee", :id => "coffee-#{coffee.id}", :method => "put" %>
       <% else %>
          You invited <strong><%= link_to "#{Member.find(coffee.invitee_id).fullname || Member.find(coffee.invitee_id).username}", member_path(coffee.invitee_id) %></strong> for coffee!<br>
