@@ -32,7 +32,7 @@
     by <%= link_to post.member.username, member_path(post.member_id) if post.member %>
     <%= time_ago_in_words(post.created_at) %> ago. <%= link_to (post.comment_count.to_s + " comments."), post_path(post.id) %>
     
-    <% if current_member.admin? || (post.member_id == current_member.id) %>
+    <% if current_member && (current_member.admin? || (post.member_id == current_member.id)) %>
       <%= link_to "Delete", post_path(post.id), method: :delete, data: { confirm: "Deleting this post will delete all of its comments too. \nAlso there's no going back. \nAre you sure you want to delete it?" } %>
     <% end %>
 
