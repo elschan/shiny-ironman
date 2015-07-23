@@ -20,7 +20,7 @@
           
         <% if coffee.accepted == nil %>
           She says: <%= coffee.invite_blurb %> <br>
-          <strong><%= Member.find(coffee.inviter_id).email %></strong><br>
+          <strong><%#= Member.find(coffee.inviter_id).email %></strong><!-- <br> -->
           <%= link_to "Reply to Invite!", "#myModaledit", "data-toggle" => "modal" , id: coffee.id , :class => 'reply-to'%>
           <br>
         <% elsif coffee.accepted == true %>
