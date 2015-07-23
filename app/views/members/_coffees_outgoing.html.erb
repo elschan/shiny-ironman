@@ -1,5 +1,6 @@
 <% unless coffee.confirmed || coffee.inviter_hide %>
   <div class="coffee">
+    <!-- COFFEE ICON -->
     <div class="coffee-icon col-md-2">
       <% if coffee.accepted %>
         <img src="/coffee-accepted.png">
@@ -9,6 +10,7 @@
         <img src="/coffee-pending.png">
       <% end %>
     </div>
+    <!-- /// COFFEE ICON -->
 
     <!-- COFFEE TEXT LOGIC -->
       <% if coffee.accepted %>

@@ -1,6 +1,8 @@
 <% unless coffee.confirmed || coffee.invitee_hide %>
   <div class="row coffee">
     <div id ="coffee-<%=coffee.id%>">
+     
+      <!-- COFFEE ICON -->
       <div class="coffee-icon col-md-2">
         <% if coffee.accepted == nil %>
           <img src="/coffee-pending.png">
@@ -9,15 +11,18 @@
         <% else %>
           <img src="/coffee-declined.png">
         <% end %>
-      </div>
+      </div> <!-- /// COFFEE ICON -->
+
+      <!-- COFFEE DETAILS -->
       <div class="coffee-details col-md-10">
 
         <strong><%= link_to "#{Member.find(coffee.inviter_id).fullname || Member.find(coffee.inviter_id).username}", member_path(coffee.inviter_id) %></strong> invited you for coffee! <br>
           
         <% if coffee.accepted == nil %>
           She says: <%= coffee.invite_blurb %> <br>
-          <strong><%= Member.find(coffee.inviter_id).email%></strong><br>
-          <%= link_to "Reply to Invite!", "#myModaledit", "data-toggle" => "modal" , id: coffee.id , :class => 'reply-to'%><br>
+          <strong><%= Member.find(coffee.inviter_id).email %></strong><br>
+          <%= link_to "Reply to Invite!", "#myModaledit", "data-toggle" => "modal" , id: coffee.id , :class => 'reply-to'%>
+          <br>
         <% elsif coffee.accepted == true %>
            Accepted <%= coffee.updated_at.strftime("%m/%d/%Y") %> <br>
            <%= link_to "Confirm", "#myModalconfirm", "data-toggle" => 
@@ -26,8 +31,8 @@
            You declined. 
            <%= link_to "Remove", remove_from_profile_member_coffeemeet_path(coffee.inviter_id, coffee.id), :class =>"remove-coffee", :id => "coffee-#{coffee.id}", :method => "put" %>
         <% end %>
-
-      </div>
+      </div> <!-- /// COFFEE DETAILS -->
     </div>
   </div>
+  <hr>
 <% end %>
