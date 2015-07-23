@@ -22,13 +22,14 @@
       <% end %>
       <p><%= post.text %></p>
     </div>
-     <% if !post.tags.empty? %>
-      Tagged: <%=raw tag_links(post.tag_list) %>
-     <% end %>
+
 
     <!-- TODO accomodate deleted user? #devproblems-->
     <!-- POST METADATA -->
    <p class="post-metadata"> 
+    <% if !post.tags.empty? %>
+      Tagged: <%=raw tag_links(post.tag_list) %><br>
+    <% end %>
     by <%= link_to post.member.username, member_path(post.member_id) if post.member %>
     <%= time_ago_in_words(post.created_at) %> ago. <%= link_to (post.comment_count.to_s + " comments."), post_path(post.id) %>
     
