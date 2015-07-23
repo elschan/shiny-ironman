@@ -46,7 +46,7 @@ end
 gem 'rails_12factor', group: :production
 
 gem 'sqlite3', group: :development
-
+gem 'mandrill'
 ruby "2.2.1"
 
 # Use ActiveModel has_secure_password
