@@ -36,7 +36,7 @@ class Theshinecode < ActionMailer::Base
       :global_merge_vars => opts[:global_merge_vars]
       }
     sending = MANDRILL.messages.send_template opts[:template], [], message
-    rescue Mandrill::Error => e
+    rescue => e
       Rails.logger.debug("#{e.class}: #{e.message}")
       raise
   end
