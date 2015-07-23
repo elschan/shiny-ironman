@@ -19,7 +19,7 @@
             Sorry not now <br>    <%= f.radio_button(:accepted, "false") %> -->
             <%=f.collection_radio_buttons :accepted, [[true, 'Yes'] ,[false, ' No']], :first, :last %>
            <br>
-            <%= f.button :submit, "Accept invite!", :class => 'btn-info', style: "display:inline" %>
+            <%= f.button :submit, "Reply", :class => 'btn-info', style: "display:inline" %>
           <% end %>
         </div>
 
