@@ -28,7 +28,7 @@ class Theshinecode < ActionMailer::Base
     message = { 
       :subject=> "#{opts[:subject]}", 
       :from_name=> 'shine',
-      :from_email=>ENV[:shine_email],
+      :from_email=> ENV['shine_email'],
       :to=>
             [{
               "email"=>"#{opts[:email]}",
