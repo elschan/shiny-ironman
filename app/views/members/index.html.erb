@@ -36,7 +36,7 @@
         <td><%=signup.application %></td>
         <td>
           <% if signup.accepted %>
-            Signup Accepted
+            Signup Accepted: <%= link_to "invited", accepted_signup_path(signup.id), :method => "put"%>
           <% else %>
             Signup Pending: <%= link_to "invited", accepted_signup_path(signup.id), :method => "put"%>
             <% end %>
