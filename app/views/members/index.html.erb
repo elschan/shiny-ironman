@@ -10,7 +10,7 @@
       <%= f.email_field :email, placeholder: 'Email to send invite to', label: false %>
       <%= f.button :submit %>
     <% end %>
-      <h3>Members table</h3>
+      <h3>Members</h3>
       <table class="table table-hover">
         <%@members.each do |member| %>
         <tr>
@@ -27,11 +27,21 @@
       </table>
 
       <br>
-    <%=@signups.each do |signup| %>
-      <%=signup.email %> || Invited <%= signup.accepted ? "Yes" : "pending" %>
-      <%= link_to "invited", accepted_signup_path(signup.id), :method => "put"%><br>
-
-      <%=signup.application %>  <hr> 
+      <br>
+      <h3>Pending Invites </h3>
+      <table class="table table-hover">
+        <%= @signups.each do |signup| %>
+      <tr>
+        <td><%=signup.email %></td>
+        <td><%=signup.application %></td>
+        <td>
+          <% if signup.accepted %>
+            Signup Accepted
+          <% else %>
+            Signup Pending: <%= link_to "invited", accepted_signup_path(signup.id), :method => "put"%>
+            <% end %>
+      </tr>
+        <hr> 
     <% end %>
   <% end %>
 <% end %>
