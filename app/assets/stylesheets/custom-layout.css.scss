@@ -72,11 +72,14 @@ body {
   }
   .coffee-invite{
     font-size: 1.1em;
-    margin-top: 20px;
+    margin-top: 5px;
   }
   .logo {
     height: 200px;
     margin: auto;
+  }
+  a {
+    color: #898989;
   }
 }
 
@@ -88,14 +91,14 @@ body {
 }
 
 .hero-content{
-  padding-top:50px;
+  /*padding-top:50px;*/
+  td {
+    font-size: 1.2em;
+    padding-left: 5px;
+    padding-right: 5px;
+  }
 }
-/*
-.vertical-align {
-  display: flex;
-  align-items: center;
-  height:100%;
-}*/
+
 h1, h2, h3, h4 {
   color: #363838;
 }
@@ -106,6 +109,18 @@ h1, h2, h3, h4 {
   height:100%;
 }
 
+.name-about{
+  text-align:center;
+}
 
+.email-invite {
+  padding: 5px;
+  color: black;
+}
 
-
+#myModaleditMember {
+  color:black;
+}
+#myModal{
+  color:black;
+}
