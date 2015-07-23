@@ -1,21 +1,31 @@
-<div>
 <% unless coffee.confirmed || coffee.inviter_hide %>
-<hr>
-  <i class="fa fa-coffee fa-2x"></i>
-  <% if coffee.accepted %>
-  
-        <strong><%= link_to "#{Member.find(coffee.invitee_id).fullname || Member.find(coffee.invitee_id).username}", member_path(coffee.invitee_id) %></strong> accepted your coffee invitation @ <%= coffee.updated_at.strftime("%m/%d/%Y") %> <br>
-         <%= coffee.invite_accept %><br>
-        <%= link_to "Confirm", "#myModalconfirm", "data-toggle" => 
-     "modal", :class => 'confirm-to', id: coffee.id %> where you guys met! <br>
-  <% elsif coffee.accepted == false %>
-    <strong><%= link_to "#{Member.find(coffee.invitee_id).fullname || Member.find(coffee.invitee_id).username}", member_path(coffee.invitee_id) %></strong> declined your coffee invitation @ <%= coffee.updated_at.strftime("%m/%d/%Y") %> <br>  
-    <%= coffee.invite_accept %>
-    <%= link_to "Remove", remove_from_profile_member_coffeemeet_path(coffee.inviter_id, coffee.id), :class =>"remove-coffee", :id => "coffee-#{coffee.id}", :method => "put" %>
-  <% else %>
-     You invited <strong><%= link_to "#{Member.find(coffee.invitee_id).fullname || Member.find(coffee.invitee_id).username}", member_path(coffee.invitee_id) %></strong> for coffee!<br>
-        Waiting for response <br>
-        invited on <%=coffee.created_at.strftime("%m/%d/%Y") %>
-  <% end %>
+  <div class="coffee">
+    <div class="coffee-icon col-md-2">
+      <% if coffee.accepted %>
+        <img src="/coffee-accepted.png">
+      <% elsif coffee.accepted == false %>
+        <img src="/coffee-declined.png">
+      <% else %>
+        <img src="/coffee-pending.png">
+      <% end %>
+    </div>
+
+    <!-- COFFEE TEXT LOGIC -->
+      <% if coffee.accepted %>
+          <strong><%= link_to "#{Member.find(coffee.invitee_id).fullname || Member.find(coffee.invitee_id).username}", member_path(coffee.invitee_id) %></strong> accepted your coffee invitation @ <%= coffee.updated_at.strftime("%m/%d/%Y") %> <br>
+           <%= coffee.invite_accept %><br>
+          <%= link_to "Confirm", "#myModalconfirm", "data-toggle" => 
+       "modal", :class => 'confirm-to', id: coffee.id %> where you guys met! <br>
+      <% elsif coffee.accepted == false %>
+        <strong><%= link_to "#{Member.find(coffee.invitee_id).fullname || Member.find(coffee.invitee_id).username}", member_path(coffee.invitee_id) %></strong> declined your coffee invitation @ <%= coffee.updated_at.strftime("%m/%d/%Y") %> <br>  
+        <%= coffee.invite_accept %>
+        <%= link_to "Remove", remove_from_profile_member_coffeemeet_path(coffee.inviter_id, coffee.id), :class =>"remove-coffee", :id => "coffee-#{coffee.id}", :method => "put" %>
+      <% else %>
+         You invited <strong><%= link_to "#{Member.find(coffee.invitee_id).fullname || Member.find(coffee.invitee_id).username}", member_path(coffee.invitee_id) %></strong> for coffee!<br>
+            Waiting for response <br>
+            invited on <%=coffee.created_at.strftime("%m/%d/%Y") %>
+      <% end %>
+    <!-- /// COFFEE TEXT LOGIC -->
+    <hr>
+  </div>
 <% end %>
-</div>

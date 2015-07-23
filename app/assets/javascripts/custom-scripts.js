@@ -49,9 +49,12 @@ $('.confirm-for').on('click', function() {
 
  // REMOVE COFFEES
   $('.remove-coffee').on('click', function() {
-    $(this).remove();
-    var coffee = this.id
-    $('#'+ coffee).remove();
+    debugger;
+    $this = $(this)
+    $this.closest('.coffee').remove();
+    // $(this).remove();
+    // var coffee = this.id
+    // $('#'+ coffee).remove();
   }); 
 
 // POSTS

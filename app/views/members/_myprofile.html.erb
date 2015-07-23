@@ -1,20 +1,22 @@
-<div class="container">
-  <div class="row coffees">
+  <div class="coffees">
 
     <div class="col-lg-5 col-md-5 col-md-offset-1 col-lg-offset-1">
       <!-- TODO if !@coffees_invited_to, then say something like start posting to get attention -->
       <!-- if !@coffees_waiting_for show me a random post in my area? -->
       <h2>Coffee (invited to) </h2>
+      <hr>
         <%= render partial: "coffees_incoming", collection: @coffees_invited_to, as: :coffee %>
     </div>
     <div class="col-lg-5 col-md-5">
       <h2>Coffee (waiting on) </h2>
+      <hr>
       <%= render partial: "coffees_outgoing", collection: @coffees_waiting_for, as: :coffee %>
     </div>
+
   </div>
 
   <!-- MY POSTS -->
-
+<div class="row">
   <div class="col-lg-5 col-md-5 col-md-offset-1 col-lg-offset-1">
     <h2>My Posts</h2>
     <div class="post-wrap">
@@ -41,7 +43,7 @@
       </div>
     </div>
 
-<% if current_member.invitation_limit > 0 %>
+  <% if current_member.invitation_limit > 0 %>
     <div class="col-lg-5 col-md-5">
       <div class="email-invite">
         Invite your friends to the Shine Project!<br>
