@@ -7,6 +7,20 @@
 }
 
 .btn-hero {
+  color: white;
+  background-color: black;
+  border-radius: 2px;
+  border: 3px solid white;
+}
+
+.btn-main {
+  text-transform: uppercase;
   color: black;
   background-color: white;
+  border-radius: 2px;
+  border: 3px solid black;
+  font-weight: bold;
+  &:hover {
+    background-color: #C0FFEE;
+  }
 }
