@@ -111,7 +111,14 @@ class PostsController < ApplicationController
   end
 
   def destroy
+    # Need to delete the upvotes first in order to delete the post
     @post = Post.find(params[:id])
+
+    upvotes = @post.get_upvotes
+    upvotes.each do |upvote|
+      upvote.destroy!
+    end
+
     @post.destroy
     current_member.decrement!(:reputation)
     flash[:alert] = "Post '#{@post.title}' successfully deleted."
