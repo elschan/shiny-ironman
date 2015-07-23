@@ -12,7 +12,7 @@
                     <h1>Want to shine?</h1><br>
                     <div class="form-group" >
                     <%=simple_form_for @signup do |f| %>
-                      <%= f.input :application, as: :text, :label => false,  :class=> 'form-control', :placeholder => 'Tell us about yourself or why you want to join the shine project. We promise to review it asap!', :input_html => {rows: 5} %><br>
+                      <%= f.input :application, as: :text, :label => false,  :class=> 'form-control', :placeholder => 'Tell us about yourself or why you want to join the shine code. We promise to review it asap!', :input_html => {rows: 5} %><br>
                      <%= f.email_field :email ,:class=> 'form-control', :placeholder => 'What email should we send the invite to?', :style => 'text-align: center' %><br>
                       <%= f.submit "Apply!", class: "btn btn-primary btn-pad-top" %>
                     <% end %>
