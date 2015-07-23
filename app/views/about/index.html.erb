@@ -6,9 +6,11 @@
 
 The Shine Code is the ultimate online platform empowering women to form connections that will allow 
 
-them to grow, develop, learn, and ultimately, shine. Inspired by <a href ="http://nymag.com/thecut/2013/05/shine-theory-how-to-stop-female-competition.html" target="_blank" >shine theory</a>, the idea that when women meet other women who are 
+them to grow, develop, learn, and ultimately, shine. Inspired by <a style = "color: #31aae9" href ="http://nymag.com/thecut/2013/05/shine-theory-how-to-stop-female-competition.html" target="_blank" >shine theory</a>, the idea that when women meet other women who are 
 
-accomplished, talented, smart and successful, they should become friends rather than competitors, The 
+accomplished, talented, smart and successful, they should become friends rather than competitors.
+
+<br><br> The 
 
 Shine Code was started by Elisa Chan and Jessica Thomas when they chose to do exactly that at a coding 
 
@@ -27,14 +29,15 @@ So come take a look and start shining.</p>
 
         <div class="col-md-4">
           <div class = "row">
+            <h3 style = "float: right"> Pending coffees: <%=@pendingcoffees.count %></h3>
            <h3 style = "float: right">Total coffees confirmed: <%= @coffees.count %></h3>
-              <h3 style = "float: right"> Pending coffees: <%=@pendingcoffees.count %></h3>
+              
           </div>
           <div class = "row">
               <ul class = "coffee-list" style = "list-style: none" >
               <% @coffees.each do |coffee| %>
               <li>
-                Coffee date @ <%=coffee.location %> - <%=coffee.updated_at.strftime("%m/%d/%Y")%>
+                Coffee date @ <%=coffee.location %> - <em> <%=coffee.updated_at.strftime("%m/%d/%Y")%></em>
               </li>
               <% end %>
               
