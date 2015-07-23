@@ -1,3 +1,4 @@
+require 'mandrill'
 class Theshinecode < ActionMailer::Base
 
   def confirmation_instructions(record, token, opts={})
