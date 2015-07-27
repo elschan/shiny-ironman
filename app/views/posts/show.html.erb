@@ -18,11 +18,13 @@
                 </div><!-- /// UPVOTE -->
 
                 <div class="col-md-11">
-                  <h4><%= @post.title %></h4>
+                  <% if !@post.url.empty? %>
+                    <h4><%= link_to @post.title, @post.url, target: "_blank" %></h4>
+                  <% else %>
+                    <h4><%= @post.title %></h4>
+                  <% end %>
+
                   <div class="post-show-description">
-                    <% if !@post.url.empty? %>
-                      <p> <%= link_to "(link)", @post.url, target: "_blank" %> </p>
-                    <% end %>
                     <p><%= @post.text %></p>
                   </div>
                    <% if !@post.tags.empty? %>
