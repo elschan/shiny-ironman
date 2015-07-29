@@ -77,7 +77,7 @@ class PostsController < ApplicationController
 
     if @post.save
       @post.upvote_by current_member
-      current_member.increment!(:reputation)
+      current_member.increment!(:reputation, 3)
 
       redirect_to posts_path
     else
@@ -114,13 +114,21 @@ class PostsController < ApplicationController
     # Need to delete the upvotes first in order to delete the post
     @post = Post.find(params[:id])
 
+    # decrement accordingly to avoid negative reputation
+    if current_member.voted_for? @post
+      current_member.decrement!(:reputation, 3)
+    else 
+      current_member.decrement!(:reputation)
+    end 
+
+    # remove upvotes before you delete the post
     upvotes = @post.get_upvotes
     upvotes.each do |upvote|
       upvote.destroy!
     end
 
     @post.destroy
-    current_member.decrement!(:reputation)
+
     flash[:alert] = "Post '#{@post.title}' successfully deleted."
     redirect_to posts_path
   end
