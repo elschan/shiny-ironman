@@ -57,12 +57,7 @@ $('.confirm-for').on('click', function() {
     // $('#'+ coffee).remove();
   }); 
 
-// POSTS
-   $('.dropdown').on('click', function(){
-    $this = $(this)
-    $this.toggleClass('open');
-  });
-
+  // POSTS 
   $('.toggle-description').on('click', function(){
     $this = $(this); 
     $this.closest('.clean-post').find('.post-description').show();

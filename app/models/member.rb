@@ -13,6 +13,7 @@ class Member < ActiveRecord::Base
   has_many :posts
   has_many :comments
   has_many :coffeemeets
+  has_many :notifications
 
 
   def login=(login)

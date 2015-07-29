@@ -124,3 +124,12 @@ h1, h2, h3, h4 {
 #myModal{
   color:black;
 }
+
+#notification{
+  background-color: #C0FFEE;
+  font-size: 1.2em;
+  color: white;
+  &:hover {
+    background-color: #C0FFEE;
+  }
+}
