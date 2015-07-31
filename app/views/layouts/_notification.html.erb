@@ -1,14 +1,15 @@
 <% if notification.action == "reply" %>
   <li>
-    <%= link_to post_path(notification.post_id) do %>
+    <%= link_to post_path(notification.post_id) + '/#' do %>
       <%= get_actor_name(notification.actor_id) %> replied to your comment: "<%= get_comment_stub(notification.comment_id) %> ..." <%= time_ago_in_words(notification.created_at) %> ago.
     <% end %>
   </li>
 <% else %>
   <li>
     <%= link_to post_path(notification.post_id) do %>
-      <%= get_actor_name(notification.actor_id) %> commented on your post: <%= get_post_stub(notification.comment_id) %> <%= time_ago_in_words(notification.created_at) %> ago.
+      <%= get_actor_name(notification.actor_id) %> commented on your post: <%= get_post_stub(notification.post_id) %> <%= time_ago_in_words(notification.created_at) %> ago.
     <% end %>
   </li>
 <% end %>
 
+<li role="separator" class="divider"></li>

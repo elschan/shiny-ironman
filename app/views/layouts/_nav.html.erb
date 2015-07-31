@@ -44,13 +44,7 @@
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= get_notification_count %> </a>
                 <ul class="dropdown-menu">
                   <%= render partial: "layouts/notification", collection: get_notifications, as: :notification %>
-                  <li><a href="#">Action</a></li>
-                  <li><a href="#">Another action</a></li>
-                  <li><a href="#">Something else here</a></li>
-                  <li role="separator" class="divider"></li>
-                  <li><a href="#">Separated link</a></li>
-                  <li role="separator" class="divider"></li>
-                  <li><a href="#">One more separated link</a></li>
+                  <li><a href="#">Mark all as seen</a></li>
                 </ul>
               </li>
             <% end %>
