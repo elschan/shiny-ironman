@@ -1,5 +1,5 @@
 <li>
-  <%= link_to post_path(notification.post_id) + '/#comment_' + notification.comment_id.to_s do %>
+  <%= link_to edit_notification_path(notification.id) do %>
     <% if notification.action == "reply" %>
       <strong><%= get_actor_name(notification.actor_id) %></strong> replied to your comment <br>
       <%= get_comment_stub(notification.comment_id) %><br>

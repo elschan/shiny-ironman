@@ -62,7 +62,6 @@ before_action :authenticate_member!
 
       # render post_path(@comment.post_id)
     end
-    # binding.pry
   end
 
   def vote

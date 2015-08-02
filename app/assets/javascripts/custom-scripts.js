@@ -65,8 +65,9 @@ $('.confirm-for').on('click', function() {
   });
 
   // COMMENTS
-    $('.toggle-reply').on('click', function(){
+  $('.toggle-reply').on('click', function(){
     $(this).closest('.clean-comment').find('.reply-form:first').show()
     $(this).hide()
   })
+
 });
