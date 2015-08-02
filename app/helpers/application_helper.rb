@@ -4,7 +4,7 @@ module ApplicationHelper
   end
   
   def get_notifications
-    notifications = current_member.notifications.where("seen = false").order("created_at")
+    notifications = current_member.notifications.where("seen = false").order("created_at DESC")
   end
 
   def get_notification_count 
