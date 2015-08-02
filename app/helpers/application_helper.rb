@@ -1,4 +1,8 @@
 module ApplicationHelper
+  def member_has_unseen_notifications?
+    get_notification_count > 0
+  end
+  
   def get_notifications
     notifications = current_member.notifications.where("seen = false").order("created_at")
   end

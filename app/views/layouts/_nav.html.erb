@@ -39,12 +39,19 @@
       <% if member_signed_in? %>
         <ul class="nav navbar-nav navbar-right">
           <li> <%= link_to current_member.fullname, member_path(current_member.id) %> </li>
-            <% if current_member.notifications.count > 0 %>
+            <% if member_has_unseen_notifications? %>
               <li class="dropdown" id="notification">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= get_notification_count %> </a>
                 <ul class="dropdown-menu">
                   <%= render partial: "layouts/notification", collection: get_notifications, as: :notification %>
                   <li><a href="#">Mark all as seen</a></li>
+                </ul>
+              </li>
+            <% else %>
+              <li class="dropdown" id="no-notification">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-dot-circle-o"></i> </a>
+                <ul class="dropdown-menu">
+                  <li><a href="#">You don't have any notifications yet, <br> but when you do they'll show up here!</a></li>
                 </ul>
               </li>
             <% end %>
