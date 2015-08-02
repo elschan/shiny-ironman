@@ -8,20 +8,21 @@ ShinyIronman::Application.routes.draw do
       put "vote", to: "comments#vote"
     end
   end
-    get 'tags/:tag', to: 'posts#index', as: "tag"
-    get "posts/newest", to: "posts#newest"
-    get "posts/projects", to: "posts#projects"
-    get "posts/jobs", to: "posts#jobs"
-    get "posts/news", to: "posts#news"
-    get "posts/events", to: "posts#events"
 
+  get 'tags/:tag', to: 'posts#index', as: "tag"
+  get "posts/newest", to: "posts#newest"
+  get "posts/projects", to: "posts#projects"
+  get "posts/jobs", to: "posts#jobs"
+  get "posts/news", to: "posts#news"
+  get "posts/events", to: "posts#events"
 
+  resources :notifications, only: [:edit]
 
-    resources :signups, only: [:create, :new] do
-      member do
-        put "accepted"
-      end
+  resources :signups, only: [:create, :new] do
+    member do
+      put "accepted"
     end
+  end
 # map.resources :posts do |posts|
 #   posts.resources :newest
 # end

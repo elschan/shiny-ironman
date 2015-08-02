@@ -83,13 +83,6 @@ body {
   }
 }
 
-@media (max-width: 600px) {
-  #hero {      
-    /*background-image: url('/coffee-friend.jpg');*/
-    height:600px;
-  }
-}
-
 .hero-content{
   /*padding-top:50px;*/
   td {
@@ -123,4 +116,21 @@ h1, h2, h3, h4 {
 }
 #myModal{
   color:black;
+}
+
+#notifications{
+  background-color: #C0FFEE;
+  font-size: 1.2em;
+  color: white;
+  &:hover {
+    background-color: #C0FFEE;
+  }
+}
+
+:target{
+  animation: highlight 1s ease;
+}
+@keyframes highlight {
+  0% { background-color: #32ECBA; }
+  100% { background-color: white; }
 }

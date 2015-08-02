@@ -38,8 +38,23 @@
 
       <% if member_signed_in? %>
         <ul class="nav navbar-nav navbar-right">
-          <li><%= link_to 'My Profile', member_path(current_member.id) %></li>
-          <li><%= link_to('Logout', destroy_member_session_path, :method => :delete) %></li>
+          <li> <%= link_to current_member.fullname, member_path(current_member.id) %> </li>
+            <% if member_has_unseen_notifications? %>
+              <li class="dropdown" id="notifications">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= get_notification_count %> </a>
+                <ul class="dropdown-menu">
+                  <%= render partial: "layouts/notification", collection: get_notifications, as: :notification %>
+                </ul>
+              </li>
+            <% else %>
+              <li class="dropdown" id="no-notification">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-bell"></i> </a>
+                <ul class="dropdown-menu">
+                  <li><a href="#">No new notifications.</a></li>
+                </ul>
+              </li>
+            <% end %>
+          <li> <%= link_to('Logout', destroy_member_session_path, :method => :delete) %></li>
         </ul>
       <% else %>
         <ul class="nav navbar-nav navbar-right">

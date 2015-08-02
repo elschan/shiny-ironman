@@ -1,0 +1,15 @@
+<li>
+  <%= link_to edit_notification_path(notification.id) do %>
+    <% if notification.action == "reply" %>
+      <strong><%= get_actor_name(notification.actor_id) %></strong> replied to your comment <br>
+      <%= get_comment_stub(notification.comment_id) %><br>
+    <% else %>
+       <strong><%= get_actor_name(notification.actor_id) %></strong> commented on your post <br>
+      <%= get_post_stub(notification.post_id) %><br>
+    <% end %>
+    <i class="fa fa-clock-o"></i> <%= time_ago_in_words(notification.created_at) %> ago.
+  <% end %>
+</li>
+
+
+<li role="separator" class="divider"></li>
