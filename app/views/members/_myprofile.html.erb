@@ -5,14 +5,26 @@
       <!-- TODO if !@coffees_invited_to, then say something like start posting to get attention -->
       <!-- if !@coffees_waiting_for show me a random post in my area? -->
       <h2>Coffee (invited to) </h2>
-      <hr>
-        <%= render partial: "coffees_incoming", collection: @coffees_invited_to, as: :coffee %>
+      <hr>      
+      
+      <% if @coffees_invited_to.empty? %>
+        There are no coffees waiting for you. <br>
+        Get your name out there by posting and commenting!
+      <% else %>
+        <%= render partial: "coffees_incoming", collection: @coffees_invited_to, as: :coffee %>        
+      <% end %>
         
     </div>
     <div class="col-lg-5 col-md-5">
       <h2>Coffee (waiting on) </h2>
       <hr>
-      <%= render partial: "coffees_outgoing", collection: @coffees_waiting_for, as: :coffee %>
+      <% if @coffees_waiting_for.empty? %>
+        You haven't invited anyone for coffee. <br>
+        Get the ball rolling: check out <%= link_to "someone's profile", member_path(2), class: "link-style" %> and click the invite button!
+      <% else %>
+        <%= render partial: "coffees_outgoing", collection: @coffees_waiting_for, as: :coffee %>
+      <% end %>
+
     </div>
 
   </div>
