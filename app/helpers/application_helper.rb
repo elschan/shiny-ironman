@@ -12,10 +12,18 @@ module ApplicationHelper
   end
 
   def get_comment_stub(comment_id)
-    Comment.find(comment_id).text
+    get_stub(Comment.find(comment_id).text)
   end
   
   def get_post_stub(post_id)
-    Post.find(post_id).title
+    get_stub(Post.find(post_id).title)
+  end
+
+  def get_stub(text)
+    if text.length > 20
+      return '"' + text[0...20] + '..."'
+    else 
+      return '"' + text + '"'
+    end
   end
 end

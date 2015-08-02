@@ -11,7 +11,7 @@
        <p class="upvote-count"><%= comment.get_upvotes.size %></p>
      </span>
   </div><!-- /// UPVOTE -->
-  <div class="col-md-11">
+  <div class="col-md-11" id="comment_<%=comment.id%>">
     <p><%= comment.text %></p>
     <p>by <%= link_to comment.get_commenter_name, member_path(comment.member_id)%>
       <%= time_ago_in_words(comment.created_at) %> ago <span class="toggle-reply pull-right"> Reply </span>  </p>
