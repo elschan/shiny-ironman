@@ -8,7 +8,7 @@
   </li>
 <% else %>
   <li>
-    <%= link_to post_path(notification.post_id) do %>
+    <%= link_to post_path(notification.post_id) + '/#comment_' + notification.comment_id.to_s do %>
       <strong><%= get_actor_name(notification.actor_id) %></strong> commented on your post <br>
       <%= get_post_stub(notification.post_id) %><br>
       <i class="fa fa-clock-o"></i> <%= time_ago_in_words(notification.created_at) %> ago.

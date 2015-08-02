@@ -11,30 +11,6 @@ before_action :authenticate_member!
     @comment = Comment.new()
     @comment.member_id = current_member.id
 
-    if params[:parent_id]
-      member_to_notify = Comment.find(params[:parent_id].to_i).member_id
-      if member_to_notify != current_member.id
-        n = Notification.create(
-          member_id: member_to_notify,
-          actor_id: current_member.id,
-          action: "reply",
-          comment_id: params[:parent_id].to_i, # the parent comment
-          post_id: params[:post_id].to_i
-          )
-      end
-    else
-      member_to_notify = Post.find(params[:post_id].to_i).member_id
-      if member_to_notify != current_member.id
-        n = Notification.create(
-          member_id: member_to_notify,
-          actor_id: current_member.id,
-          action: "comment",
-          comment_id: @comment.id,  # the current comment
-          post_id: params[:post_id].to_i
-          )
-      end
-    end
-
     # TODO is there a better way to do this post_id than a hidden_field (for replies)
     # See _comments.html.erb
 
@@ -50,7 +26,33 @@ before_action :authenticate_member!
     if @comment.save
       # TODO Fix this, it's broken and doesn't take params in this way
       Post.find(params[:post_id]).increment!(:comment_count)
+
+      if params[:parent_id]
+        member_to_notify = Comment.find(params[:parent_id].to_i).member_id
+        if member_to_notify != current_member.id
+          n = Notification.create(
+            member_id: member_to_notify,
+            actor_id: current_member.id,
+            action: "reply",
+            comment_id: params[:parent_id].to_i, # the parent comment
+            post_id: params[:post_id].to_i
+            )
+        end
+      else
+        member_to_notify = Post.find(params[:post_id].to_i).member_id
+        if member_to_notify != current_member.id
+          n = Notification.create(
+            member_id: member_to_notify,
+            actor_id: current_member.id,
+            action: "comment",
+            comment_id: @comment.id,  # the current comment
+            post_id: params[:post_id].to_i
+            )
+        end
+      end
+        
       redirect_to post_path(@comment.get_post_id)
+
     else
       # TODO how to I print the error from here? Comment save fails when the
       # comment text is too dang short
