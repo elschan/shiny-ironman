@@ -2,7 +2,11 @@
 <!-- MEMBER'S POSTS -->
 <div class="col-lg-8 col-md-8 col-lg-offset-2 col-md-offset-2">
     <h3>Her posts</h3>
-    <%= render partial: "posts/post", collection: @posts %>
+    <% if @posts.empty? %>
+      <%= @member.fullname%> hasn't posted anything yet! Check back another time.
+    <% else %>
+      <%= render partial: "posts/post", collection: @posts %>
+    <% end %>
 </div>
 <!-- /// MEMBER'S POSTS -->
 
