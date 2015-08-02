@@ -22,6 +22,9 @@
 <div class="row">
   <div class="col-lg-5 col-md-5 col-md-offset-1 col-lg-offset-1">
     <h2>My Posts</h2>
+    <%= link_to "Create a post", "#myModalpost", "data-toggle" => "modal" , class: "btn btn-main" if member_signed_in? %>
+    <%= render partial: "posts/form" %>
+    
     <div class="post-wrap">
       <%= render partial: "posts/post", collection: @posts %>
     </div>
