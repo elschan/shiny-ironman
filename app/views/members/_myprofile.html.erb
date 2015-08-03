@@ -8,7 +8,7 @@
       <hr>      
       
       <% if @coffees_invited_to.empty? %>
-        Create a post or leave a comment to start getting noticed!
+        <%= link_to "Create a post", "#myModalpost", "data-toggle" => "modal", class: "link-style" %> or leave a comment to start getting noticed!
       <% else %>
         <%= render partial: "coffees_incoming", collection: @coffees_invited_to, as: :coffee %>        
       <% end %>
@@ -34,7 +34,7 @@
     <h2>My Posts </h2>
     <%= render partial: "posts/form" %>
     <% if @posts.empty? %>
-      You haven't posted anything yet! <br>
+      You haven't posted anything yet! Got something to share? <br>
       <%= link_to "Create a post", "#myModalpost", "data-toggle" => "modal" , class: "btn btn-main btn-pad-top" if member_signed_in? %>
     <% else %>
       <%= link_to "Create a post", "#myModalpost", "data-toggle" => "modal" , class: "btn btn-main" if member_signed_in? %>
