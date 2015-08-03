@@ -35,9 +35,9 @@
     <%= render partial: "posts/form" %>
     <% if @posts.empty? %>
       You haven't posted anything yet! Got something to share? <br>
-      <%= link_to "Create a post", "#myModalpost", "data-toggle" => "modal" , class: "btn btn-main btn-pad-top" if member_signed_in? %>
+      <%= link_to "Create a post", "#myModalpost", "data-toggle" => "modal" , class: "btn btn-main btn-pad-top" %>
     <% else %>
-      <%= link_to "Create a post", "#myModalpost", "data-toggle" => "modal" , class: "btn btn-main" if member_signed_in? %>
+      <%= link_to "Create a post", "#myModalpost", "data-toggle" => "modal" , class: "btn btn-main" %>
       <div class="post-wrap">
         <%= render partial: "posts/post", collection: @posts %>
       </div>
