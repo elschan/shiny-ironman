@@ -8,8 +8,7 @@
       <hr>      
       
       <% if @coffees_invited_to.empty? %>
-        There are no coffees waiting for you. <br>
-        Get your name out there by posting and commenting!
+        Create a post or leave a comment to start getting noticed!
       <% else %>
         <%= render partial: "coffees_incoming", collection: @coffees_invited_to, as: :coffee %>        
       <% end %>
@@ -19,7 +18,6 @@
       <h2>Coffee (waiting on) </h2>
       <hr>
       <% if @coffees_waiting_for.empty? %>
-        You haven't invited anyone for coffee. <br>
         Get the ball rolling: check out <%= link_to "someone's profile", member_path(2), class: "link-style" %> and click the invite button!
       <% else %>
         <%= render partial: "coffees_outgoing", collection: @coffees_waiting_for, as: :coffee %>
@@ -56,8 +54,7 @@
 
       <div class="blocktxt">
         <% if @coffees.empty? %>
-          You haven't met anyone for coffee yet.<br> 
-          When you confirm a coffee meet, the Who When Where will show up here!
+          Once you've met someone for coffee, you'll find the details here!
         <% else %> 
           <% @coffees.each do |coffee| %>
             <% if coffee.confirmed %>
