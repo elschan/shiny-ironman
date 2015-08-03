@@ -31,6 +31,9 @@
       Tagged: <%=raw tag_links(post.tag_list) %><br>
     <% end %>
     by <%= link_to post.member.username, member_path(post.member_id) if post.member %>
+    <% if !post.member.location.empty? %>
+      (<%= post.member.location %>)
+    <% end %>
     <%= time_ago_in_words(post.created_at) %> ago. <%= link_to (post.comment_count.to_s + " comments."), post_path(post.id) %>
     
     <% if current_member && (current_member.admin? || (post.member_id == current_member.id)) %>

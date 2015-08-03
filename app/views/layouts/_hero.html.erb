@@ -15,10 +15,9 @@
             <div id="name">
               <%= @member.fullname %>
             </div>
-     <!--        <div id="username">
-              <%#= @member.username %>
-            </div> -->
-            <div id="username"><i class="fa fa-map-marker"></i> <%= @member.location %></div>
+            <% if !@member.location.empty? %>
+              <div id="username"><i class="fa fa-map-marker"></i> <%= @member.location %></div>
+            <% end %>
             <div id="blurb">
               <%= @member.blurb %> 
 

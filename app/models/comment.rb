@@ -8,8 +8,11 @@ class Comment < ActiveRecord::Base
   validates :text, length: { minimum: 1 }
 
   def get_commenter_name
-  #  binding.pry
     Member.find(member_id).username
+  end
+
+  def get_commenter_location
+    Member.find(member_id).location
   end
 
   def get_post_id

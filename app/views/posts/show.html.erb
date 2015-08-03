@@ -35,6 +35,9 @@
                   <!-- POST METADATA -->
                  <p class="post-metadata"> 
                   by <%= link_to @post.member.username, member_path(@post.member_id) if @post.member %>
+                  <% if !@post.member.location.empty? %>
+                    (<%= @post.member.location %>)
+                  <% end %>
                   <%= time_ago_in_words(@post.created_at) %> ago. <%= @post.comment_count %> comments.
                  </p><!-- /// POST METADATA -->
 
