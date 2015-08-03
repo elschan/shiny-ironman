@@ -15,12 +15,13 @@
             <div id="name">
               <%= @member.fullname %>
             </div>
-            <div id="username">
-              <%= @member.username %>
-
-            </div>
+     <!--        <div id="username">
+              <%#= @member.username %>
+            </div> -->
+            <div id="username"><i class="fa fa-map-marker"></i> <%= @member.location %></div>
             <div id="blurb">
               <%= @member.blurb %> 
+
             </div>
           </div>
 <!-- /// NAME AND ABOUT ME -->
@@ -50,21 +51,28 @@
 
               <% if @member.open_to_irl? %>
                 <div class="coffee-invite">
-                  <div id="open-to-irl"> Up for coffee IRL in <strong><%= @member.location %></strong> </div>
                   <div id="fave-coffee"> Fave coffee drink: <%= @member.fave_coffee %> </div>
+                  
+                  <!-- INVITE FOR COFFEE BUTTON -->
                   <% if current_member %>
                     <% if current_member != @member %>
                       <button type="button" class="btn btn-hero btn-pad-top" data-toggle="modal" data-target="#myModal">INVITE FOR COFFEE</button>
                     <% end %>
                   <% else %>
                     <%= button_to "INVITE FOR COFFEE", new_member_session_path, class: "btn btn-hero btn-pad-top" %>
-                  <% end %>
-                 </div>
+                  <% end %> <!-- /// INVITE FOR COFFEE BUTTON -->
+
+                </div>
+
               <% else %>
-                <% if !@member.fave_coffee.empty? %>
-                  <div id="fave-coffee"> Fave coffee drink: <%= @member.fave_coffee %> </div>
-                <% end %>
-                <div id="open-to-irl"> Not open to coffee IRL </div>
+                <div class="coffee-invite">
+                  <div> Not open to coffee IRL </div>
+                  <% if !@member.location.empty? %> 
+                  <% end %>
+                   <% if !@member.fave_coffee.empty? %>
+                    <div id="fave-coffee"> Fave coffee drink: <%= @member.fave_coffee %> </div>
+                  <% end %>
+                </div>
               <% end %>
               <% if current_member == @member %>
                 <p><%= link_to "Edit Profile", "#myModaleditMember", "data-toggle" => "modal" %></p>
