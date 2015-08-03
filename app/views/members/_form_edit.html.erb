@@ -24,11 +24,14 @@
         <%= f.text_field :username,:class => 'form-control' %></p>
 
         <p><%= f.label :Open_to_coffee_dates_? %><br />
-        Yes<%= f.radio_button :open_to_irl, :true, :id => 'yes_irl' %>
+        Yes <%= f.radio_button :open_to_irl, :true, :id => 'yes_irl' %> <br>
         Not yet<%= f.radio_button :open_to_irl, :false , :id => 'no_irl'%><br>
-<br><%= f.label :Location %>
+        <br>
+        <div id="toggle-location">
+            <%= f.label :Location %>
             <%= f.text_field :location, autofocus: true , :placeholder => "What city are you located in?",:class => 'form-control'%> <br>
            <br>
+        </div>
         <!--<%= f.text_field :social_handles %> -->
         <%= f.label :Tell_us_about_yourself %><br>
         <%= f.text_area :blurb,:class => 'form-control', :placeholder =>"interests, hobbies, career goals, aspirations..."%><br>

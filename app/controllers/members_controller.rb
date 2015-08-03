@@ -44,7 +44,6 @@ class MembersController < ApplicationController
   end
 
   def update
-    binding.pry
     @member = Member.find(params[:id])
     if @member.update_attributes(member_params)
       flash[:alert] = "Profile updated!"

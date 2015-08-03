@@ -13,14 +13,6 @@ $(document).ready(function(){
      $this.closest('.upvote').find('.upvote-count').text(data.vote_count);
    });
 
-// location/irl
-    $('#yes_irl').on('click', function(){
-    $('#member_location').show();
-  });
-  $('#no_irl').on('click', function(){
-    $('#member_location').hide();
-  });
-
 // coffeemeets
 $('.reply-to').on('click', function() {
   var showForm = this.id;

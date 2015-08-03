@@ -61,7 +61,10 @@
                   <% end %>
                  </div>
               <% else %>
-                <p> Not open to coffee IRL </p>
+                <% if !@member.fave_coffee.empty? %>
+                  <div id="fave-coffee"> Fave coffee drink: <%= @member.fave_coffee %> </div>
+                <% end %>
+                <div id="open-to-irl"> Not open to coffee IRL </div>
               <% end %>
               <% if current_member == @member %>
                 <p><%= link_to "Edit Profile", "#myModaleditMember", "data-toggle" => "modal" %></p>
