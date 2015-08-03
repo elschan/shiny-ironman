@@ -12,7 +12,8 @@ class Comment < ActiveRecord::Base
   end
 
   def get_commenter_location
-    Member.find(member_id).location
+    location = Member.find(member_id).location
+    location.empty? ? "Top Secret Location" : location
   end
 
   def get_post_id
