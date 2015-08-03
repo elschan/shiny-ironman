@@ -1,8 +1,5 @@
 class MembersController < ApplicationController
-  # CRUD
-  # list show new edit create save update delete
-  # responding to requests which are routes or pages
-  # registering for the first time
+
   # before_filter :restrict_only_invited_members 
     before_action :authenticate_member!, :except =>[:show]
     #REMEMBER VALIDATIONS BEFORE DEPLOY FOR UNIQUENESS AND PRESENCE
@@ -28,13 +25,10 @@ class MembersController < ApplicationController
   end
 
   def new
-      # render form
-      # should also create a new profile.. for this user QUESTION ?
     @member = Member.new
   end
 
   def create
-    # makes a new user with the data from the form on the "new" thing
     @member = Member.create(params)
   end
 
