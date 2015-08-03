@@ -32,7 +32,7 @@
     <% end %>
     by <%= link_to post.member.username, member_path(post.member_id) if post.member %>
     <% if !post.member.location.empty? %>
-      (<%= post.member.location %>)
+      <i class="fa fa-map-marker"></i> <%= post.member.location %>,
     <% end %>
     <%= time_ago_in_words(post.created_at) %> ago. <%= link_to (post.comment_count.to_s + " comments."), post_path(post.id) %>
     
