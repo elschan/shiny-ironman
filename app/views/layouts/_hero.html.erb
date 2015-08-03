@@ -48,7 +48,7 @@
 <!-- COFFEEMEET -->
           <div class="col-md-4 col-lg-4">
 
-              <% if @member.open_to_irl %>
+              <% if @member.open_to_irl? %>
                 <div class="coffee-invite">
                   <div id="open-to-irl"> Up for coffee IRL in <strong><%= @member.location %></strong> </div>
                   <div id="fave-coffee"> Fave coffee drink: <%= @member.fave_coffee %> </div>

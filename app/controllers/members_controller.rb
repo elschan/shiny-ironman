@@ -44,33 +44,14 @@ class MembersController < ApplicationController
   end
 
   def update
-    @member = Member.find(paramd[:id])
+    binding.pry
+    @member = Member.find(params[:id])
     if @member.update_attributes(member_params)
       flash[:alert] = "Profile updated!"
       redirect_to member_path(current_member)
     else
       flash[:alert] = "An error occured, please try again"
       redirect_to edit_member_path(current_member.id)
-    end
-  end
-
-  def update
-    @post = Post.find(params[:id])
-    if @post.update_attributes(post_params)
-      redirect_to posts_path
-    else
-      render :edit
-    end
-  end
-
-  def update
-    @member = Member.find(params[:id])
-    @member.update_attributes(member_params)
-    if @member.save
-      redirect_to member_path(@member.id)
-    else
-      flash[:error]= "Something went wrong please try again"
-      redirect_to edit_member_path(@member.id)
     end
   end
 

@@ -24,8 +24,8 @@
         <%= f.text_field :username,:class => 'form-control' %></p>
 
         <p><%= f.label :Open_to_coffee_dates_? %><br />
-        Yes<%= f.radio_button :open_to_irl, :true,:id => 'yes_irl' %>
-        Not yet<%= f.radio_button :open_to_irl, :true , :id => 'no_irl'%><br>
+        Yes<%= f.radio_button :open_to_irl, :true, :id => 'yes_irl' %>
+        Not yet<%= f.radio_button :open_to_irl, :false , :id => 'no_irl'%><br>
 <br><%= f.label :Location %>
             <%= f.text_field :location, autofocus: true , :placeholder => "What city are you located in?",:class => 'form-control'%> <br>
            <br>
