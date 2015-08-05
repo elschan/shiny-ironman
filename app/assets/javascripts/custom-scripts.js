@@ -41,7 +41,6 @@ $('.confirm-for').on('click', function() {
 
  // REMOVE COFFEES
   $('.remove-coffee').on('click', function() {
-    debugger;
     $this = $(this)
     $this.closest('.coffee').remove();
     // $(this).remove();
