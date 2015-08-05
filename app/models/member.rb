@@ -1,4 +1,6 @@
 class Member < ActiveRecord::Base
+  extend FriendlyId
+  friendly_id :username, use: :slugged
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :invitable, :database_authenticatable, :registerable,
@@ -6,7 +8,7 @@ class Member < ActiveRecord::Base
   validates :username, presence: true, uniqueness: true
   validates :fullname, presence: true
 
-
+  
   acts_as_voter
 
   # validates :password_digest, presence: true
@@ -15,6 +17,9 @@ class Member < ActiveRecord::Base
   has_many :coffeemeets
   has_many :notifications
 
+  def to_param
+    username
+  end
 
   def login=(login)
     @login = login

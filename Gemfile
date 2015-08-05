@@ -20,7 +20,7 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
 
 gem 'devise'
-
+gem 'friendly_id', '~> 5.1.0'
 gem 'devise_invitable'
 
 gem 'acts_as_votable', '~> 0.10.0'

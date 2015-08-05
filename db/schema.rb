@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150727222008) do
+ActiveRecord::Schema.define(version: 20150805014424) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -81,6 +81,7 @@ ActiveRecord::Schema.define(version: 20150727222008) do
     t.string   "blurb"
     t.string   "fave_coffee"
     t.string   "fullname"
+    t.string   "slug"
   end
 
   add_index "members", ["email"], name: "index_members_on_email", unique: true, using: :btree
@@ -88,6 +89,7 @@ ActiveRecord::Schema.define(version: 20150727222008) do
   add_index "members", ["invitations_count"], name: "index_members_on_invitations_count", using: :btree
   add_index "members", ["invited_by_id"], name: "index_members_on_invited_by_id", using: :btree
   add_index "members", ["reset_password_token"], name: "index_members_on_reset_password_token", unique: true, using: :btree
+  add_index "members", ["slug"], name: "index_members_on_slug", unique: true, using: :btree
 
   create_table "notifications", force: true do |t|
     t.integer  "member_id"

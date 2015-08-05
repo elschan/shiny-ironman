@@ -8,6 +8,7 @@ ShinyIronman::Application.routes.draw do
       put "vote", to: "comments#vote"
     end
   end
+  get ':id' => 'members#show', as: :username
 
   get 'tags/:tag', to: 'posts#index', as: "tag"
   get "posts/newest", to: "posts#newest"
@@ -49,8 +50,7 @@ ShinyIronman::Application.routes.draw do
       post 'ban'
     end
   end
-
-  # You can have the root of your site routed with "root"
+ # You can have the root of your site routed with "root"
   root 'posts#index'
 
   # Example of regular route:

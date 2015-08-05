@@ -38,7 +38,7 @@
 
       <% if member_signed_in? %>
         <ul class="nav navbar-nav navbar-right">
-          <li> <%= link_to current_member.fullname, member_path(current_member.id) %> </li>
+          <li> <%= link_to current_member.fullname, member_path(current_member) %> </li>
             <% if member_has_unseen_notifications? %>
               <li class="dropdown" id="notifications">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= get_notification_count %> </a>
