@@ -20,6 +20,13 @@ class MembersController < ApplicationController
   end
 
   def index
+    if params[:search]
+      # Searching 
+      @nearby_members = Member.all.where("location LIKE ?", "%#{params[:search]}%")
+    elsif params[:location]
+      # In this case you're going straight there without searching
+    end
+    binding.pry
     @members = Member.all.where("confirmed_at IS NOT NULL")
     @unconfirmed = Member.all.where("confirmed_at IS NULL")
     @signups = Signup.all.where("accepted IS false")

@@ -9,6 +9,8 @@ ShinyIronman::Application.routes.draw do
     end
   end
 
+  get "members/:location", to: "members#index", as: "location"
+
   get 'tags/:tag', to: 'posts#index', as: "tag"
   get "posts/newest", to: "posts#newest"
   get "posts/projects", to: "posts#projects"
