@@ -1,12 +1,11 @@
 <% if current_member %>
-  Logged in as <%= current_member.username %>
-<% else %>
-  You are not logged in.
-<% end %>
-<br><br><br>
-<% if current_member %>
+  <%= render partial: "search_members" %>
   <% if current_member.admin %>
     <%= render partial: "admin_panel" %>
   <% end %>
+
+<% else %>
+  You are not logged in.
 <% end %>
+
 
