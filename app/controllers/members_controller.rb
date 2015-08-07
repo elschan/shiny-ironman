@@ -20,8 +20,9 @@ class MembersController < ApplicationController
   end
 
   def index
-    @members = Member.all
-    @signups = Signup.all
+    @members = Member.all.where("confirmed_at IS NOT NULL")
+    @unconfirmed = Member.all.where("confirmed_at IS NULL")
+    @signups = Signup.all.where("accepted IS false")
   end
 
   def new

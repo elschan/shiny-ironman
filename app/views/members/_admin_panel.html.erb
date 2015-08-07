@@ -1,0 +1,60 @@
+    <div class="container">
+      <%= form_for(Member.new, url: member_invitation_path) do |f| %>
+        <%= f.email_field :email, placeholder: 'Email to send invite to', label: false %>
+        <%= f.button :submit %>
+      <% end %>
+      <div class="row">
+        <h3>Members</h3>
+
+        <table class="table table-hover">
+          <% @members.each do |member| %>
+          <tr>
+            <td><%= link_to member.username, member_path(member.id), target: "_blank" %></td>
+            <td><%=member.email%></td>
+            <td>Confirmed: <%= member.confirmed_at? ? time_ago_in_words(member.confirmed_at) : "Not yet" %> ago<td>
+            <td>Invites: <%=member.invitation_limit %></td>
+            <td>Reputation: <%=member.reputation %></td>
+            <td>Admin: <%=member.admin %></td>
+            <td><%= link_to "Delete", member_path(member.id), method: :delete %>
+          <%= link_to (member.banned ? "UnBan" : "Ban"), ban_member_path(member.id), :method => "post"%> </td>
+          </tr>
+          <% end %>
+        </table>
+    </div>
+    <div class="row">
+      <h3>Unconfirmed Members</h3>
+        <table class="table table-hover">
+          <% @unconfirmed.each do |u_member| %>
+          <tr>
+            <td><%=u_member.email%></td>
+            <td>Invited: <%= time_ago_in_words(u_member.invitation_sent_at) %> ago </td>
+            <td><%= link_to "Delete", member_path(u_member.id), method: :delete %> </td>
+          </tr>
+          <% end %>
+        </table>
+    </div>
+
+    <div class="row">
+      <h3>Pending Invites </h3>
+      <table class="table table-hover">
+        <% @signups.each do |signup| %>
+        <tr>
+          <td><%=signup.email %></td>
+          <td>Applied <%= time_ago_in_words(signup.created_at) %> ago </td>
+          <td><%=signup.application %></td>
+          <td>
+            <%= form_for(Member.new, url: member_invitation_path) do |f| %>
+              <%= hidden_field_tag(:sign_up, true) %>
+              <%= f.email_field :email, value: signup.email, label: false %>
+              <%= f.button :submit %>
+            <% end %> 
+          </td>
+        </tr>
+        <% end %>
+      </table>
+      </div>
+    </div>
+      
+      
+
+
