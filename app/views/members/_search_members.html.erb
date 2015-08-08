@@ -1,0 +1,46 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-4 col-md-offset-4 col-sm-12">
+      <h3 class="center">Find awesome ladies near you.</h3>
+      <form action='/members' method="get" >
+        <div class="input-group">
+          <input type="text" class="form-control" name="search" placeholder="Search for members in your city" aria-describedby="basic-addon2">
+          <span class="input-group-btn">
+          <button class="btn btn-default" type="submit"><i class="fa fa-search"></i></span>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="row">
+        <% if @nearby_members %> <!-- SEARCHING NEARBY MEMBERS -->
+          <% if @nearby_members.empty? %> <!-- NO NEARBY MEMBERS -->
+          <div class="col-md-4 col-md-offset-4 col-sm-12">
+            <div class="center">
+              <br>We couldn't find any members in <strong><%= params[:search] %></strong>.<br>          
+              
+              <!-- MEMBER HAS INVITATIONS -->
+              <% if current_member.invitation_limit > 0 %> 
+                Know any awesome ladies there? You should invite them!<br><br>
+                 You have <%= current_member.invitation_limit %> new member invitations left.
+                  <%= simple_form_for(Member.new, url: member_invitation_path) do |f| %>
+                    <div class="input-group">
+                      <%= f.email_field :email, placeholder: 'Email to send invite to', label: false, class: "form-control" %>
+                      <span class="input-group-btn">
+                        <%= f.button :submit , "Invite!" %>
+                      </span>
+                    </div>
+                  <% end %> <!-- /// FORM -->
+              <% end %> <!-- /// MEMBER HAS INVITATIONS -->
+            </div> <!-- /// .center -->
+          </div> <!-- /// .col -->
+
+      <% else %> <!-- FOUND NEARBY MEMBERS -->
+        <div class="col-md-8 col-md-offset-2">
+          <br><br>
+          <%= render partial: "member", collection: @nearby_members, as: :member %>
+        </div>
+      <% end %>
+    <% end %> <!-- /// SEARCHING NEARBY MEMBERS -->
+  </div>
+  </div>
+</div>
