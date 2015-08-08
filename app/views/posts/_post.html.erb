@@ -1,7 +1,7 @@
 <!-- POST -->
 <div class="row clean-post" data-sr>
   <!-- UPVOTE -->
-  <div class="col-md-1 col-sm-2">
+  <div class="col-md-1 col-xs-2">
     <div class="center">
        <% if member_signed_in? %>
           <%= link_to (vote_post_path(post)), :class => "can_vote", :method => "put", :remote => true do %>
@@ -14,7 +14,7 @@
    </div>
   </div><!-- /// UPVOTE -->
 
-  <div class="col-md-11 col-sm-10">
+  <div class="col-md-11 col-xs-10">
     <% if !post.url.empty? %>
       <h4><%= link_to post.title, post.url, target: "_blank" %></h4>
     <% else %>
@@ -34,6 +34,7 @@
     <% if !post.member.location.empty? %>
       <i class="fa fa-map-marker"></i> <%= post.member.location %>,
     <% end %>
+
     <%= time_ago_in_words(post.created_at) %> ago. <%= link_to (post.comment_count.to_s + " comments."), post_path(post.id) %>
     
     <% if current_member && (current_member.admin? || (post.member_id == current_member.id)) %>
