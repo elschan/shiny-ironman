@@ -36,7 +36,11 @@
 
       <% else %> <!-- FOUND NEARBY MEMBERS -->
         <div class="col-md-8 col-md-offset-2">
-          <br><br>
+          <br>
+          <div class="center">
+            <h4>We found <%= @nearby_members.count %> <%= @nearby_members.count == 1 ? "member" : "members" %> in <strong><%= params[:search] %>.</strong></h4>
+            <p> Visit their profile to invite them for coffee!</p>
+          </div>
           <%= render partial: "member", collection: @nearby_members, as: :member %>
         </div>
       <% end %>

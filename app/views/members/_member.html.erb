@@ -1,8 +1,8 @@
 <div class="member">
 
-  <%= link_to member_path(member.id) do %>
+  <%= link_to member_path(member.id), target: "_blank" do %>
   <div class="details">
-    <%= member.username %> <span class="post-metadata"> <i class="fa fa-map-marker"></i> <%= member.location %></span>
+    <strong><%= member.username %></strong> <span class="post-metadata"> <i class="fa fa-map-marker"></i> <%= member.location %></span>
     <p><%= member.blurb %></p>
   </div>
   <% end %>
