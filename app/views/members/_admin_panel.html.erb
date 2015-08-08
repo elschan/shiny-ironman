@@ -1,6 +1,7 @@
     <div class="container">
       <h4>Logged in as <%= current_member.username %></h4> <br><br>
-
+      <div class="row">
+        <div class="col-md-4">
         <%= simple_form_for(Member.new, url: member_invitation_path) do |f| %>
           <div class="input-group">
             <%= f.email_field :email, placeholder: 'Email to send invite to', label: false, class: "form-control" %>
@@ -9,6 +10,8 @@
             </span>
           </div>
         <% end %>
+      </div>
+      </div>
       <!-- PENDING -->
       <div class="row">
       <h3>Pending Invites (<%= @signups.count %>) </h3>

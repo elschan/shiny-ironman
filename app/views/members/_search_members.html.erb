@@ -39,7 +39,7 @@
           <br>
           <div class="center">
             <h4>We found <%= @nearby_members.count %> <%= @nearby_members.count == 1 ? "member" : "members" %> in <strong><%= params[:search] %>.</strong></h4>
-            <p> Visit their profile to invite them for coffee!</p>
+            <p> Visit a member's profile to invite them for coffee!</p>
           </div>
           <%= render partial: "member", collection: @nearby_members, as: :member %>
         </div>

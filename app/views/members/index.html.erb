@@ -1,6 +1,7 @@
 <% if current_member %>
   <%= render partial: "search_members" %>
   <% if current_member.admin %>
+  <hr>
     <%= render partial: "admin_panel" %>
   <% end %>
 
