@@ -14,7 +14,7 @@
         <% @coffees.each do |coffee_invited| %>
         <div class = "confirming" id="confirm-form-<%=coffee_invited.id.to_s %>">
         <%= simple_form_for(coffee_invited, html: { class: 'form-horizontal form-confirm-coffee' },:input_html => {:id => '#{coffee_invited.id}'}) do |f|%>
-          Where did you guys meetup? <%= f.input :location %><br>
+          Where did you guys meet for coffee? <%= f.input :location %><br>
          <br>
          <%= hidden_field_tag 'coffeemeet[confirmed]', true  %>
           <%= f.button :submit,"Confirm Coffee!", :class => "btn-info" %>

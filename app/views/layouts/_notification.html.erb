@@ -1,15 +1,23 @@
 <li>
   <%= link_to edit_notification_path(notification.id) do %>
     <% if notification.action == "reply" %>
-      <strong><%= get_actor_name(notification.actor_id) %></strong> replied to your comment <br>
+      <i class="fa fa-comments"></i> <strong><%= get_actor_name(notification.actor_id) %></strong> replied to your comment <br>
       <%= get_comment_stub(notification.comment_id) %><br>
-    <% else %>
-       <strong><%= get_actor_name(notification.actor_id) %></strong> commented on your post <br>
+    <% elsif notification.action == "comment" %>
+      <i class="fa fa-comment"></i> <strong><%= get_actor_name(notification.actor_id) %></strong> commented on your post <br>
       <%= get_post_stub(notification.post_id) %><br>
+    <% elsif notification.action == "invite" %>
+      <i class="fa fa-coffee"></i> <strong><%= get_actor_name(notification.actor_id) %></strong> invited you for coffee! <br>
+      <%= get_invite_stub(notification.coffee_id) %> <br>
+    <% elsif notification.action =="invite_accept" %>
+      <i class="fa fa-coffee"></i> <strong><%= get_actor_name(notification.actor_id) %></strong> accepted your coffee invitation! <br>
+      <%= get_rsvp_stub(notification.coffee_id) %> <br>
+    <% elsif notification.action =="invite_decline" %>
+      <i class="fa fa-coffee"></i> <strong><%= get_actor_name(notification.actor_id) %></strong> declined your coffee invitation <br>
+      <%= get_rsvp_stub(notification.coffee_id) %> <br>
     <% end %>
     <i class="fa fa-clock-o"></i> <%= time_ago_in_words(notification.created_at) %> ago.
   <% end %>
 </li>
-
 
 <li role="separator" class="divider"></li>

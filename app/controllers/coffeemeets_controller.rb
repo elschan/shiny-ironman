@@ -11,6 +11,15 @@ before_action :authenticate_member!
     @coffee.inviter_id = current_member.id
 
     if @coffee.save
+
+      # Create a coffee notification for invite
+      n = Notification.create(
+        member_id: @coffee.invitee_id,
+        actor_id: @coffee.inviter_id,
+        coffee_id: @coffee.id,
+        action: "invite",
+      )
+
       flash[:notice] = "Coffee invite sent!"
       redirect_to member_path(@coffee.invitee_id)
     else
@@ -26,7 +35,6 @@ before_action :authenticate_member!
   # /coffeemeets/:id/edit
   # Sends back the contents of the invite modal
   def edit
-    # PROBLEM
     @coffee_accept = Coffeemeet.find(@coffee.id)
     layout false # ask rails not to render the layout
   end
@@ -45,21 +53,26 @@ before_action :authenticate_member!
 
 
   def update
-    # PROBLEM
     @coffee_accept = Coffeemeet.find(params[:id])
     if @coffee_accept.confirmed
       flash[:notice] = "This coffee's already been confirmed!"
       redirect_to member_path(current_member.id)
     else
       if @coffee_accept.update_attributes(coffeemeet_params)
+      
         if @coffee_accept.confirmed
           Member.find(@coffee_accept.invitee_id).increment!(:coffeepoints)
           Member.find(@coffee_accept.inviter_id).increment!(:coffeepoints)
           redirect_to member_path(current_member.id)
-        elsif @coffee_accept.accepted
-        redirect_to member_path(current_member.id)
-        else 
-        redirect_to member_path(current_member.id)
+        else
+          # Create a notification for RSVP
+          n = Notification.create(
+            member_id: @coffee_accept.inviter_id,
+            actor_id: @coffee_accept.invitee_id,
+            coffee_id: @coffee_accept.id,
+            action: @coffee_accept.accepted? ? "invite_accept" : "invite_decline",
+          )
+          redirect_to member_path(current_member.id)
         end
       else
         #we probably want to redirect instead somewhere
