@@ -4,9 +4,9 @@
           <!-- POST -->
             <div class="row clean-post">
                 <!-- UPVOTE -->
-                <div class="col-md-1">
-                    <span class="upvote">
-                     <% if member_signed_in? %>
+                <div class="col-md-1 col-xs-2">
+                  <div class="center">
+                      <% if member_signed_in? %>
                         <%= link_to (vote_post_path(@post)), :class => "can_vote", :method => "put", :remote => true do %>
                           <i class="fa fa-caret-up fa-3x<% if current_member.voted_for?(@post) %> voted <% end %>"></i>
                         <%end%>
@@ -14,10 +14,10 @@
                         <i class="fa fa-caret-up fa-3x"></i>
                       <% end %>
                      <p class="upvote-count"><%= @post.get_upvotes.size %></p>
-                   </span>
+                   </div>
                 </div><!-- /// UPVOTE -->
 
-                <div class="col-md-11">
+                <div class="col-md-11 col-xs-10">
                   <% if !@post.url.empty? %>
                     <h4><%= link_to @post.title, @post.url, target: "_blank" %></h4>
                   <% else %>
