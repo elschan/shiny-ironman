@@ -9,7 +9,6 @@ ShinyIronman::Application.routes.draw do
     end
   end
 
-  get "members/:location", to: "members#index", as: "location"
 
   get 'tags/:tag', to: 'posts#index', as: "tag"
   get "posts/newest", to: "posts#newest"
@@ -51,6 +50,9 @@ ShinyIronman::Application.routes.draw do
       post 'ban'
     end
   end
+  
+  get "members/:location", to: "members#index", as: "location"
+
 
   # You can have the root of your site routed with "root"
   root 'posts#index'

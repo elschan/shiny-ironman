@@ -1,10 +1,14 @@
     <div class="container">
       <h4>Logged in as <%= current_member.username %></h4> <br><br>
 
-      <%= form_for(Member.new, url: member_invitation_path) do |f| %>
-        <%= f.email_field :email, placeholder: 'Email to send invite to', label: false %>
-        <%= f.button :submit, class: "btn btn-info" %>
-      <% end %>
+        <%= simple_form_for(Member.new, url: member_invitation_path) do |f| %>
+          <div class="input-group">
+            <%= f.email_field :email, placeholder: 'Email to send invite to', label: false, class: "form-control" %>
+            <span class="input-group-btn">
+              <%= f.button :submit , "Invite!" %>
+            </span>
+          </div>
+        <% end %>
       <!-- PENDING -->
       <div class="row">
       <h3>Pending Invites (<%= @signups.count %>) </h3>

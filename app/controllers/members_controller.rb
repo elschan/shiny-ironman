@@ -22,10 +22,8 @@ class MembersController < ApplicationController
   def index
     if params[:search]
       @nearby_members = Member.where("location ILIKE ?", "%#{params[:search]}%").where(open_to_irl: true)
-    elsif params[:location]
-      # In this case you're going straight there without searching?
-      # I don't know if this matters.
     end
+    
     @members = Member.all.where("confirmed_at IS NOT NULL")
     @unconfirmed = Member.all.where("confirmed_at IS NULL")
     @signups = Signup.all.where("accepted IS false")
