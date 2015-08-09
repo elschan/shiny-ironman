@@ -38,7 +38,8 @@ ShinyIronman::Application.routes.draw do
 
 
   resources :coffeemeets 
-  resources :about
+  resources :about, only: [:index]
+  resources :faq, only: [:index]
 
   resources :members do
    resources :coffeemeets do

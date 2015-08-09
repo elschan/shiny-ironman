@@ -61,4 +61,12 @@ $('.confirm-for').on('click', function() {
     $(this).hide()
   })
 
+  // FAQ
+    $('.toggle-faq').on('click', function(){
+      $(this).find('.faq-body').slideToggle('fast');
+      $(this).find('i').toggleClass('fa-plus');
+      $(this).find('i').toggleClass('fa-minus');  
+
+    });
+
 });
