@@ -72,8 +72,12 @@
         Invite your lady friends to the Shine Code!<br>
          You have <%= current_member.invitation_limit %> new member invitations left.
           <%= simple_form_for(Member.new, url: member_invitation_path) do |f| %>
-            <%= f.email_field :email, placeholder: 'Email to send invite to', label: false %>
-            <%= f.button :submit , "Invite!"%>
+            <div class="input-group">
+              <%= f.email_field :email, placeholder: 'Email to send invite to', label: false, class: "form-control" %>
+              <span class="input-group-btn">
+                <%= f.button :submit , "Invite!" %>
+              </span>
+            </div>
           <% end %>
       </div>
     <% end %>

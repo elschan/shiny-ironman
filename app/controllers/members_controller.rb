@@ -20,8 +20,13 @@ class MembersController < ApplicationController
   end
 
   def index
-    @members = Member.all
-    @signups = Signup.all
+    if params[:search]
+      @nearby_members = Member.where("location ILIKE ?", "%#{params[:search]}%").where(open_to_irl: true).where("id != ?", current_member.id)
+    end
+    
+    @members = Member.all.where("confirmed_at IS NOT NULL")
+    @unconfirmed = Member.all.where("confirmed_at IS NULL")
+    @signups = Signup.all.where("accepted IS false")
   end
 
   def new

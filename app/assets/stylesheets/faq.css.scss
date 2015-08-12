@@ -1,0 +1,21 @@
+// Place all the styles related to the faq controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.toggle-faq {
+  border: 3px solid #C0FFEE;
+  padding: 10px;
+  margin: 5px;
+}
+
+.faq-head {
+  margin: -1px;
+  i {
+    font-size: 0.8em;
+  }
+}
+
+.faq-body {
+  margin-top: 10px;
+  display:none;
+}

@@ -10,6 +10,7 @@ ShinyIronman::Application.routes.draw do
   end
   # get ':id' => 'members#show', as: :username
 
+
   get 'tags/:tag', to: 'posts#index', as: "tag"
   get "posts/newest", to: "posts#newest"
   get "posts/projects", to: "posts#projects"
@@ -38,7 +39,8 @@ ShinyIronman::Application.routes.draw do
 
 
   resources :coffeemeets 
-  resources :about
+  resources :about, only: [:index]
+  resources :faq, only: [:index]
 
   resources :members do
    resources :coffeemeets do
@@ -50,7 +52,11 @@ ShinyIronman::Application.routes.draw do
       post 'ban'
     end
   end
- # You can have the root of your site routed with "root"
+  
+  get "members/:location", to: "members#index", as: "location"
+
+
+  # You can have the root of your site routed with "root"
   root 'posts#index'
 
   # Example of regular route:

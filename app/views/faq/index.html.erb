@@ -1,0 +1,99 @@
+<div class="container">
+  <div class="row">
+    <div class="center">
+      <h1> FAQ </h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2 col-xs-12">
+
+      <div class="toggle-faq">
+        <h4 class="faq-head"> <i class="fa fa-plus"></i> What should I post? </h4>
+        <div class="faq-body">
+          <p>We're still feeling this one out. We would love to see:</p>
+          <ul>
+            <li>Local projects or initiatives for/by women</li>
+            <li>Sweet events and other opportunities to meet IRL</li>
+            <li>Questions for the community</li>
+            <li>Stuff you find on the web that you want to start a conversation about</li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="toggle-faq">
+        <h4 class="faq-head"> <i class="fa fa-plus"></i> How do I invite someone for coffee? </h4>
+        <div class="faq-body">
+          <p> Go to their profile and if they are open to IRL, invite them for coffee! They will be notified on the site and have a chance to accept or decline your invitation.</p>
+        </div>
+      </div>
+
+      <div class="toggle-faq">
+        <h4 class="faq-head"> <i class="fa fa-plus"></i> What should I say in my coffee invitation? </h4>
+        <div class="faq-body">
+          <p>For best results:</p>
+          <ul>
+            <li>Have a specific conversation starter. Why would you like to meet? What do you hope to learn or talk about? </li>
+            <li>Suggest a date and time</li>
+            <li>Suggest your favourite coffee place</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="toggle-faq">
+        <h4 class="faq-head"> <i class="fa fa-plus"></i> What should I say when someone invites me for coffee? </h4>
+        <div class="faq-body">
+          <p>For best results:</p>
+          <ul>
+            <li>Confirm the time and place or suggest one that works for you</li>
+            <li>Exchange contact information</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="toggle-faq">
+        <h4 class="faq-head"> <i class="fa fa-plus"></i> How do I find other people in my area? </h4>
+        <div class="faq-body">
+          
+            <% if member_signed_in? %>
+              <p>You can search for members in your city on the <%=link_to "Members page", members_path, class: "link-style", target: "_blank" %>.</p>
+            <% else %>
+              <p>If you're logged in, you can search for members in your city on the Members page in the navigation bar. </p>
+            <% end %>
+          
+        </div>
+      </div>
+
+      <div class="toggle-faq">
+        <h4 class="faq-head"> <i class="fa fa-plus"></i> How do I invite my friends to join the Shine Code? </h4>
+        <div class="faq-body">
+          <p> Everyone gets 3 invites; if you know someone who should be a part of the Shine Code, you can send them an email invitation! You can find your invites on your profile page.</p>
+        </div>
+      </div>
+
+      <div class="toggle-faq">
+        <h4 class="faq-head"> <i class="fa fa-plus"></i> How can I give Shine Code feedback? </h4>
+        <div class="faq-body">
+          <p>Get in touch at theshinecode@gmail.com, or comment on one of our <%= link_to "feedback posts", post_path(27), class: "link-style", target: "_blank" %>.</p>
+        </div>
+      </div>
+    </div>
+</div>
+
+
+
+<!-- 
+= Coffees
+How do I invite someone for coffee?
+Go to their profile and if they are open to IRL, invite them for coffee!
+They will be notified of your invitation and be able to reply. 
+
+= Posts
+- What should I post?
+Stuff that inspires other members.
+Projects in your community that you want to promote. 
+
+
+= Members
+How do I find other people?
+ -->

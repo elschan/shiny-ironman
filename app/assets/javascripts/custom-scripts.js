@@ -41,7 +41,6 @@ $('.confirm-for').on('click', function() {
 
  // REMOVE COFFEES
   $('.remove-coffee').on('click', function() {
-    debugger;
     $this = $(this)
     $this.closest('.coffee').remove();
     // $(this).remove();
@@ -61,5 +60,13 @@ $('.confirm-for').on('click', function() {
     $(this).closest('.clean-comment').find('.reply-form:first').show()
     $(this).hide()
   })
+
+  // FAQ
+    $('.toggle-faq').on('click', function(){
+      $(this).find('.faq-body').slideToggle('fast');
+      $(this).find('i').toggleClass('fa-plus');
+      $(this).find('i').toggleClass('fa-minus');  
+
+    });
 
 });

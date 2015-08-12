@@ -1,48 +1,12 @@
 <% if current_member %>
-  Logged in as <%= current_member.username %>
+  <%= render partial: "search_members" %>
+  <% if current_member.admin %>
+  <hr>
+    <%= render partial: "admin_panel" %>
+  <% end %>
+
 <% else %>
   You are not logged in.
 <% end %>
-<br><br><br>
-<% if current_member %>
-  <% if current_member.admin %>
-    <%= form_for(Member.new, url: member_invitation_path) do |f| %>
-      <%= f.email_field :email, placeholder: 'Email to send invite to', label: false %>
-      <%= f.button :submit %>
-    <% end %>
-      <h3>Members</h3>
-      <table class="table table-hover">
-        <%@members.each do |member| %>
-        <tr>
-          <td><%=member.username%></td>
-          <td><%=member.email%></td>
-          <td>Confirmed: <%=member.confirmed_at%><td>
-          <td>Invites: <%=member.invitation_limit %></td>
-          <td>Reputation: <%=member.reputation %></td>
-          <td>Admin: <%=member.admin %></td>
-          <td><%= link_to "Delete", member_path(member.id), method: :delete %>
-        <%= link_to (member.banned ? "UnBan" : "Ban"), ban_member_path(member.id), :method => "post"%> </td>
-        </tr>
-        <% end %>
-      </table>
 
-      <br>
-      <br>
-      <h3>Pending Invites </h3>
-      <table class="table table-hover">
-        <%= @signups.each do |signup| %>
-      <tr>
-        <td><%=signup.email %></td>
-        <td><%=signup.application %></td>
-        <td>
-          <% if signup.accepted %>
-            Signup Accepted: <%= link_to "invited", accepted_signup_path(signup.id), :method => "put"%>
-          <% else %>
-            Signup Pending: <%= link_to "invited", accepted_signup_path(signup.id), :method => "put"%>
-            <% end %>
-      </tr>
-        <hr> 
-    <% end %>
-  <% end %>
-<% end %>
 

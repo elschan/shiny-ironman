@@ -1220,6 +1220,6 @@ a.down:hover {
     }
 
     .container {
-        padding: 0;
+        padding: 8px;
     }
 }

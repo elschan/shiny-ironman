@@ -1,6 +1,6 @@
 <div class="row clean-comment comment">
-    <div class="col-md-1">
-      <span class="upvote">
+    <div class="col-md-1 col-xs-2">
+      <div class="center">
        <% if member_signed_in? %>
           <%= link_to (vote_comment_path(comment)), :class => "can_vote", :method => "put", :remote => true do %>
             <i class="fa fa-caret-up fa-3x<% if current_member.voted_for?(comment) %> voted <% end %>"></i>
@@ -9,9 +9,9 @@
           <i class="fa fa-caret-up fa-3x"></i>
         <% end %>
        <p class="upvote-count"><%= comment.get_upvotes.size %></p>
-     </span>
+     </div>
   </div><!-- /// UPVOTE -->
-  <div class="col-md-11">
+  <div class="col-md-11 col-xs-10">
     <div id="comment_<%=comment.id%>">
       <p><%= comment.text %></p>
       <p>by <%= link_to comment.get_commenter_name, member_path(comment.member_id)%> 

@@ -23,6 +23,14 @@ module ApplicationHelper
     get_stub(Post.find(post_id).title)
   end
 
+  def get_invite_stub(coffee_id)
+    get_stub(Coffeemeet.find(coffee_id).invite_blurb)
+  end
+
+  def get_rsvp_stub(coffee_id)
+    get_stub(Coffeemeet.find(coffee_id).invite_accept)
+  end
+
   def get_stub(text)
     if text.length > 20
       return '"' + text[0...20] + '..."'

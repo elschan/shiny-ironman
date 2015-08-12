@@ -1,13 +1,28 @@
 <div class="container">
   <div class="row">
-    <div class="col-lg-7 col-md-7 col-md-offset-2 col-lg-offset-2">
-      <%= render partial: "post", collection: @posts %>
-    </div>
-    <div class="col-lg-3 col-md-3">
+    
+    <div class="visible-xs visible-sm col-xs-12 col-sm-12">
       <form action='/posts' method="get" >
         <div class="input-group">
           <input type="text" class="form-control" name="search" placeholder="Search posts by tag" aria-describedby="basic-addon2">
-          <span class="input-group-addon" id="basic-addon2"><i class="fa fa-search"></i></span>
+          <span class="input-group-btn">
+          <button class="btn btn-default" type="submit"><i class="fa fa-search"></i></span>
+        </div>
+      </form>
+      <%= link_to "Create a Post", "#myModalpost", "data-toggle" => "modal" , class: "btn btn-main btn-pad-top btn-pad-bottom" if member_signed_in? %>
+    </div>
+  </div>
+
+    <div class="col-lg-7 col-md-7 col-md-offset-2 col-lg-offset-2 col-sm-12">
+      <%= render partial: "post", collection: @posts %>
+    </div>
+    
+    <div class="hidden-xs hidden-sm col-lg-3 col-md-3">
+      <form action='/posts' method="get" >
+        <div class="input-group">
+          <input type="text" class="form-control" name="search" placeholder="Search posts by tag" aria-describedby="basic-addon2">
+          <span class="input-group-btn">
+          <button class="btn btn-default" type="submit"><i class="fa fa-search"></i></span>
         </div>
       </form>
     <%= link_to "Create a Post", "#myModalpost", "data-toggle" => "modal" , class: "btn btn-main btn-pad-top" if member_signed_in? %>
