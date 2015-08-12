@@ -38,7 +38,7 @@ class PostsController < ApplicationController
   end
 
   def newest
-    @posts = Post.all.reverse
+    @posts = Post.find( :all, :order =>"created_at DESC")
     @post = Post.new
     render :index
   end
