@@ -5,6 +5,7 @@ class Member < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
   validates :username, presence: true, uniqueness: true
   validates :fullname, presence: true
+  validates_length_of :blurb, :maximum => 255
 
 
   acts_as_voter
