@@ -81,6 +81,11 @@ class PostsController < ApplicationController
 
       redirect_to posts_path
     else
+      if @post.errors.any?
+        flash[:notice] = @post.errors.full_messages.join(", ")
+      else
+      flash[:notice] = "Something went wrong - please try again!"
+      end
       redirect_to posts_path
     end
   end

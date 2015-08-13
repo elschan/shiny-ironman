@@ -12,6 +12,12 @@
       <%= link_to "Create a Post", "#myModalpost", "data-toggle" => "modal" , class: "btn btn-main btn-pad-top btn-pad-bottom" if member_signed_in? %>
     </div>
   </div>
+  <% if flash[:notice] %>
+  <div class="alert alert-info fade in">
+    <a href="#" class="close" data-dismiss="alert">&times;</a>
+    <strong><%=flash[:notice]%></strong> 
+  </div>
+<% end %>
 
     <div class="col-lg-7 col-md-7 col-md-offset-2 col-lg-offset-2 col-sm-12">
       <%= render partial: "post", collection: @posts %>
