@@ -10,7 +10,7 @@ class MembersController < ApplicationController
   end
 
   def show
-    @member = Member.find(params[:id])
+    @member = Member.friendly.find(params[:id])
     @posts = Post.where("member_id = ?",@member.id)
     @coffees_invited_to = Coffeemeet.where("invitee_id = ?", @member.id).reverse
     @coffees_waiting_for = Coffeemeet.where("inviter_id = ?", @member.id).reverse
@@ -43,13 +43,13 @@ class MembersController < ApplicationController
   end
 
   def update
-    @member = Member.find(params[:id])
+    @member = Member.friendly.find(params[:id])
     if @member.update_attributes(member_params)
       flash[:alert] = "Profile updated!"
       redirect_to member_path(current_member)
     else
       flash[:alert] = "An error occured, please try again"
-      redirect_to edit_member_path(current_member.id)
+      redirect_to edit_member_path(current_member)
     end
   end
 
