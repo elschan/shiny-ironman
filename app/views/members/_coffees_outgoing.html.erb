@@ -21,7 +21,7 @@
           <% end %>
 
           <%= link_to "Confirm", "#myModalconfirm", "data-toggle" => 
-       "modal", :class => 'confirm-to', id: coffee.id %> where you met! <br>
+       "modal", :class => 'confirm-to link-style', id: coffee.id %> where you met for coffee! <br>
       <% elsif coffee.accepted == false %>
         <strong><%= link_to "#{Member.find(coffee.invitee_id).fullname || Member.find(coffee.invitee_id).username}", member_path(coffee.invitee) %></strong> declined your coffee invitation @ <%= coffee.updated_at.strftime("%m/%d/%Y") %> <br>  
         
