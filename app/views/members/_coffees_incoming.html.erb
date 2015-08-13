@@ -19,7 +19,6 @@
       <!-- COFFEE DETAILS -->
       <div class="col-xs-10">
         <div class="coffee-details">
-
           <strong><%= link_to "#{Member.find(coffee.inviter_id).fullname || Member.find(coffee.inviter_id).username}", member_path(coffee.inviter_id) %></strong> invited you for coffee! <br>
             
           <% if coffee.accepted == nil %>
@@ -32,7 +31,7 @@
           <% elsif coffee.accepted == true %>
              You accepted <%= coffee.updated_at.strftime("%m/%d/%Y") %> <br>
              <%= link_to "Confirm", "#myModalconfirm", "data-toggle" => 
-             "modal", :class => 'confirm-to', id: coffee.id %> where you met!
+             "modal", :class => 'confirm-to', id: coffee.id %> where you met for coffee!
            <% else %>
              You declined. 
              <%= link_to "Remove", remove_from_profile_member_coffeemeet_path(coffee.inviter_id, coffee.id), :class =>"remove-coffee", :id => "coffee-#{coffee.id}", :method => "put" %>

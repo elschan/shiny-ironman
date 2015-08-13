@@ -8,6 +8,7 @@ ShinyIronman::Application.routes.draw do
       put "vote", to: "comments#vote"
     end
   end
+  # get ':id' => 'members#show', as: :username
 
 
   get 'tags/:tag', to: 'posts#index', as: "tag"

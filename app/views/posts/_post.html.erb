@@ -30,7 +30,7 @@
     <% if !post.tags.empty? %>
       Tagged: <%=raw tag_links(post.tag_list) %><br>
     <% end %>
-    by <%= link_to post.member.username, member_path(post.member_id) if post.member %>
+    by <%= link_to post.member.username, member_path(post.member) if post.member %>
     <% if !post.member.location.empty? %>
       <i class="fa fa-map-marker"></i> <%= post.member.location %>,
     <% end %>
