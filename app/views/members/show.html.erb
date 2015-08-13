@@ -1,5 +1,4 @@
  <!-- render partial: "profilehero" -->
-
 <% if flash[:notice] %>
   <div class="alert alert-info fade in">
     <a href="#" class="close" data-dismiss="alert">&times;</a>
@@ -8,6 +7,7 @@
 <% end %>
 
 <div class="container">
+
   <div class="row">
       <% if current_member == @member %>
         <%= render partial: "myprofile" %>
@@ -15,6 +15,8 @@
         <%= render partial: "profile" %>
       <% end %>
   </div>
+  
+
 </div>
 
 <%= render partial: "members/form_edit" %>

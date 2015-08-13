@@ -17,7 +17,7 @@
       <div class="modal-body form-group">
         <%= simple_form_for @member do |f| %>
 
-         <p><%= f.label :Full_Name %><br>
+         <p>* <%= f.label :full_Name %><br>
         <%= f.text_field :fullname, :class => 'form-control' %></p>
 
         <p><%= f.label :username %><br>
@@ -27,7 +27,7 @@
         <%= f.radio_button :open_to_irl, :true, :id => 'yes_irl' %> Yes  <br>
         <%= f.radio_button :open_to_irl, :false , :id => 'no_irl'%> Not yet <br>
         <br>
-        <%= f.label :Location %>
+        <%= f.label :location %>
         <%= f.text_field :location, autofocus: true , :placeholder => "What city are you located in?",:class => 'form-control'%> 
         <br>
         <!--<%= f.text_field :social_handles %> -->
