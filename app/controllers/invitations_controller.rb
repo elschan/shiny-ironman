@@ -11,7 +11,7 @@ class InvitationsController < Devise::InvitationsController
         set_flash_message :notice, :send_instructions, :email => self.resource.email
         flash[:notice] = "You've invited #{self.resource.email}!"
       end
-      respond_with resource, :location => member_path(current_member.id)
+      respond_with resource, :location => member_path(current_member)
     else
       respond_with_navigational(resource) { render :new }
     end

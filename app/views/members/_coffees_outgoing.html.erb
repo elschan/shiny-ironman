@@ -14,7 +14,7 @@
 
     <!-- COFFEE TEXT LOGIC -->
       <% if coffee.accepted %>
-          <strong><%= link_to "#{Member.find(coffee.invitee_id).fullname || Member.find(coffee.invitee_id).username}", member_path(coffee.invitee_id) %></strong> accepted your coffee invitation @ <%= coffee.updated_at.strftime("%m/%d/%Y") %> <br>
+          <strong><%= link_to "#{Member.find(coffee.invitee_id).fullname || Member.find(coffee.invitee_id).username}", member_path(coffee.invitee) %></strong> accepted your coffee invitation @ <%= coffee.updated_at.strftime("%m/%d/%Y") %> <br>
 
           <% if !coffee.invite_accept.empty? %>
             She says: <%= coffee.invite_accept %><br>
@@ -23,7 +23,7 @@
           <%= link_to "Confirm", "#myModalconfirm", "data-toggle" => 
        "modal", :class => 'confirm-to', id: coffee.id %> where you met! <br>
       <% elsif coffee.accepted == false %>
-        <strong><%= link_to "#{Member.find(coffee.invitee_id).fullname || Member.find(coffee.invitee_id).username}", member_path(coffee.invitee_id) %></strong> declined your coffee invitation @ <%= coffee.updated_at.strftime("%m/%d/%Y") %> <br>  
+        <strong><%= link_to "#{Member.find(coffee.invitee_id).fullname || Member.find(coffee.invitee_id).username}", member_path(coffee.invitee) %></strong> declined your coffee invitation @ <%= coffee.updated_at.strftime("%m/%d/%Y") %> <br>  
         
         <% if !coffee.invite_accept.empty? %>
           She says: <%= coffee.invite_accept %><br>
@@ -31,7 +31,7 @@
         
         <%= link_to "Remove", remove_from_profile_member_coffeemeet_path(coffee.inviter_id, coffee.id), :class =>"remove-coffee", :id => "coffee-#{coffee.id}", :method => "put" %>
       <% else %>
-         You invited <strong><%= link_to "#{Member.find(coffee.invitee_id).fullname || Member.find(coffee.invitee_id).username}", member_path(coffee.invitee_id) %></strong> for coffee!<br>
+         You invited <strong><%= link_to "#{Member.find(coffee.invitee_id).fullname || Member.find(coffee.invitee_id).username}", member_path(coffee.invitee) %></strong> for coffee!<br>
             Waiting for response <br>
             invited on <%=coffee.created_at.strftime("%m/%d/%Y") %>
       <% end %>

@@ -19,7 +19,6 @@
       <!-- COFFEE DETAILS -->
       <div class="col-xs-10">
         <div class="coffee-details">
-
           <strong><%= link_to "#{Member.find(coffee.inviter_id).fullname || Member.find(coffee.inviter_id).username}", member_path(coffee.inviter_id) %></strong> invited you for coffee! <br>
             
           <% if coffee.accepted == nil %>
