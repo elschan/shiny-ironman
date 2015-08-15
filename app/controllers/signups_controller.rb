@@ -7,8 +7,9 @@ class SignupsController < ApplicationController
     @signup = Signup.new(signup_params)
 
     if @signup.save
-      redirect_to root_path
       flash[:notice] = "We've received your signup and will be looking into it shortly!"
+      redirect_to root_path
+
     else
       flash[:notice] = "Something went wrong. You probably wnat to try again."
       render :new
