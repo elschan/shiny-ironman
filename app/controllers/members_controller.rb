@@ -45,11 +45,15 @@ class MembersController < ApplicationController
   def update
     @member = Member.friendly.find(params[:id])
     if @member.update_attributes(member_params)
-      flash[:alert] = "Profile updated!"
+      flash[:notice] = "Profile updated!"
       redirect_to member_path(current_member)
     else
-      flash[:alert] = "An error occured, please try again"
-      redirect_to edit_member_path(current_member)
+      if @member.errors.any?
+        flash[:notice] = @member.errors.full_messages.join(", ")
+      else
+      flash[:notice] = "Something went wrong - please try again!"
+      end
+      redirect_to member_path(current_member)
     end
   end
 
